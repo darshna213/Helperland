@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "imuDPXp1BEGvc06FJFhU5zPSOqFuK55Fy7QtSP7Qd8YhLEPwt0PWj7bozAKw1pbUVU2vuj49dDB3m6XorWWrKQ==",
+  "dgSpecHash": "Mgn6jXg4obTYx2eyrVzYieROOVY8njPLhSCQduD5JQN2n1HYIMKI081wSxM2Z4ORS/KFU3nyRTBYSMkKsf/+Xg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\pca11\\source\\repos\\Helperland\\Helperland\\Helperland.csproj",
+  "projectFilePath": "C:\\Users\\pca11\\Desktop\\Helperland\\Helperland\\Helperland.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pca11\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

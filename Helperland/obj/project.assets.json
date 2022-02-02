@@ -8523,11 +8523,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pca11\\source\\repos\\Helperland\\Helperland\\Helperland.csproj",
+      "projectUniqueName": "C:\\Users\\pca11\\Desktop\\Helperland\\Helperland\\Helperland.csproj",
       "projectName": "Helperland",
-      "projectPath": "C:\\Users\\pca11\\source\\repos\\Helperland\\Helperland\\Helperland.csproj",
+      "projectPath": "C:\\Users\\pca11\\Desktop\\Helperland\\Helperland\\Helperland.csproj",
       "packagesPath": "C:\\Users\\pca11\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pca11\\source\\repos\\Helperland\\Helperland\\obj\\",
+      "outputPath": "C:\\Users\\pca11\\Desktop\\Helperland\\Helperland\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

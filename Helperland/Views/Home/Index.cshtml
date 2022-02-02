@@ -1,0 +1,644 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icon CDN Links -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <!-- External CSS File -->
+    <link rel="stylesheet" href="~/css/Index.css" />
+
+    <!--JS links-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+    <title>Homepage</title>
+</head>
+
+<body class="" style="overflow: auto;">
+    @*<div class="parallax-mirror" style="visibility: visible; z-index: -100; position: fixed; top: 0px; left: 0px; overflow: hidden; transform: translate3d(0px, 0px, 0px); height: 768px; width: 1519.2px;"><img class="parallax-slider" src="assets/images/new/banner-bg.jpg" style="transform: translate3d(0px, -176px, 0px); position: absolute; height: 905px; width: 1519.2px; max-width: none;"></div>*@
+
+    <!-- Home Section code start -->
+    <section id="home_section" class="home_section ">
+        <nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg">
+            <div class="container-fluid ">
+                <a class="navbar-brand" asp-action="Index">
+                    <img src="~/IMAGES/logo.png" alt="Logo">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <img src="~/IMAGES/list.svg" alt="List" width="50px" height="50px">
+                </button>
+
+                <div class="collapse navbar-collapse ms-auto justify-content-end" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
+                               asp-action="Book_service">Book a Cleaner</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Price">Prices</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#middle-section">Our Guarantee</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#our-blog-section">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Contact">Contact Us</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link btn btn-primary text-white" data-target="#mymodal" data-toggle="modal" style="padding-left: 20px;padding-right: 20px;"
+                               href="#">Login</a>
+                        </li>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="padding-left: 20px;padding-right: 20px;">
+                            Login
+                        </button>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
+                               asp-action="Provider">Become a Helper</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="~/IMAGES/ic-flag.png" alt="Flag">
+                                <i class="bi bi-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt=""> USA</a></li>
+                                <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">CANADA</a></li>
+                                <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">INDIA</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--home_section_text-->
+        <div id="home_section_text">
+            <div class="home_section_text">
+                <div class="lorem">
+                    <p style="margin-bottom: 0px;">Lorem ipsum text</p>
+                </div>
+                <div class="lorem-small">
+                    <span><i class="bi bi-check"></i></span>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                </div>
+
+                <div class="lorem-small">
+                    <span><i class="bi bi-check"></i></span>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                </div>
+
+                <div class="lorem-small">
+                    <span><i class="bi bi-check"></i></span>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                </div>
+            </div>
+        </div>
+
+        <!--home_section_center_button-->
+
+        <div class="home_section_center_button" id="home_section_center_button">
+            <a class="btn btn-center" href="book_service.html">Let's Book a Cleaner</a>
+
+        </div>
+
+
+        <!--home_section_process-->
+        <div id="home_section_process">
+            <div class="home_section_process">
+                <div class="container">
+                    <div class="row justify-content-around text-center">
+                        <div class="col-sm-2">
+                            <img class="img-fluid mbs-40" width="52" height="55" src="~/IMAGES/forma-1.png" alt="">
+                            <p class="home-section-text">Enter your postcode</p>
+
+                        </div>
+                        <div class="col-1 arrow-img">
+                            <img class="img-fluid" width="85" height="23" src="~/IMAGES/step-arrow-1.png" alt="">
+
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="img-fluid mbs-40" src="~/IMAGES/foma-2.png" alt="" width="57" height="60">
+                            <p class="home-section-text">Select your plan</p>
+                        </div>
+                        <div class="col-1 arrow-img">
+                            <img class="img-fluid" src="~/IMAGES/step-arrow-1-copy.png" alt="" width="85" height="23">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="img-fluid mbs-40" src="~/IMAGES/forma-3.png" alt="" width="54" height="54">
+                            <p class="home-section-text">Pay securely online</p>
+                        </div>
+                        <div class="col-1 arrow-img">
+                            <img class="img-fluid" src="~/IMAGES/step-arrow-1.png" alt="" width="85" height="23">
+                        </div>
+                        <div class="col-sm-2">
+                            <img class="img-fluid mbs-40" src="~/IMAGES/forma-4.png" alt="" width="62" height="63">
+                            <p class="home-section-text">Enjoy amazing service</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="home-section-down-arrow">
+                            <a href="#middle-section">
+                                <img class="" src="~/IMAGES/group-18.png" alt="" width="40px" height="40px">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Home Section code end -->
+    <!-- middle section code start-->
+    <section class="container-fluid" id="middle-section">
+        <div class="row row1 justify-content-around">
+            <div class="col-12 text text-center" id="middle-section-heading">Why Helperland</div>
+        </div>
+
+        <div class="row px-0 mx-0 justify-content-around" id="middle-section-row2">
+            <div class="col-9" id="middle-section-row2-container">
+                <div class="container-fluid px-0 mx-0">
+                    <div class="row ">
+                        <div class="col-lg-4 col-md-6 my-3 mb-lg-0 card text-center middle-section-card px-4 ">
+                            <img class="img-fluid card-img-top" src="~/IMAGES/group-21.png" width="320" height="320"
+                                 alt="image group 23">
+                            <div class="card-body">
+                                <p class="card-title">Experince and vetted professionals</p>
+                                <p class="card-text">
+                                    dominate the industry in scale and scope with an adaptable, extensive network that
+                                    consistently delivers exceptional result
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 card text-center my-3 mb-lg-0 middle-section-card px-4">
+                            <img class="img-fluid card-img-top" src="~/IMAGES/group-23.png" width="320" height="320"
+                                 alt="image group 23">
+                            <div class="card-body">
+                                <p class="card-title">Secure Online Payment</p>
+                                <p class="card-text">
+                                    Payment is processed securely online. Customers pay safely online and manage the
+                                    booking
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6  card text-center middle-section-card my-3 mb-lg-0 px-4">
+                            <img class="img-fluid card-img-top" src="~/IMAGES/group-24.png" width="320" height="320"
+                                 alt="image group 24">
+                            <div class="card-body">
+                                <p class="card-title">Dedicated Customer Service</p>
+                                <p class="card-text">
+                                    to our customers and are guided in all we do by their needs. The team is always
+                                    happy to support you and offer all the information
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- middle section code end -->
+    <!-- our-blog-section code start -->
+    <section class="container-fluid" id="our-blog-section">
+
+        <img id="blog-left" src="~/IMAGES/blog-left-bg.png" alt="" srcset="">
+        <img id="blog-right" src="~/IMAGES/blog-right-bg.png" alt="" srcset="">
+
+        <div class="row sub-row1 justify-content-center">
+            <div class="col-md-6 order-2 order-md-1">
+                <p id="our-blog-section-title" class="pt-4">
+                    Lorem ipsum dolor sit amet,<br> consectetur
+                </p>
+
+                <p id="our-blog-section-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi sapien,
+                    suscipit ut accumsan vitae, pulvinar ac libero. <br><br>Aliquam erat volutpat. Nullam quis ex odio. Nam
+                    bibendum cursus purus, vel efficitur urna finibus vitae. Nullam finibus aliquet pharetra. Morbi in sem dolor.
+                    Integer pretium hendrerit ante quis vehicula.<br><br> Mauris consequat ornare enim, sed lobortis quam ultrices
+                    sed.
+                </p>
+            </div>
+            <div class="col-md-4 text-center order-1 order-lg-2">
+                <img class="img-fluid" src="~/IMAGES/group-36.png" alt="">
+            </div>
+        </div>
+
+        <div class="row row2">
+            <div class="col text-center">
+                <p id="our-blog-head" class="">Our Blog</p>
+            </div>
+        </div>
+
+        <div class="row px-0 mx-0 row3">
+            <div class="container-fluid px-0 mx-0">
+                <div class="row justify-content-lg-center">
+
+                    <div class="col-lg-3 col-sm-6 mb-sm-2 mb-lg-0 ">
+                        <div class="card shadow">
+                            <img class="img-fluid card-img-top" src="~/IMAGES/group-28.png" alt="" width="357px" height="164px">
+                            <div class="card-body">
+                                <p class="card-title">Lorem ipsum dolor sit amet</p>
+                                <p class="card-subtitle">January 28, 2019</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus
+                                    pulvinar aliquet.
+                                </p>
+                                <a class="card-link" href="">
+                                    Read the post <img class="img-fluid" src="~/IMAGES/shape-2.png" alt=""
+                                                       srcset="">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 mb-sm-2 mb-md-0 ">
+
+                        <div class="card shadow">
+                            <img class="img-fluid card-img-top" src="~/IMAGES/group-29.png" alt="" width="357px" height="164px">
+                            <div class="card-body">
+                                <p class="card-title">Lorem ipsum dolor sit amet</p>
+                                <p class="card-subtitle">January 28, 2019</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus
+                                    pulvinar aliquet.
+                                </p>
+                                <a class="card-link" href="">
+                                    Read the post <img class="img-fluid" src="IMAGES/homepage/shape-2.png" alt=""
+                                                       srcset="">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 mb-sm-2 mb-md-0 ">
+
+                        <div class="card shadow">
+                            <img class="img-fluid card-img-top" src="~/IMAGES/group-30.png" alt="" width="357px" height="164px">
+                            <div class="card-body">
+                                <p class="card-title">Lorem ipsum dolor sit amet</p>
+                                <p class="card-subtitle">January 28, 2019</p>
+                                <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus
+                                    pulvinar aliquet.
+                                </p>
+                                <a class="card-link" href="">
+                                    Read the post <img class="img-fluid" src="~/IMAGES/shape-2.png" alt=""
+                                                       srcset="">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- our-blog-section end -->
+    <!-- customer section start -->
+
+    <section class="container-fluid" id="customer">
+        <div class="row row1 ">
+            <div class="col text-center">
+                <p id="customer-text" class="my-0">
+                    What Our Customers Say
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row px-0 mx-0" id="row2">
+            <div class="container-fluid px-0 mx-0">
+                <div class="row justify-content-lg-center">
+
+                    <div class="col-lg-3 col-sm-6 mb-2 mb-lg-0">
+                        <div class="card row2-card">
+                            <img class="img-fluid customer-card-img" src="~/IMAGES/message.png" height="35px" width="33px" alt="">
+                            <div class="row px-0 mx-2 ">
+                                <div class="col-3 mts-43 text-align-right">
+                                    <img src="~/IMAGES/group-31.png" class="img-fluid" width="70" height="70" alt="">
+                                </div>
+                                <div class="col mts-43">
+                                    <p class="card-title pt-2">Lary Watson</p>
+                                    <p class="card-subtitle">Manchester</p>
+                                </div>
+                            </div>
+                            <div class="card-body px-0 ">
+                                <p class="card-text px-0 mx-3">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum
+                                    metus
+                                    pulvinar aliquet consequat. Praesent nec malesuada nibh.<br><br> Nullam et metus congue, auctor augue
+                                    sit amet, consectetur tortor.
+                                </p>
+                                <a class="card-link px-0 mx-3" href="">
+                                    Read More <img class="img-fluid" src="~/IMAGES/shape-2.png" alt=""
+                                                   srcset="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 mb-2 mb-lg-0">
+                        <div class="card row2-card">
+                            <img class="img-fluid customer-card-img" src="~/IMAGES/message.png" height="35px" width="33px" alt="">
+                            <div class="row px-0 mx-2 ">
+                                <div class="col-3 mts-43 text-align-right">
+                                    <img src="~/IMAGES/group-32.png" class="img-fluid" width="70" height="70" alt="">
+                                </div>
+                                <div class="col mts-43">
+                                    <p class="card-title pt-2">John Smith</p>
+                                    <p class="card-subtitle">Manchester</p>
+                                </div>
+                            </div>
+                            <div class="card-body px-0 ">
+                                <p class="card-text px-0 mx-3">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum
+                                    metus
+                                    pulvinar aliquet consequat. Praesent nec malesuada nibh.<br><br> Nullam et metus congue, auctor augue
+                                    sit amet, consectetur tortor.
+                                </p>
+                                <a class="card-link px-0 mx-3" href="">
+                                    Read More <img class="img-fluid" src="~/IMAGES/shape-2.png" alt=""
+                                                   srcset="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 mb-2 mb-lg-0">
+                        <div class="card row2-card">
+                            <img class="img-fluid customer-card-img" src="~/IMAGES/message.png" height="35px" width="33px" alt="">
+                            <div class="row px-0 mx-2 ">
+                                <div class="col-3 mts-43 text-align-right">
+                                    <img src="~/IMAGES/group-33.png" class="img-fluid" width="70" height="70" alt="">
+                                </div>
+                                <div class="col mts-43">
+                                    <p class="card-title pt-2">Lars Johnson</p>
+                                    <p class="card-subtitle">Manchester</p>
+                                </div>
+                            </div>
+                            <div class="card-body px-0 ">
+                                <p class="card-text px-0 mx-3">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum
+                                    metus
+                                    pulvinar aliquet consequat. Praesent nec malesuada nibh.<br><br> Nullam et metus congue, auctor augue
+                                    sit amet, consectetur tortor.
+                                </p>
+                                <a class="card-link px-0 mx-3" href="">
+                                    Read More <img class="img-fluid" src="~/IMAGES/shape-2.png" alt=""
+                                                   srcset="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- button code start -->
+        <div class="row" id="row3">
+
+            <div class=" col-6 col-sm-2 col-md-1 order-2 order-sm-1">
+                <div id="foma-container">
+                    <a href="#home_section">
+                        <img class="img-fluid" src="~/IMAGES/forma-5.png" alt="" id="foma-5">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-10 col-sm-8 order-1 order-sm-2">
+                <div class="container-fluid mx-0 px-0 ">
+                    <div class="row mx-0 px-0 text-center">
+                        <p class="title mb-1 ">GET OUR NEWSLETTER</p>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-sm-auto p-0 newletter-input">
+                            <input class="form-control" type="email" name="" id="" placeholder="YOUR EMAIL">
+                        </div>
+                        <div class="col-sm-1 py-2 py-sm-0 newletter-input">
+                            <button class="btn" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-sm-2 col-md-1 order-2 order-sm-3 text-center mb-2 mb-sm-0">
+                <img class="img-fluid" src="~/IMAGES/layer-598.png" height="63px" width="63px" alt="">
+            </div>
+
+        </div>
+        <!-- button code end -->
+
+
+    </section>
+    <!-- customer section end -->
+    <!-- Modal code start -->
+    <!--LOGIN modal code start-->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Login to your account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group d-flex">
+                            <input type="text" name="" class="form-control" placeholder="Email" required />
+                            <img src="~/IMAGES/person_black_24dp.svg" alt="person" />
+                        </div>
+                        <div class="form-group d-flex">
+                            <input type="password" name="" class="form-control" placeholder="Password" required />
+                            <img src="~/IMAGES/lock_black_24dp.svg" alt="lock" />
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberme">
+                            <label class="form-check-label" for="rememberme">Remember me</label>
+                        </div>
+                        <button class="log-in rounded-pill m-auto d-flex align-items-center justify-content-center " data-toggle="modal">
+                            Login
+                        </button>
+                    </form>
+                </div>
+                <div class=" p-footer">
+                    <a href="#" class="" data-dismiss="modal" data-target="#myModal2" data-toggle="modal">Forgot password?</a>
+                    <p> Don't have an account? <a href="#" class="" data-dismiss="modal" data-target="#myModal1" data-toggle="modal">Create an account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--LOGIN modal code end-->
+    <!--CREATE AN ACCOUNT code start-->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModal1Label">Create an account</h5> -->
+                    <button type="button" class="close justify-content-end" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-heading text-center">Create an account</div>
+                    <div class="d-flex star justify-content-center">
+                        <img src="~/IMAGES/star.png" alt="" />
+                    </div>
+                    <form class="account-table ">
+                        <table>
+                            <tr>
+                                <td style="width: 51%;">
+                                    <input type="text" id="fname" class="form-control" placeholder="First name" required />
+                                </td>
+                                <td>
+                                    <input type="text" id="lname" class="form-control" placeholder="Last name" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" id="" class="form-control" placeholder="Email address" required />
+                                </td>
+                                <td class="input-group mx-0 row">
+
+                                    <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode" placeholder="+91" required />
+                                    <input type="text" name="phone" id="phone" class="form-control col-10" placeholder="Phone Number" required />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" class="form-control" id="" placeholder="Password" required />
+                                </td>
+                                <td>
+                                    <input type="password" class="form-control" id="" placeholder="Confirm Password" required />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="readpolicy">
+                            <label class="form-check-label" for="readpolicy">I have read the <a>Privacy Policy</a></label>
+                        </div>
+                    </form>
+                </div>
+                <div class="a-footer">
+                    <button type="button" id="" class="btn register">Register</button>
+                    <p> Already registered? <a href="#" data-target="#myModal" data-dismiss="modal" data-toggle="modal">Login now</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CREATE AN ACCOUNT code end-->
+    <!--FORG0T PASSWORD CODE START-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal2Label">Forgot password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group ">
+                            <input type="text" name="" class="form-control" placeholder="Email Address" required />
+                        </div>
+                        <button class="send rounded-pill m-auto d-flex align-items-center justify-content-center " data-toggle="modal">
+                            Send
+                        </button>
+                    </form>
+                </div>
+                <div class=" p-footer">
+                    <a href="#" class="" data-dismiss="modal" data-target="#myModal" data-toggle="modal">Login now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FORG0T PASSWORD CODE END-->
+    <!-- JS code -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+    </script>
+
+    <!--LOGIN-->
+    <script>
+        $(document).ready(function () {
+            $("#myModal").modal();
+        });
+    </script>
+    <!--CREATE AN ACCOUNT-->
+    <script>
+        $(document).ready(function () {
+            $("#myModal1").modal();
+        });
+    </script>
+    <!--FORGOT PASSWORD-->
+    <script>
+        $(document).ready(function () {
+            $("#myModal2").modal();
+        });
+    </script>
+    <!-- Modal code end -->
+  
+    <!-- jquery code start -->
+    <script>
+       
+
+        $(document).ready(function () {
+            $('#foma-container').click(function () {
+                $('#home_section').show(slow);
+            });
+        });
+        $(document).ready(function () {
+            $('.home_section_center_butto').click(function () {
+                $('#book_service.html').show();
+            });
+        });
+    </script>
+    <!-- jquery code end -->
+    <!-- Optional JavaScript; choose one of the two! -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+    <!-- javascript code start-->
+    <script src="~/Javascript/bootstrap.bundle.min.js"></script>
+    <script src="~/Javascript/main.js"></script>
+    <!--javasrcipt code end-->
+</body>
+</html>

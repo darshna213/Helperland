@@ -53,7 +53,7 @@ namespace Helperland
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Contact}/{id?}");
+                    pattern: "{controller=Account}/{action=Signup}/{id?}");
             });
         }
     }

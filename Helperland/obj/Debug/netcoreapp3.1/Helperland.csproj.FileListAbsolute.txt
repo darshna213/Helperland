@@ -293,7 +293,6 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\Faq.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\Price.cshtml.g.cs
-C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\Provider.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -308,3 +307,5 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\staticwebas
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.dll
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.pdb
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.genruntimeconfig.cache
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Provider.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signup.cshtml.g.cs

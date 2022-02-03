@@ -1,0 +1,349 @@
+﻿* {
+    font-family: 'roboto' sans-serif;
+}
+body{
+    height:100vh;
+}
+/*navbar*/
+
+nav {
+    background-color: #525252;
+}
+
+.navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    opacity: 0.8;
+}
+
+#navbarCollapse {
+    justify-content: right;
+}
+
+.navbar-brand img {
+    width: 73px;
+    height: 54px;
+}
+
+.menu1 {
+    background-color: #29626D;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+.nvbarbtn {
+    border-radius: 25px;
+    border: 1px solid white;
+    color: white;
+    font-size: 17px;
+    padding: 5px 20px;
+    margin: 0px 5px;
+    background: transparent;
+}
+
+.menu {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 10px 15px !important;
+    margin: 0px 10px;
+}
+
+#navbarCollapse button {
+    font-size: 16px;
+    padding: 9px 22px 12px 22px;
+    background-color: #29626D;
+}
+
+.menu:hover {
+    border-radius: 25px;
+    border: 1px solid white;
+    color: white;
+    background-color: #29626D;
+}
+
+.ddmenu {
+    color: white;
+    margin-right: 15px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+/*(create an account)*/
+.signup-heading {
+    margin-top: 30px;
+    color: #4F4F4F;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+    .signup-heading h1 {
+        color: #4F4F4F;
+        font-size: 36px;
+    }
+
+.h-hr {
+    width: 62px;
+}
+
+.star {
+    position: relative;
+}
+
+    .star:before {
+        content: '';
+        width: 62px;
+        height: 1px;
+        background: #212529;
+        position: absolute;
+        left: 44.4%;
+        top: 47%;
+    }
+
+    .star:after {
+        content: '';
+        width: 62px;
+        height: 1px;
+        background: #212529;
+        position: absolute;
+        left: 51.5%;
+        top: 47%;
+    }
+
+.signup-heading form {
+    margin-left: 21.4%;
+    margin-top: 20px;
+}
+ .signup-table{
+    max-width: 996px;
+  } 
+.form-control {
+    color: #A0A0A0;
+}
+
+.form-group {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #C8C8C8;
+    border-radius: 4px;
+}
+
+.account-table {
+    max-width: 615px;
+    margin-top: 25px;
+}
+
+table td {
+    padding-right: 10px;
+    padding-bottom: 10px;
+    /* width: 51%; */
+}
+
+
+.account-table table .input-group-text {
+    background: #e9ecef;
+}
+
+.register {
+    background-color: #1D7A8C;
+    color: white;
+    border-radius: 23px !important;
+    border: 1px solid transparent;
+    width: 163px;
+    height: 46px;
+    font-size: 16px !important;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.a-footer {
+    text-align: center;
+}
+
+    .a-footer a {
+        text-decoration: none;
+        color: #1d7a8c;
+        font-size: 16px;
+    }
+
+    .a-footer p {
+        color: #4f4f4f;
+        font-size: 16px;
+    }
+
+    .a-footer a:hover {
+        text-decoration: none;
+        color: #1d7a8c;
+        font-size: 16px;
+    }
+
+.register:hover {
+    border: 2px solid #1d7a8c;
+    color: #1d7a8c;
+    background: white;
+}
+
+/*modal*/
+/*modal(login)*/
+#myModal .modal-content {
+    width: 70%;
+    height: auto;
+    background-color: white;
+    box-shadow: 2px 0 5.5px 0.5px rgba(0, 0, 0, 0.1);
+}
+
+#myModal .modal-header h5 {
+    color: #4f4f4f;
+    font-weight: bold;
+    text-align: center;
+}
+
+#myModal .close {
+    background: white;
+    border: none;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+#myModal .modal-body .form-control {
+    color: #A0A0A0;
+    border: 1px solid transparent;
+}
+
+#myModal .form-group {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #C8C8C8;
+    border-radius: 4px;
+}
+
+#myModal .form-check {
+    margin-left: 16px;
+}
+
+    #myModal .form-check label {
+        color: #4f4f4f;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+#myModal .modal-body button {
+    margin-left: 16px !important;
+    width: 90%;
+}
+
+.log-in {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background: #1d7a8c;
+    border: 1px solid transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.p-footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+    .p-footer a {
+        text-decoration: none;
+        color: #1d7a8c;
+        font-size: 16px;
+    }
+
+    .p-footer p {
+        color: #4f4f4f;
+        font-size: 16px;
+    }
+
+    .p-footer a:hover {
+        text-decoration: none;
+        color: #1d7a8c;
+        font-size: 16px;
+    }
+
+.log-in:hover {
+    border: 2px solid #1d7a8c;
+    color: #1d7a8c;
+    background: white;
+}
+/*model(forgot password)*/
+#myModal2 .modal-content {
+    width: 70%;
+    height: auto;
+    background-color: white;
+    box-shadow: 2px 0 5.5px 0.5px rgba(0, 0, 0, 0.1);
+}
+
+#myModal2 .modal-header h5 {
+    color: #4f4f4f;
+    font-weight: bold;
+    text-align: center;
+}
+
+#myModal2 .close {
+    background: white;
+    border: none;
+    margin-top: 0;
+    margin-right: 0;
+}
+
+#myModal2 .modal-body .form-control {
+    color: #A0A0A0;
+    border: 1px solid transparent;
+}
+
+#myModal2 .form-group {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 12px;
+    border: 1px solid #C8C8C8;
+    border-radius: 4px;
+}
+
+#myModal2 .modal-body button {
+    margin-left: 16px !important;
+    width: 90%;
+}
+
+.send {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    background: #1d7a8c;
+    border: 1px solid transparent;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.p-footer {
+    text-align: center;
+    margin-bottom: 16px;
+    margin-top: 0;
+}
+
+    .p-footer a {
+        text-decoration: none;
+        color: #1d7a8c;
+        font-size: 16px;
+    }
+
+        .p-footer a:hover {
+            text-decoration: none;
+            color: #1d7a8c;
+            font-size: 16px;
+        }
+
+.send:hover {
+    border: 2px solid #1d7a8c;
+    color: #1d7a8c;
+    background: white;
+}

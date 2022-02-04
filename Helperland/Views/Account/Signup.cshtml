@@ -78,7 +78,11 @@
             <img src="~/IMAGES/star.png" alt="" />
         </div>
 
-        <div class="signup-table justify-content-center align-items-center">
+        <div class="signup-table justify-content-center align-items-center ">
+            <div class="text-center text-danger mb-3">
+                <b style="margin-left:23%; font-size:18px;">@ViewBag.Message</b>
+            </div>
+
             <form asp-controller="Account" asp-action="Signup" method="post">
                 <table>
                     <tr>

@@ -21,7 +21,8 @@ namespace Helperland.Data
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<ContactU> ContactUs { get; set; }
         public virtual DbSet<FavoriteAndBlocked> FavoriteAndBlockeds { get; set; }
-        //public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<ForgotPass> ForgotPasses { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<ServiceRequestAddress> ServiceRequestAddresses { get; set; }
@@ -106,24 +107,37 @@ namespace Helperland.Data
                     .HasConstraintName("FK_FavoriteAndBlocked_FavoriteAndBlocked");
             });
 
-            //modelBuilder.Entity<Login>(entity =>
-            //{
-            //    entity.HasNoKey();
+            modelBuilder.Entity<ForgotPass>(entity =>
+            {
+                entity.HasNoKey();
 
-            //    entity.ToTable("Login");
+                entity.ToTable("ForgotPass");
 
-            //    entity.Property(e => e.Password)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .HasColumnName("password");
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(50);
 
-            //    entity.Property(e => e.Remember).HasColumnName("remember");
+                //entity.Property(e => e.Uid).HasMaxLength(50);
+            });
 
-            //    entity.Property(e => e.Username)
-            //        .IsRequired()
-            //        .HasMaxLength(50)
-            //        .HasColumnName("username");
-            //});
+            modelBuilder.Entity<Login>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Login");
+
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("password");
+
+                entity.Property(e => e.Remember).HasColumnName("remember");
+
+                entity.Property(e => e.Username)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("username");
+            });
 
             modelBuilder.Entity<Rating>(entity =>
             {

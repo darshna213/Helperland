@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Helperland.Models.User
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -462,6 +463,16 @@
 
 
     </section>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("Record not found");
+            });
+        </script>
+    }
+    }
     <!-- customer section end -->
     <!-- Modal code start -->
     <!--LOGIN modal code start-->
@@ -475,35 +486,25 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    @*<div class="@TempData["add"] alert-warning alert-dismissible fade " role="alert">
-                        <strong>
-                            @TempData["fail"]
-                        </strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>*@
-                    <div class="text-center text-danger mb-3">
-                        <b>@ViewBag.error</b>
-                        <b>@ViewBag.Message</b>
-                    </div>
-                <form method="post" asp-controller="Account" asp-action="Login"  >
-                    <div class="form-group d-flex">
-                        <input type="email"  class="form-control" name="username"  placeholder="Email" required />
-                        <img src="~/IMAGES/person_black_24dp.svg" alt="person" />
-                    </div>
-                    <div class="form-group d-flex">
-                        <input type="password"  class="form-control" name="password"  placeholder="Password" required />
-                        <img src="~/IMAGES/lock_black_24dp.svg" alt="lock" />
-                    </div>
-                    <span  class="text-danger"></span>
+                    <form method="post" asp-controller="Account" asp-action="Login">
+                        <div class="form-group d-flex">
+                            <input asp-for="Email" class="form-control" placeholder="Email" required />
+                            <img src="~/IMAGES/person_black_24dp.svg" alt="person" />
+                        </div>
+                        <div class="form-group d-flex">
+                            <input class="form-control" asp-for="Password" placeholder="Password" required />
+                            <img src="~/IMAGES/lock_black_24dp.svg" alt="lock" />
+                        </div>
+                        <span class="text-danger"></span>
 
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input"  id="rememberme">
-                        <label class="form-check-label" for="rememberme">Remember me</label>
-                    </div>
-                    <button class="log-in rounded-pill m-auto d-flex align-items-center justify-content-center" type="submit" data-toggle="modal">
-                        Login
-                    </button>
-                </form>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberme">
+                            <label class="form-check-label" for="rememberme">Remember me</label>
+                        </div>
+                        <button class="log-in rounded-pill m-auto d-flex align-items-center justify-content-center" type="submit" data-toggle="modal">
+                            Login
+                        </button>
+                    </form>
                 </div>
                 <div class=" p-footer">
                     <a href="#" class="" id="forget" data-dismiss="modal" data-target="#myModal2" data-toggle="modal">Forgot password?</a>
@@ -512,64 +513,66 @@
             </div>
         </div>
     </div>
+
+
     <!--LOGIN modal code end-->
     <!--CREATE AN ACCOUNT code start-->
-    @*<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close justify-content-end" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+   <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModal1Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close justify-content-end" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="m-heading text-center"></div>
+                    <div class="d-flex star justify-content-center">
+                        <img src="~/IMAGES/star.png" alt="" />
                     </div>
-                    <div class="modal-body">
-                        <div class="m-heading text-center">Create an account</div>
-                        <div class="d-flex star justify-content-center">
-                            <img src="~/IMAGES/star.png" alt="" />
+                    <form class="account-table ">
+                        <table>
+                            <tr>
+                                <td style="width: 51%;">
+                                    <input type="text" id="fname" class="form-control" placeholder="First name" required />
+                                </td>
+                                <td>
+                                    <input type="text" id="lname" class="form-control" placeholder="Last name" required />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" id="" class="form-control" placeholder="Email address" required />
+                                </td>
+                                <td class="input-group mx-0 row">
+
+                                    <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode" placeholder="+91" required />
+                                    <input type="text" name="phone" id="phone" class="form-control col-10" placeholder="Phone Number" required />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" class="form-control" id="" placeholder="Password" required />
+                                </td>
+                                <td>
+                                    <input type="password" class="form-control" id="" placeholder="Confirm Password" required />
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="readpolicy">
+                            <label class="form-check-label" for="readpolicy"><a></a></label>
                         </div>
-                        <form class="account-table ">
-                            <table>
-                                <tr>
-                                    <td style="width: 51%;">
-                                        <input type="text" id="fname" class="form-control" placeholder="First name" required />
-                                    </td>
-                                    <td>
-                                        <input type="text" id="lname" class="form-control" placeholder="Last name" required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" id="" class="form-control" placeholder="Email address" required />
-                                    </td>
-                                    <td class="input-group mx-0 row">
-
-                                        <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode" placeholder="+91" required />
-                                        <input type="text" name="phone" id="phone" class="form-control col-10" placeholder="Phone Number" required />
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="password" class="form-control" id="" placeholder="Password" required />
-                                    </td>
-                                    <td>
-                                        <input type="password" class="form-control" id="" placeholder="Confirm Password" required />
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="readpolicy">
-                                <label class="form-check-label" for="readpolicy">I have read the <a>Privacy Policy</a></label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="a-footer">
-                        <button type="button" id="" class="btn register">Register</button>
-                        <p> Already registered? <a href="#" data-target="#myModal" data-dismiss="modal" data-toggle="modal">Login now</a></p>
-                    </div>
+                    </form>
+                </div>
+                <div class="a-footer">
+                    <button type="button" id="" class="btn register"></button>
+                    <p><a href="#" data-target="#myModal" data-dismiss="modal" data-toggle="modal"></a></p>
                 </div>
             </div>
-        </div>*@
+        </div>
+    </div>
     <!--CREATE AN ACCOUNT code end-->
     <!--FORG0T PASSWORD CODE START-->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
@@ -582,17 +585,20 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <div class="text-success">
+                        @ViewBag.Message
+                    </div>
+                    <form method="post" asp-controller="account" asp-action="Forgotpassword">
                         <div class="form-group ">
-                            <input type="text" name="" class="form-control" placeholder="Email Address" required />
+                            <input  name="" asp-for="Email" class="form-control" placeholder="Email Address" required />
                         </div>
-                        <button class="send rounded-pill m-auto d-flex align-items-center justify-content-center " data-toggle="modal">
+                        <button class="send rounded-pill m-auto d-flex align-items-center justify-content-center" onclick="btPassRec_Click" type="submit" data-toggle="modal">
                             Send
                         </button>
                     </form>
                 </div>
                 <div class=" p-footer">
-                    <a href="#" class="" data-dismiss="modal" data-target="#myModal" data-toggle="modal">Login now</a>
+                    <a href="#" class="" data-dismiss="modal"  data-target="#myModal" data-toggle="modal">Login now</a>
                 </div>
             </div>
         </div>
@@ -610,12 +616,6 @@
     <script>
         $(document).ready(function () {
             $("#myModal").modal();
-        });
-    </script>
-    <!--CREATE AN ACCOUNT-->
-    <script>
-        $(document).ready(function () {
-            $("#myModal1").modal();
         });
     </script>
     <!--FORGOT PASSWORD-->

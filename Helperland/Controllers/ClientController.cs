@@ -18,5 +18,9 @@ namespace Helperland.Controllers
         {
             return View();
         }
+        public IActionResult Upcoming_service()
+        {
+            return View();
+        }
     }
 }

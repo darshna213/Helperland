@@ -310,3 +310,4 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Provider.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signup.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Client\Service_history.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Client\Upcoming_service.cshtml.g.cs

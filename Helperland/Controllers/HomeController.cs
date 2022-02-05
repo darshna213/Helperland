@@ -30,35 +30,8 @@ namespace Helperland.Controllers
         }
         public IActionResult Index()
         {
-            //User user = new User();
             return View();
         }
-
-        //[HttpPost]
-        //public IActionResult Index(User user)
-        //{
-        //    using (HelperlandContext helperlandContext = new HelperlandContext())
-        //    {
-        //        string email = user.Email;
-        //        var p = helperlandContext.Users.Where(c => c.Email == email && c.Password == user.Password).ToList();
-        //        if (p.Count == 1)
-        //        {
-        //            if (p.FirstOrDefault().UserTypeId == 1)
-        //            {
-        //                return RedirectToAction("Signup", "Account");
-        //            }
-        //            if (p.FirstOrDefault().UserTypeId == 2)
-        //            {
-        //                return RedirectToAction("Faq" , "Home");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ViewBag.Message = "Details are invalid"; 
-        //        }
-        //    }
-        //    return View();
-        //}
 
 
         public IActionResult Faq()

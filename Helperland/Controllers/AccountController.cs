@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Helperland.Data;
 using Helperland.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Protocols;
 
 namespace Helperland.Controllers
 {
@@ -81,154 +86,141 @@ namespace Helperland.Controllers
 
 
 
-[Route("login")]
-    [HttpPost]
-        public IActionResult Login(string username, string password)
+        [Route("login")]
+        [HttpPost]
+        public IActionResult Login(User user)
         {
-
-        if (username != null && password != null && username.Equals("demo@mail.com") && password.Equals("1234"))
-        {
-
-            var U = _helperlandContext.Users.FirstOrDefault(x => x.Email == username.Email);
-
-
-                      if (U.UserTypeId == 1)
-                     {
-                return RedirectToAction("Signup", "Account");
-    }
-                        if (U.UserTypeId == 2)
-                       {
-                           return RedirectToAction("Faq", "Home");
-}
-
-            return RedirectToAction("Signup", "Account");
-        }
+            var U = _helperlandContext.Users.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+            if (U != null)
+            {
+                if (U.UserTypeId == 1)
+                {
+                    return RedirectToAction("Service_history", "Client");
+                }
+                if (U.UserTypeId == 2)
+                {
+                    return RedirectToAction("Upcoming_service", "Client");
+                }
+            }
             else
             {
-                ViewBag.error = "Invalid Account";
-                return RedirectToAction("Faq", "Home");
+                TempData["SuccessMessage"] = "Your Success Message";
+                return RedirectToAction("Index", "Home" );
+            }
+            return RedirectToAction("Singup", "Account");
+        }    
+     
+        public IActionResult Forgotpassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Forgotpassword(ForgotPass forgotPass)
+        {
+            if (_helperlandContext.Users.Where(x => x.Email == forgotPass.Email).Count() > 0)
+            {
+                User Id = _helperlandContext.Users.FirstOrDefault(x => x.Email == forgotPass.Email);
+                Id.ForgotPass = "true";
+                _helperlandContext.Users.Update(Id);
+                _helperlandContext.SaveChanges();
+                string to = forgotPass.Email;
+                string token = BCrypt.Net.BCrypt.HashPassword(forgotPass.Email);
+                string subject = "Reset password";
+                string body = "<p>Reset your password by click below link " +
+                    "<a href='" + Url.Action("ResetPassword", "Registration", new { userid = Id.UserId, token = token }, "https") + "'>Reset Password</a></p>";
+                MailMessage msg = new MailMessage();
+                msg.To.Add(to);
+                msg.Subject = subject;
+                msg.Body = body;
+                msg.From = new MailAddress("darshnakhokhariya@gmail.com");
+                msg.IsBodyHtml = true;
+                SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                setup.Port = 587;
+                setup.UseDefaultCredentials = true;
+                setup.EnableSsl = true;
+                setup.Credentials = new System.Net.NetworkCredential("username", "password");
+                setup.Send(msg);
+
+                TempData["add"] = "alert show alert-success";
+                TempData["message"] = "mail successfully!";
+                return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
 
             }
-           
-      
+            else
+            {
+                TempData["Add"] = "alert show alert-danger";
+                TempData["message"] = "mail is not found!";
+                return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
+            }
+
+        }
+
+
+        [HttpGet]
+        public IActionResult ResetPassword(int userID, string token)
+        {
+            TempData["id"] = userID;
+            User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userID);
+            bool isValidId = BCrypt.Net.BCrypt.Verify(user.Email, token);
+
+            if (isValidId && user.ForgotPass == "true")
+            {
+
+                return PartialView();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+        public IActionResult Resetpassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassword(ResetPass user)
+        {
+            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == user.userid);
+            string HashPass = BCrypt.Net.BCrypt.HashPassword(user.newPassword);
+            u.Password = HashPass;
+            u.ModifiedDate = DateTime.Now;
+            u.ForgotPass = "false";
+            _helperlandContext.Users.Update(u);
+            _helperlandContext.SaveChanges();
+
+
+            return PartialView();
+        }
+
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home", new { loginModal = "true" });
+        }
+
+
+
+
+
+
+
+        //protected void btPassRec_Click(object sender ,EventArgs e)
+        // {
+        //     String CS = ConfigurationManager.ConnectionStrings["MyDatabaseConnectionString1"].ConnectionString;
+        //     using(SqlConnection con = new SqlConnection(CS))
+        //     {
+        //         SqlCommand cmd = new SqlCommand("Select * from User Email= '" + EmailId.Text + " '", con);
+        //         con.Open();
+        //         SqlDataAdapter sda = new DataTable();
+        //     }
+
+        // }
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //[HttpPost]
-    //public IActionResult Login(User login)
-    //{
-
-    //    if (_helperlandContext.Users.Where(x => x.Email == login.Email && x.Password == login.Password).Count() < 0)
-    //    {
-    //        var U = _helperlandContext.Users.FirstOrDefault(x => x.Email == login.Email);
-
-
-    //            if (U.UserTypeId == 1)
-    //            {
-    //                return RedirectToAction("Signup", "Account");
-    //            }
-    //            if (U.UserTypeId == 2)
-    //            {
-    //                return RedirectToAction("Faq", "Home");
-    //            }
-
-
-    //        return RedirectToAction("Service_history", "Client");
-    //    }
-    //    else
-    //    {
-    //        ViewBag.Message = "Details are invalid";
-    //        return RedirectToAction("Index", "Home");
-    //    }
-
-
-    //}
-
-
-
-
-
-
-
-
-    //[HttpPost]
-    //public IActionResult Index(User login)
-    //{
-
-
-    //        var U = _helperlandContext.Users.Where(c => c.Email == login.Email && c.Password == login.Password).ToList();
-
-    //        if (U.Count == 1)
-    //        {
-    //            if (U.FirstOrDefault().UserTypeId == 1)
-    //            {
-    //                return RedirectToAction("Signup", "Account");
-    //            }
-    //            if (U.FirstOrDefault().UserTypeId == 2)
-    //            {
-    //                return RedirectToAction("Faq", "Home");
-    //            }
-    //        }
-
-
-
-    //    else
-    //    {
-    //        ViewBag.Message = "Details are invalid";
-
-    //    }
-    //    return View();
-    //}
-
-    //[HttpPost]
-    //public IActionResult Index(User user)
-    //{
-    //    using (HelperlandContext helperlandContext = new HelperlandContext())
-    //    {
-    //        string email = user.Email;
-    //        var p = helperlandContext.Users.Where(c => c.Email == email && c.Password == user.Password).ToList();
-    //        if (p.Count == 1)
-    //        {
-    //            if (p.FirstOrDefault().UserTypeId == 1)
-    //            {
-    //                return RedirectToAction("Signup", "Account");
-    //            }
-    //            if (p.FirstOrDefault().UserTypeId == 2)
-    //            {
-    //                return RedirectToAction("Faq", "Home");
-    //            }
-    //        }
-    //        else
-    //        {
-    //            ViewBag.Message = "Details are invalid";
-    //        }
-    //    }
-    //    return View();
-    //}
-
-
-}
 }

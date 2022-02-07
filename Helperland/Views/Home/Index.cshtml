@@ -57,7 +57,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
-                               asp-action="Book_service">Book a Cleaner</a>
+                             asp-controller="Bookservice"  asp-action="Bookservice">Book a Cleaner</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Price">Prices</a>
@@ -80,7 +80,7 @@
                         </button>
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
-                               asp-action="Provider">Become a Helper</a>
+                             asp-controller="Account"  asp-action="Provider">Become a Helper</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
@@ -593,9 +593,9 @@
                     </div>
                     <form method="post" asp-controller="account" asp-action="Forgotpassword">
                         <div class="form-group ">
-                            <input name="" asp-for="Email" class="form-control" placeholder="Email Address" required />
+                            <input  asp-for="Email" class="form-control" placeholder="Email Address" required />
                         </div>
-                        <button class="send rounded-pill m-auto d-flex align-items-center justify-content-center" onclick="btPassRec_Click" type="submit" data-toggle="modal">
+                        <button class="send rounded-pill m-auto d-flex align-items-center justify-content-center"  type="submit" data-toggle="modal">
                             Send
                         </button>
                     </form>

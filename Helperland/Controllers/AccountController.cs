@@ -108,14 +108,15 @@ namespace Helperland.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Forgotpassword(ForgotPass forgotPass)
+        public IActionResult Forgotpassword(User forgotPass)
         {
-            if (_helperlandContext.Users.Where(x => x.Email == forgotPass.Email).Count() > 0)
+            var userrecord = _helperlandContext.Users.Where(x => x.Email == forgotPass.Email).FirstOrDefault();
+            if (userrecord != null)
             {
                 User Id = _helperlandContext.Users.FirstOrDefault(x => x.Email == forgotPass.Email);
-                Id.ForgotPass = "true";
-                _helperlandContext.Users.Update(Id);
-                _helperlandContext.SaveChanges();
+                //Id.ForgotPass = "true";
+                //_helperlandContext.Users.Update(Id);
+                //_helperlandContext.SaveChanges();
                 string to = forgotPass.Email;
                 string token = BCrypt.Net.BCrypt.HashPassword(forgotPass.Email);
                 string subject = "Reset password";
@@ -125,16 +126,16 @@ namespace Helperland.Controllers
                 msg.To.Add(to);
                 msg.Subject = subject;
                 msg.Body = body;
-                msg.From = new MailAddress("darshnakhokhariya@gmail.com");
+                msg.From = new MailAddress("drashtipatel20212021@gmail.com");
                 msg.IsBodyHtml = true;
                 SmtpClient setup = new SmtpClient("smtp.gmail.com");
                 setup.Port = 587;
                 setup.UseDefaultCredentials = true;
                 setup.EnableSsl = true;
-                setup.Credentials = new System.Net.NetworkCredential("username", "password");
+                setup.Credentials = new System.Net.NetworkCredential("drashtipatel20212021@gmail.com", "drashti9054313588");
                 setup.Send(msg);
-                TempData["add"] = "alert show alert-success";
-                TempData["message"] = "mail successfully!";
+                //TempData["add"] = "alert show alert-success";
+                //TempData["message"] = "mail successfully!";
                 return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
             }
             else
@@ -158,16 +159,16 @@ namespace Helperland.Controllers
             User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userID);
             bool isValidId = BCrypt.Net.BCrypt.Verify(user.Email, token);
 
-            if (isValidId && user.ForgotPass == "true")
-            {
+            //if (isValidId && user.ForgotPass == "true")
+            //{
 
-                return PartialView();
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
+            //    return PartialView();
+            //}
+            //else
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+            return RedirectToAction("Account", "Resetpassword");
         }
 
 
@@ -179,7 +180,7 @@ namespace Helperland.Controllers
             string HashPass = BCrypt.Net.BCrypt.HashPassword(user.newPassword);
             u.Password = HashPass;
             u.ModifiedDate = DateTime.Now;
-            u.ForgotPass = "false";
+            //u.ForgotPass = "false";
             _helperlandContext.Users.Update(u);
             _helperlandContext.SaveChanges();
 

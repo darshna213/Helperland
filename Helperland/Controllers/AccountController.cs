@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Helperland.Data;
+using Helperland.Models;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Data;
 using System.Linq;
-using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
-using Helperland.Data;
-using Helperland.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using Microsoft.IdentityModel.Protocols;
 
 namespace Helperland.Controllers
 {
@@ -83,9 +77,6 @@ namespace Helperland.Controllers
             return View();
         }
 
-
-
-
         [Route("login")]
         [HttpPost]
         public IActionResult Login(User user)
@@ -99,17 +90,17 @@ namespace Helperland.Controllers
                 }
                 if (U.UserTypeId == 2)
                 {
-                    return RedirectToAction("Upcoming_service", "Client");
+                    return RedirectToAction("Upcoming_service", "Serviceprovider");
                 }
             }
             else
             {
                 TempData["SuccessMessage"] = "Your Success Message";
-                return RedirectToAction("Index", "Home" );
+                return RedirectToAction("Index", "Home");
             }
             return RedirectToAction("Singup", "Account");
-        }    
-     
+        }
+
         public IActionResult Forgotpassword()
         {
             return View();
@@ -142,21 +133,23 @@ namespace Helperland.Controllers
                 setup.EnableSsl = true;
                 setup.Credentials = new System.Net.NetworkCredential("username", "password");
                 setup.Send(msg);
-
                 TempData["add"] = "alert show alert-success";
                 TempData["message"] = "mail successfully!";
                 return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
-
             }
             else
             {
-                TempData["Add"] = "alert show alert-danger";
-                TempData["message"] = "mail is not found!";
+                TempData["add"] = "alert show";
+                TempData["fail"] = "mail is not found";
                 return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
             }
 
         }
 
+        public IActionResult Resetpassword()
+        {
+            return View();
+        }
 
         [HttpGet]
         public IActionResult ResetPassword(int userID, string token)
@@ -176,16 +169,13 @@ namespace Helperland.Controllers
             }
 
         }
-        public IActionResult Resetpassword()
-        {
-            return View();
-        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(ResetPass user)
         {
-            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == user.userid);
+            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == user.userID);
             string HashPass = BCrypt.Net.BCrypt.HashPassword(user.newPassword);
             u.Password = HashPass;
             u.ModifiedDate = DateTime.Now;
@@ -208,19 +198,6 @@ namespace Helperland.Controllers
 
 
 
-
-
-        //protected void btPassRec_Click(object sender ,EventArgs e)
-        // {
-        //     String CS = ConfigurationManager.ConnectionStrings["MyDatabaseConnectionString1"].ConnectionString;
-        //     using(SqlConnection con = new SqlConnection(CS))
-        //     {
-        //         SqlCommand cmd = new SqlCommand("Select * from User Email= '" + EmailId.Text + " '", con);
-        //         con.Open();
-        //         SqlDataAdapter sda = new DataTable();
-        //     }
-
-        // }
 
     }
 }

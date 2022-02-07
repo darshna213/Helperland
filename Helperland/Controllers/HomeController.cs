@@ -46,7 +46,7 @@ namespace Helperland.Controllers
         {
             ContactU contactU = new ContactU();
             return View(contactU);
-           
+
         }
 
         [HttpPost]

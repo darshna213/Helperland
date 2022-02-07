@@ -281,8 +281,6 @@ C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\runtimes\wi
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csprojAssemblyReference.cache
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.AssemblyInfoInputs.cache
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.AssemblyInfo.cs
-C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.CoreCompileInputs.cache
-C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.RazorAssemblyInfo.cache
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.RazorAssemblyInfo.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.TagHelpers.input.cache
@@ -311,3 +309,7 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signup.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Client\Service_history.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Client\Upcoming_service.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.CoreCompileInputs.cache
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\BCrypt.Net.dll
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Resetpassword.cshtml.g.cs

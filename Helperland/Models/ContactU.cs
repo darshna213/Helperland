@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -17,5 +20,12 @@ namespace Helperland.Models
         public DateTime? CreatedOn { get; set; }
         public int? CreatedBy { get; set; }
         public string FileName { get; set; }
+
+
+
+        [Display(Name = "Attech the file")]
+        [Required]
+        [NotMapped]
+        public IFormFile AttechmentFile { get; set; }
     }
 }

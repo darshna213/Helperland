@@ -8,23 +8,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Helperland.Controllers
 {
-    public class ClientController : Controller
+    public class ServiceproviderController : Controller
     {
         private readonly HelperlandContext _helperlandContext;
-        public ClientController(HelperlandContext helperlandContext)
+        public ServiceproviderController(HelperlandContext helperlandContext)
         {
             _helperlandContext = helperlandContext;
         }
-        public IActionResult Service_history()
+      
+        public IActionResult Upcoming_service()
         {
             var Id = HttpContext.Session.GetInt32("id");
             if (Id != null)
             {
                 var u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Id);
-                if (u.UserTypeId == 1)
+                if (u.UserTypeId == 2)
                 {
                     ViewBag.Name = u.FirstName;
-                    return View();
+                    return PartialView();
                 }
                 else
                 {
@@ -34,19 +35,19 @@ namespace Helperland.Controllers
             else if (Request.Cookies["userid"] != null)
             {
                 var u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Convert.ToInt32(Request.Cookies["userid"]));
-                if (u.UserTypeId == 1)
+                if (u.UserTypeId == 2)
                 {
                     ViewBag.Name = u.FirstName;
-                    return View();
+                    return PartialView();
                 }
                 else
                 {
                     return RedirectToAction("Index", "Home");
                 }
+
             }
 
             return View();
         }
-       
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -19,10 +20,20 @@ namespace Helperland.Models
         }
 
         public int UserId { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "FirstName required")]
+
         public string FirstName { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "LastName required")]
         public string LastName { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "EmailID required ")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Password is required")]
+        [DataType(DataType.Password)]
+        [MinLength(6, ErrorMessage = "The password must be atleast 6 characters long")]
         public string Password { get; set; }
+        [Required]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "invalid number")]
         public string Mobile { get; set; }
         public int UserTypeId { get; set; }
         public int? Gender { get; set; }

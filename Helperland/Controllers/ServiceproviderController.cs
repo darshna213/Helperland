@@ -18,34 +18,34 @@ namespace Helperland.Controllers
       
         public IActionResult Upcoming_service()
         {
-            var Id = HttpContext.Session.GetInt32("id");
-            if (Id != null)
-            {
-                var u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Id);
-                if (u.UserTypeId == 2)
-                {
-                    ViewBag.Name = u.FirstName;
-                    return PartialView();
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-            }
-            else if (Request.Cookies["userid"] != null)
-            {
-                var u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Convert.ToInt32(Request.Cookies["userid"]));
-                if (u.UserTypeId == 2)
-                {
-                    ViewBag.Name = u.FirstName;
-                    return PartialView();
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
-                }
+            //var Id = HttpContext.Session.GetInt32("id");
+            //if (Id != null)
+            //{
+            //    var u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Id);
+            //    if (u.UserTypeId == 2)
+            //    {
+            //        ViewBag.Name = u.FirstName;
+            //        return PartialView();
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction("Index", "Home");
+            //    }
+            //}
+            //else if (Request.Cookies["userid"] != null)
+            //{
+            //    var u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Convert.ToInt32(Request.Cookies["userid"]));
+            //    if (u.UserTypeId == 2)
+            //    {
+            //        ViewBag.Name = u.FirstName;
+            //        return PartialView();
+            //    }
+            //    else
+            //    {
+            //        return RedirectToAction("Index", "Home");
+            //    }
 
-            }
+            //}
 
             return View();
         }

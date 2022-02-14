@@ -121,7 +121,8 @@ namespace Helperland.Controllers
                 string token = BCrypt.Net.BCrypt.HashPassword(forgotPass.Email);
                 string subject = "Reset password";
                 string body = "<p>Reset your password by click below link " +
-                    "<a href='" + Url.Action("ResetPassword", "Registration", new { userid = Id.UserId, token = token }, "https") + "'>Reset Password</a></p>";
+                    "<a href='" + Url.Action("Resetpassword", "Account", new { userid = Id.UserId, token = token }, "http") + "'>Reset Password</a></p>";
+               
                 MailMessage msg = new MailMessage();
                 msg.To.Add(to);
                 msg.Subject = subject;
@@ -134,14 +135,13 @@ namespace Helperland.Controllers
                 setup.EnableSsl = true;
                 setup.Credentials = new System.Net.NetworkCredential("drashtipatel20212021@gmail.com", "drashti9054313588");
                 setup.Send(msg);
-                //TempData["add"] = "alert show alert-success";
-                //TempData["message"] = "mail successfully!";
-                return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
+                TempData["SuccessMsg"] = "Your Success Message";
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 TempData["add"] = "alert show";
-                TempData["fail"] = "mail is not found";
+                TempData["fail"] = "mail is not found!";
                 return RedirectToAction("Index", "Home", new { ForgetModal = "true" });
             }
 
@@ -185,7 +185,7 @@ namespace Helperland.Controllers
             _helperlandContext.SaveChanges();
 
 
-            return PartialView();
+            return View();
         }
 
 

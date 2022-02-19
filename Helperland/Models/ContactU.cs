@@ -21,8 +21,6 @@ namespace Helperland.Models
         public int? CreatedBy { get; set; }
         public string FileName { get; set; }
 
-
-
         [Display(Name = "Attech the file")]
         [Required]
         [NotMapped]

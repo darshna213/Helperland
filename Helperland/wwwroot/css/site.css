@@ -45,6 +45,9 @@ footer {
     .fmenulink {
         flex-direction: column;
     }
+    #cookies{
+        display:none;
+    }
 }
 
 @media screen and (max-width:810px) {
@@ -84,6 +87,8 @@ footer {
         font-weight: 400;
     }
 
+ 
+
     #cookies .btn {
         width: 99px;
         background-color: #eed507;
@@ -93,9 +98,13 @@ footer {
     font-weight: 500;
     color: #4F4F4F; */
     }
-
-        #cookies .btn p {
-            font-size: 16px;
-            font-weight: 500;
-            color: #4f4f4f;
-        }
+    #cookies .ok-btn {
+        margin: 12px 0px;
+    }
+   
+    #cookies .ok-yellow-button {
+        font-size: 16px;
+        font-weight: 500;
+        color: #4f4f4f;
+        text-decoration: none;
+    }

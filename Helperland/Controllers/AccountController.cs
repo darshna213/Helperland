@@ -1,10 +1,12 @@
 ﻿using Helperland.Data;
 using Helperland.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data;
 using System.Linq;
 using System.Net.Mail;
+using System.Text.Json;
 
 namespace Helperland.Controllers
 {
@@ -81,9 +83,12 @@ namespace Helperland.Controllers
         [HttpPost]
         public IActionResult Login(User user)
         {
-            var U = _helperlandContext.Users.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+            var U = _helperlandContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+
+            
             if (U != null)
             {
+                HttpContext.Session.SetString("CurrentUser", JsonSerializer.Serialize(U));
                 if (U.UserTypeId == 1)
                 {
                     return RedirectToAction("Service_history", "Client");
@@ -176,8 +181,8 @@ namespace Helperland.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(ResetPass user)
         {
-            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == user.userID);
-            string HashPass = BCrypt.Net.BCrypt.HashPassword(user.newPassword);
+            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == user.UserId);
+            string HashPass = BCrypt.Net.BCrypt.HashPassword(user.NewPassword);
             u.Password = HashPass;
             u.ModifiedDate = DateTime.Now;
             //u.ForgotPass = "false";

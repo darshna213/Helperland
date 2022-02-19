@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[0.1.0, )"
             },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.13, )"
@@ -56,6 +60,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.13, )"
+            },
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[6.0.1, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",

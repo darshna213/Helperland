@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Helperland.Models;
+using Helperland.Models.ViewModels;
 
 #nullable disable
 
@@ -18,15 +19,19 @@ namespace Helperland.Data
         {
         }
 
+        /*public virtual DbSet<Addaddress> Addaddresses { get; set; }*/
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<ContactU> ContactUs { get; set; }
         public virtual DbSet<FavoriteAndBlocked> FavoriteAndBlockeds { get; set; }
         public virtual DbSet<ForgotPass> ForgotPasses { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
+        public virtual DbSet<ResetPass> ResetPasses { get; set; }
+        public virtual DbSet<Scheduleservice> Scheduleservices { get; set; }
         public virtual DbSet<ServiceRequest> ServiceRequests { get; set; }
         public virtual DbSet<ServiceRequestAddress> ServiceRequestAddresses { get; set; }
         public virtual DbSet<ServiceRequestExtra> ServiceRequestExtras { get; set; }
+        public virtual DbSet<Setupservice> Setupservices { get; set; }
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<Test> Tests { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -45,6 +50,37 @@ namespace Helperland.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Addaddress>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Addaddress");
+
+                //entity.Property(e => e.AddressLine1)
+                //    .IsRequired()
+                //    .HasMaxLength(50);
+
+                //entity.Property(e => e.AddressLine2)
+                //    .IsRequired()
+                //    .HasMaxLength(50);
+
+                entity.Property(e => e.City)
+                    .IsRequired()
+                    .HasMaxLength(10);
+
+                //entity.Property(e => e.Email)
+                //    .IsRequired()
+                //    .HasMaxLength(50);
+
+                entity.Property(e => e.Mobile)
+                    .IsRequired()
+                    .HasMaxLength(20);
+
+                entity.Property(e => e.PostalCode)
+                    .IsRequired()
+                    .HasMaxLength(10);
+            });
 
             modelBuilder.Entity<City>(entity =>
             {
@@ -116,8 +152,6 @@ namespace Helperland.Data
                 entity.Property(e => e.Email)
                     .IsRequired()
                     .HasMaxLength(50);
-
-                //entity.Property(e => e.Uid).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Login>(entity =>
@@ -172,6 +206,42 @@ namespace Helperland.Data
                     .HasForeignKey(d => d.ServiceRequestId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Rating_ServiceRequest");
+            });
+
+            modelBuilder.Entity<ResetPass>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("ResetPass");
+
+                entity.Property(e => e.NewPassword)
+                    .HasMaxLength(10)
+                    .HasColumnName("newPassword")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.UserId).HasColumnName("userID");
+            });
+
+            modelBuilder.Entity<Scheduleservice>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Scheduleservice");
+
+                entity.Property(e => e.Comments).HasMaxLength(50);
+
+                entity.Property(e => e.Date).HasColumnType("datetime");
+
+                entity.Property(e => e.Extra)
+                    .HasMaxLength(50)
+                    .HasColumnName("extra");
+
+                entity.Property(e => e.HavePet).HasColumnName("havePet");
+
+                entity.Property(e => e.Time)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .HasColumnName("time");
             });
 
             modelBuilder.Entity<ServiceRequest>(entity =>
@@ -257,6 +327,15 @@ namespace Helperland.Data
                     .HasForeignKey(d => d.ServiceRequestId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ServiceRequestExtra_ServiceRequest");
+            });
+
+            modelBuilder.Entity<Setupservice>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("Setupservice");
+
+                entity.Property(e => e.PostalCode).HasMaxLength(50);
             });
 
             modelBuilder.Entity<State>(entity =>

@@ -1,29 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace Helperland.Models
 {
-    public class Scheduleservice
+    public partial class Scheduleservice
     {
-        [Required]
         public DateTime Date { get; set; }
-
-        [Required]
-        public string time { get; set; }
-
-        [Required]
+        public string Time { get; set; }
         public int Duration { get; set; }
-
-        public string extra { get; set; }
-
+        public string Extra { get; set; }
         public string Comments { get; set; }
-
-        public bool havePet { get; set; }
-
-
+        public bool? HavePet { get; set; }
+        public string PostalCode { get; internal set; }
     }
 }
-

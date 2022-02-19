@@ -1,0 +1,138 @@
+﻿@model Helperland.Models.Scheduleservice
+@{
+    ViewData["Title"] = "Scheduleservice";
+}
+
+<div class="tab-pane fade" id="follow-classic-orange" role="tabpanel" aria-labelledby="follow-tab-classic-orange">
+    <div style="width:108%;">
+        <div class="schedule-plan">
+            <p>Select number of rooms and bath</p>
+            <div class="scheduleService-error d-none alert alert-danger" role="alert">
+
+            </div>
+                <select id="schedule-service-bed">
+                    <option selected value="1 bed">1 bed</option>
+                    <option value="2 bed">2 bed</option>
+                    <option value="3 bed">3 bed</option>
+
+                </select>
+                <select id="schedule-service-bath">
+                    <option selected value="1 bath">1 bath</option>
+                    <option value="2 bath">2 bath</option>
+                    <option value="3 bath">3 bath</option>
+
+                </select>
+            <hr>
+        </div>
+        <div class="room-cleaner d-flex" style="width:108%;">
+            <div class="clean-time">
+                <p>When do you need the cleaner?</p>
+                <div class="d-flex">
+                    <div class="input-group me-2">
+                        <span class="input-group-text" id="basic-addon1" style="background-color: #fff; border-right: none;"> <img src="~/IMAGES/admin-calendar-blue.png" alt="calander"> </span>
+                        <input type="date" class="form-control" id="schedule-service-date" asp-for="Date" style="border-left: none;" placeholder="01/01/2018 " aria-label="date" aria-describedby="basic-addon1">
+
+                    </div>
+                    <div>
+                        <select asp-for="Time" id="schedule-service-time">
+                            <option selected value="2:00PM">2:00PM</option>
+                            <option value="4:00PM">4:00PM</option>
+                            <option value="6:00PM">6:00PM</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clean-hour">
+                <p>How long do you need your cleaner to stay?</p>
+                    <select asp-for="Duration" id="schedule-service-hour"  onchange="CreatePaySummery()">
+                        <option selected value="3 Hrs">3.0 Hrs</option>
+                        <option value="6 Hrs">6.0 Hrs</option>
+                        <option value="9 Hrs">9.0 Hrs</option>
+
+                    </select>
+            </div>
+
+        </div>
+        <hr style="margin-top: 30px;">
+    </div>
+    <!--extra service code start-->
+    <div class="extra-service"  style="width:108%;">
+        <div class="extra-service-heading">
+            <p>Extra Services</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between flex-wrap service-icons">
+           
+                <div style="width:20%;">
+                    <label >
+                        <input name="extra-service" type="checkbox" class="d-none" value="0.5" id="schedule-service-inside-cabinet"/>
+                        <div class="rounded-circle  d-flex justify-content-center align-items-center s-icon" id="inside-cabinet-div">
+                            <img src="~/IMAGES/3.png" alt="3" />
+                        </div>
+                        <div class="text-center image-heading " id="inside-cabinet-text">
+                            Incide Cabinets
+                        </div>
+                    </label>
+                </div>
+
+                <div style="width:20%;">
+                    <label>
+                        <input name="extra-service" type="checkbox" class="d-none" value="0.5" id="schedule-service-inside-fridge" />
+                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon" id="inside-fridge-div">
+                            <img src="~/IMAGES/5.png" alt="5" />
+                        </div>
+                        <div class="text-center image-heading" id="inside-fridge-text">
+                            Incide Fridge
+                        </div>
+                    </label>
+                </div>
+
+                <div style="width:20%;">
+                    <label>
+                        <input name="extra-service" type="checkbox" class="d-none" value="0.5" id="schedule-service-inside-oven" />
+                        <div class="rounded-circle  d-flex justify-content-center align-items-center s-icon" id="inside-oven-div">
+                            <img src="~/IMAGES/4.png" alt="4" />
+                        </div>
+                        <div class="text-center image-heading" id="inside-oven-text">
+                            Inside Oven
+                        </div>
+                    </label>
+                </div>
+
+                <div style="width:20%;">
+                    <label>
+                        <input name="extra-service" type="checkbox" value="0.5" class="d-none" id="schedule-service-laundry-wash" />
+
+                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon" id="laundry-wash-div">
+                            <img src="~/IMAGES/2.png" alt="2" />
+                        </div>
+                        <div class="text-center image-heading" id="laundry-wash-text">
+                            Laundry wash & dry
+                        </div>
+                    </label>
+                </div>
+
+                <div style="width:20%;">
+                    <label>
+                        <input name="extra-service" type="checkbox" class="d-none" value="0.5" id="schedule-service-interior-window" />
+                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon" id="interior-window-div">
+                            <img src="~/IMAGES/1.png" alt="1" />
+                        </div>
+                        <div class="text-center image-heading" id="interior-window-text">
+                            Interior windows
+                        </div>
+                    </label>
+                </div>
+            
+        </div>
+        <hr style="margin-top: 30px;">
+    </div>
+    <!--extra service code end-->
+    <div class="comment" style="width:108%;">
+        <p>Comments</p>
+            <textarea asp-for="Comments"></textarea>
+            <input type="checkbox" value="true" /> <label style="font-size: 13px; color: #646464;"> have pets at home</label>
+        <hr style="margin-top: 20px; size: 0.5px;">
+        <button type="button" class="btn continue-btn" id="schedule-service-continue">Continue</button>
+    </div>
+</div>

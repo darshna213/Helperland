@@ -27,7 +27,6 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-
 </head>
 <body>
     <!--header code start-->
@@ -80,21 +79,21 @@
                 <!-- Classic tabs  start-->
                 <div class="classic-tabs">
 
-                    <ul class="nav " id="myClassicTabOrange" role="tablist">
+                    <ul class="nav " id="myClassicTabOrange" style="width:72%; " role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link  waves-light tab active show" id="profile-tab-classic-orange" data-toggle="tab" onclick="Tab1Click()" href="#profile-classic-orange"
+                            <a class="nav-link active show" id="profile-tab-classic-orange" data-toggle="tab" onclick="Tab1Click()" href="#profile-classic-orange"
                                role="tab" aria-controls="profile-classic-orange" aria-selected="false"><img src="~/IMAGES/setup-service.png" /> Setup Service</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-light tab" id="follow-tab-classic-orange" data-toggle="tab" onclick="Tab2Click()" href="#follow-classic-orange"
+                            <a class="nav-link disable-a-tag" id="follow-tab-classic-orange" data-toggle="tab" onclick="Tab2Click()" href="#follow-classic-orange"
                                role="tab" aria-controls="follow-classic-orange" aria-selected="true"><img src="~/IMAGES/schedule.png" />schedule & Plan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-light tab" id="contact-tab-classic-orange" data-toggle="tab" onclick="Tab3Click()" href="#contact-classic-orange"
+                            <a class="nav-link disable-a-tag" id="contact-tab-classic-orange" data-toggle="tab" onclick="Tab3Click()" href="#contact-classic-orange"
                                role="tab" aria-controls="contact-classic-orange" aria-selected="false"><img src="~/IMAGES/details.png" /> Your Details</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link waves-light tab" id="awesome-tab-classic-orange" data-toggle="tab" onclick="Tab4Click()" href="#awesome-classic-orange"
+                            <a class="nav-link disable-a-tag" id="awesome-tab-classic-orange" data-toggle="tab" onclick="Tab4Click()" href="#awesome-classic-orange"
                                role="tab" aria-controls="awesome-classic-orange" aria-selected="false"><img src="~/IMAGES/payment.png" /> Make Payment</a>
                         </li>
                     </ul>
@@ -103,234 +102,20 @@
                         @await Html.PartialAsync("Setupservice")
                         @await Html.PartialAsync("Scheduleservice")
                         @await Html.PartialAsync("Addaddress")
-                        @*<div class="tab-pane fade active show" id="profile-classic-orange" role="tabpanel" aria-labelledby="profile-tab-classic-orange">
-                                <form class="setup-service">
-                                    <label>Enter your Postal Code</label><br>
-                                    <input type="text" id="postal-code" placeholder="Postal code" />
-                                    <input class="check-btn button" src="#follow-tab-classic-orange" onclick="checkZipcode()" type="submit" value="Check Availibility">
-
-                                </form>
-
-                            </div>*@
-                        @*<div class="tab-pane fade" id="follow-classic-orange" role="tabpanel" aria-labelledby="follow-tab-classic-orange">
-                            <div class="schedule-plan">
-                                <p>Select number of rooms and bath</p>
-                                <form class="rooms-bath">
-                                    <select>
-                                        <option selected value="1">1 bed</option>
-                                        <option value="2">2 bed</option>
-                                        <option value="3">3 bed</option>
-
-                                    </select>
-                                    <select>
-                                        <option selected value="1">1 bath</option>
-                                        <option value="2">2 bath</option>
-                                        <option value="3">3 bath</option>
-
-                                    </select>
-                                </form>
-                                <hr>
-                            </div>
-                            <div class="room-cleaner d-flex">
-                                <div class="clean-time">
-                                    <p>When do you need the cleaner?</p>
-                                    <form class="d-flex flex-wrap">
-                                        <div class="input-group me-2">
-                                            <span class="input-group-text" id="basic-addon1" style="background-color: #fff; border-right: none;"> <img src="~/IMAGES/admin-calendar-blue.png" alt="calander"> </span>
-                                            <input type="text" class="form-control" id="from-date" style="border-left: none;" placeholder="01/01/2018" aria-label="date" aria-describedby="basic-addon1">
-
-                                        </div>
-                                        <select>
-                                            <option selected value="1">2:00PM</option>
-                                            <option value="2">4:00PM</option>
-                                            <option value="3">6:00PM</option>
-
-                                        </select>
-                                    </form>
-
-                                </div>
-                                <div class="clean-hour">
-                                    <p>How long do you need your cleaner to stay?</p>
-                                    <form class="">
-                                        <select>
-                                            <option selected value="1">3.0 Hrs</option>
-                                            <option value="2">6.0 Hrs</option>
-                                            <option value="3">9.0 Hrs</option>
-
-                                        </select>
-                                    </form>
-                                </div>
-
-                            </div>
-                            <hr style="margin-top: 30px;">*@
-                        <!--extra service code start-->
-                        @*<div class="extra-service">
-                                <div class="extra-service-heading">
-                                    <p>Extra Services</p>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-between flex-wrap service-icons">
-                                    <div>
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon">
-                                            <img src="~/IMAGES/3.png" alt="3" />
-                                        </div>
-                                        <div class="text-center image-heading">
-                                            Incide Cabinets
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon">
-                                            <img src="~/IMAGES/5.png" alt="5" />
-                                        </div>
-                                        <div class="text-center image-heading">
-                                            Incide Fridge
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon">
-                                            <img src="~/IMAGES/4.png" alt="4" />
-                                        </div>
-                                        <div class="text-center image-heading">
-                                            Inside Oven
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon">
-                                            <img src="~/IMAGES/2.png" alt="2" />
-                                        </div>
-                                        <div class="text-center image-heading">
-                                            Laundry wash & dry
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center s-icon">
-                                            <img src="~/IMAGES/1.png" alt="1" />
-                                        </div>
-                                        <div class="text-center image-heading">
-                                            Interior windows
-                                        </div>
 
 
-                                    </div>
-
-                                </div>
-                                <hr style="margin-top: 30px;">
-                            </div>*@
-                        <!--extra service code end-->
-                        @*<div class="comment">
-                                    <p>Comments</p>
-                                    <form class="comment-form">
-                                        <textarea></textarea>
-                                        <input type="checkbox" value="checkbox" required /> <label style="font-size: 13px; color: #646464;"> have pets at home</label>
-                                    </form>
-                                    <hr style="margin-top: 20px; size: 0.5px;">
-                                    <button type="button" class="btn continue-btn "><a href="">Continue</a></button>
-                                </div>
-                            </div>*@
-                        @*<div class="tab-pane fade" id="contact-classic-orange" role="tabpanel" aria-labelledby="contact-tab-classic-orange">
-                            <div class="your-details">
-                                <p><strong> your contact details,so we can serve you in better way!</strong></p>
-                                <form class="address-detail">
-                                    <div class="address d-flex  align-items-center">
-                                        <input type="radio" id="" name="address" />
-                                        <p style="margin-left:12px; margin-top: 10px; margin-bottom: 10px;"><b>Address:</b>karnavati 112, tamoz-Dirthwz 99097<br>Phone number: 9955648797</p>
-                                    </div>
-                                    <div class="address d-flex align-items-center">
-                                        <input type="radio" id="" name="address" />
-                                        <p style="margin-left:12px; margin-top: 10px; margin-bottom: 10px;"><b>Address:</b>karnavati 112, tamoz-Dirthwz 99097<br>Phone number: 9955648797</p>
-                                    </div>
-                                    <button type="button" class="btn add-btn "><a href="#add-adress-box">+ Add New Address</a></button>*@
-                        <!--address box code start-->
-                        @*<div class="add-address-box" id="add-adress-box">
-                                <div class="address-taker-box">
-                                    <div>
-                                        <label for="streetname">
-                                            Street name
-                                        </label>
-                                        <br>
-                                        <input type="text" name="streetname" placeholder="Street name">
-                                    </div>
-                                    <div>
-                                        <label for="housename">
-                                            House number
-                                        </label>
-                                        <br>
-
-                                        <input type="text" name="housename" placeholder="House name">
-                                    </div>
-                                </div>
-                                <div class="address-taker-box">
-                                    <div>
-                                        <label for="postalcode">
-                                            Postal code
-                                        </label>
-                                        <br>
-                                        <input type="text" name="postalcode" placeholder="Postal code">
-
-                                    </div>
-                                    <div>
-                                        <label for="city">
-                                            City
-                                        </label>
-                                        <br>
-                                        <input type="text" name="city" placeholder="City">
-                                    </div>
-                                </div>
-                                <div class="address-taker-box tel">
-                                    <div>
-                                        <label for="phonenumber">
-                                            Phone number
-                                        </label>
-                                        <br>
-                                        <div class="tel-box">
-                                            <span class="tel-icon">
-                                                +49
-                                            </span>
-                                            <input type="tel" name="phonenumber" placeholder="Phone number">
-                                        </div>
-                                    </div>
-                                    <div id="tel2">
-
-                                    </div>
-                                </div>
-                                <div class="Button">
-                                    <button class="save-btn">Save</button>
-                                    <button class="clear-btn">Cancel</button>
-                                </div>
-                            </div>*@
-                        <!--address box code end-->
-                        @*<p><strong> Favorite Service Providers</strong></p>
-                                        <hr style="margin-top: 0%; margin-bottom: 8px;">
-                                        <p>you can choose your favorite service provider from the below list.</p>
-                                        <div class="rounded-circle d-flex  align-items-center cap-icon">
-                                            <img src="~/images/cap.png" alt="cap" />
-                                        </div>
-                                        <p style="font-weight: lighter;">Sandip Patel</p>
-                                        <button type="button" class="btn select-btn "><a href="">Select</a></button>
-                                    </form>
-                                    <hr>
-                                    <button type="button" class="btn continue-btn "><a href="">Continue</a></button>
-
-                                </div>
-                            </div>*@
                         <div class="tab-pane fade" id="awesome-classic-orange" role="tabpanel" aria-labelledby="awesome-tab-classic-orange">
-                            <p>Pay securely with Helperland payment gateway!</p>
-                            <form class="setup-service">
+                            <div style="width:108%;">
+                                <p>Pay securely with Helperland payment gateway!</p>
+                                @*<form class="setup-service">*@
                                 <label style="margin-bottom: 0;">Promo Code (optional)</label><br>
                                 <input type="text" id="postal-code" placeholder="Promo Code (optional)" />
                                 <input class="apply-btn button" type="submit" value="Apply">
                                 <hr>
                                 <div class="card-number">
-                                    
-                                        <input type="text" placeholder="Card number" required />
-                                   
+
+                                    <input type="text" placeholder="Card number" required />
+
                                 </div>
                                 <hr>
                                 <div class="policy d-flex">
@@ -341,15 +126,36 @@
                                     </p>
                                 </div>
                                 <hr>
-                            </form>
-                            <button type="button" class="btn complete-btn "><a href="">Complete Booking</a></button>
-
+                                @*</form>*@
+                                <button type="button" class="btn complete-btn"  data-toggle="modal" data-target="#completebookingmodal">Complete Booking</button>
+                            </div>
                         </div>
                     </div>
 
                 </div>
                 <!-- Classic tabs  end-->
+                <!--completebooking modal-->
+                <div class="modal fade" id="completebookingmodal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label=""><span>×</span></button>
+                            </div>
 
+                            <div class="modal-body">
+
+                                <div class="thank-you-pop">
+                                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                                    <h1>Booking has been successfully submitted</h1>
+                                    <p>Service Request Id: 8488</p>
+                                    <button class="btn" type="button">Ok</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--leftside code end-->
             <!--rightside code start-->
@@ -361,27 +167,37 @@
                         <p>Payment Summary</p>
                     </div>
                     <div class="date-time">
-                        <p>01/01/2018 4:00 pm</p>
-                        <p>1 bed,1 bath</p>
+                        <p id="payment-summary-date-time">01/01/2018 4:00 pm</p>
+                        <p id="payment-summary-bed-bath">1 bed,1 bath</p>
                     </div>
                     <div class="duration">
                         <h6>Duration</h6>
-                        <div class="d-flex justify-content-between duration-title">
+                        <div class=" justify-content-between duration-title">
                             <div>
-                                <p>Basic</p>
-                                <p>Inside cabinets (extra)</p>
+                                <p>Basic <span style="float: right !important;" class="duration-print" id="payment-summary-basic-hour">3 Hrs</span><br /></p>
+
+                                <span id="payment-summary-inside-cabinet" class="d-none">
+                                    Inside cabinets
+                                    <span style="float: right;">30 Min</span><br />
+                                </span>
+                                <span id="payment-summary-inside-fridge" class="d-none">Inside Fridge <span style="float:right;">30 Min</span><br /></span>
+                                <span id="payment-summary-inside-oven" class="d-none">Inside Oven <span style="float:right;">30 Min</span><br /></span>
+                                <span id="payment-summary-laundry-wash" class="d-none">Laundry wash & dry <span style="float:right;">30 Min</span><br /></span>
+                                <span id="payment-summary-interior-window" class="d-none">Interior windows<span style="float:right;">30 Min</span><br /></span>
                             </div>
-                            <div style="text-align:right">
-                                <p>3 Hrs</p>
-                                <p>30 Mins</p>
-                            </div>
+                            @*<div style="text-align:right">
+                                    <p id="payment-summary-basic-hour">3 Hrs</p>
+                                    <p>30 mins</p>
+                                    <p>30 mins</p>
+                                    <p>30 mins</p>
+                                </div>*@
                         </div>
                         <div class="d-flex justify-content-center align-items-center">
                             <hr / class="line">
                         </div>
-                        <div class="d-flex justify-content-between duration-total">
+                        <div class="d-flex justify-content-between duration-total " >
                             <p>Total Service Time</p>
-                            <p style="text-align:right">3.5 Hrs</p>
+                            <p style="text-align:right" id="payment-summary-total-time">3.5 Hrs</p>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between duration-title">
@@ -390,7 +206,7 @@
                                 <p>Discount</p>
                             </div>
                             <div style="text-align:right; font-weight:bold;">
-                                <p>$87</p>
+                                <p >$87</p>
                                 <p>-$27</p>
                             </div>
                         </div>
@@ -398,7 +214,7 @@
                         <div class="d-flex justify-content-between duration-payment">
 
                             <p class="total-payment">Total Payment</p>
-                            <p class="total" style="text-align:right">$63</p>
+                            <p class="total " style="text-align:right" id="payment-summary-total-payment">$54</p>
                         </div>
                         <div class="d-flex justify-content-between duration-title">
                             <p>Effective Price</p>
@@ -476,7 +292,7 @@
                                 </div>
                                 <hr>
                                 <div class="help">
-                                    <p>For more help</p>
+                                    <p><a asp-controller="Home" asp-action="Faq" style=" text-decoration: none; color: #1D7A8C;">For more help</a></p>
                                 </div>
                             </div>
 
@@ -491,365 +307,8 @@
         </div>
     </section>
     <!--middle code end-->
-    <!-- buttons code start -->
-    @*<section>
-            <h2 class="text-center newsletter">
-                GET OUR NEWSLETTER
-            </h2>
-            <form class="text-center customer-email ">
-                <div class="form-group newletter-input">
-                    <input type="email" id="email" class="form-control" placeholder="Your Email" />
-                    <button type="button" id="" class="btn submit">Submit</button>
-                </div>
-            </form>
-        </section>*@
-
-    <!-- buttons code end -->
-    <!--footer code start-->
-    @*<footer>
-            <div class="container d-flex justify-content-between align-items-center fmenu">
-                <img width="100px" src="IMAGES/price/logo.png" alt="" />
-                <div class="d-flex flex-wrap text-center justify-content-center fmenulink">
-                    <a class="px-3" href="homepage.html">HOME</a>
-                    <a class="px-3" href="about.html">ABOUT</a>
-                    <a class="px-3" href="#">TESTIMONIALS</a>
-                    <a class="px-3" href="faq.html">FAQS</a>
-                    <a class="px-3" href="#">INSURRANCE POLICY</a>
-                    <a class="px-3" href="#">IMPRESSUM</a>
-                </div>
-                <div>
-                    <img class="img-fluid fimg1" src="IMAGES/price/ic-facebook.png" />
-                    <img class="img-fluid fimg2" src="IMAGES/price/ic-instagram.png" />
-                </div>
-            </div>
-            <div class="d-flex justify-content-center align-items-center text-center" style="margin-top:10px">
-                <hr style="border-bottom: 1px solid grey; width: 88%" />
-            </div>
-
-            <p class="text-center right">
-                ©2018 Helperland. All rights reserved. Terms and Conditions | Privacy Policy
-            </p>
-        </footer>*@
-    <!--footer code end-->
-    <!--jquery code start-->
-    <script>
-        // tab code start
-        $(document).ready(function () {
-            $('#profile-tab-classic-orange').click(function () {
-                $('#awesome-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#contact-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#follow-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $(this).css({
-                    "background-color": "#1d7a8c",
-                    "color": "#ffff"
-                });
-            });
-        });
-        $(document).ready(function () {
-            $('#follow-tab-classic-orange').click(function () {
-                $('#profile-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#awesome-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#contact-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $(this).css({
-                    "background-color": "#1d7a8c",
-                    "color": "#ffff"
-                });
-            });
-        });
-        $(document).ready(function () {
-            $('#contact-tab-classic-orange').click(function () {
-                $('#profile-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#follow-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#awesome-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $(this).css({
-                    "background-color": "#1d7a8c",
-                    "color": "#ffff"
-                });
-            });
-        });
-        $(document).ready(function () {
-            $('#awesome-tab-classic-orange').click(function () {
-                $('#profile-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#follow-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $('#contact-tab-classic-orange').css({
-                    "background-color": "#f4f5f8",
-                    "color": "#646464"
-                });
-                $(this).css({
-                    "background-color": "#1d7a8c",
-                    "color": "#ffff"
-                });
-            });
-        });
-        $(document).ready(function () {
-            $('.check-btn').click(function () {
-                $('#follow-tab-classic-orange').show(slow)
-            });
-        });
-        //tab code end
-        $(document).ready(function () {
-            $('.add-btn').click(function () {
-                $('.add-address-box').show(slow)
-            });
-        });
-    </script>
-    <!--jquery code end-->
-    <!-- bootstrap js cdn  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-            crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/js/bookServiceScript.js"></script>
-    <!--JS code-->
-    @*<script>
-        function checkZipcode() {
-            $("#postalcode").val($("#postal-code").val());
-            var zip = $("#postalform");
-            var jsonInput = zip.serialize();
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: '/Bookservice/IsValidZipcode',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: jsonInput,
-                    success:
-                        function (response) {
-                            if (response.value == "true") {
-                                form2();
-                            } else {
-                                alert("fails");
-                            }
-                        },
-                    error:
-                        function (response) {
-                            console.error(response);
-                            alert("fail");
-                        }
-                });
-        }
-        function getServiceDetails() {
-            var servicedetails = $("#Scheduleservice");
-            var jsonInput = servicedetails.serialize();
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: '/Bookservice/getScheduleServiceDetails',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: jsonInput,
-                    success:
-                        function (response) {
-                            if (response.value == "true") {
-                                form3();
-                            } else {
-                                alert("fails");
-                            }
-                        },
-                    error:
-                        function (response) {
-                            console.error(response);
-                            alert("fail");
-                        }
-                });
-        }
-        function getAddress() {
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: '/Bookservice/getAddressDetails',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    success:
-                        function (response) {
-                            console.log(response);
-                            var AddressList = $("#addresslist");
-                            AddressList.empty();
-                            for (var i = 0; i < response.length; i++) {
-                                if (response[i].isDefault == true) {
-                                    AddressList.append('<div class="address-check-box"><div><input type="radio" name="address1" id="addressId' + response[i].id + '"' + 'value ="' + response[i].id + '"' + 'checked /></div><div><p><strong>Address: </strong>' + response[i].addressLine2 + ', ' + response[i].addressLine1 + ', ' + response[i].city + ', ' + response[i].postalCode + '</p > <p><strong>Phone number: </strong>' + response[i].mobile + '</p> </div > </div > ')
-                                } else {
-                                    AddressList.append('<div class="address-check-box"><div><input type="radio" name="address1" id="addressId' + response[i].id + '"' + 'value ="' + response[i].id + '"' + '/></div><div><p><strong>Address: </strong>' + response[i].addressLine2 + ', ' + response[i].addressLine1 + ', ' + response[i].city + ', ' + response[i].postalCode + '</p > <p><strong>Phone number: </strong>' + response[i].mobile + '</p> </div > </div > ')
-                                }
-
-                            }
-                        },
-                    error:
-                        function (response) {
-                            console.error(response);
-                            alert("fail");
-                        }
-                });
-        }
-        function clearAddress() {
-            $("#streetname").val("");
-            $("#housename").val("");
-            $("#city").val("");
-            $("#phonenumber").val("");
-            document.getElementsByClassName("add-address-box")[0].style.display =
-                "none";
-            add_address_btn.style.display = "block";
-        }
-
-        function AddAddress() {
-            var addData = {};
-            addData.AddressLine2 = $("#streetname").val();
-            addData.AddressLine1 = $("#housename").val();
-            addData.postalcode = $("#postalcode").val();
-            addData.city = $("#city").val();
-            addData.mobile = $("#phonenumber").val();
-            console.log(addData);
-
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: '/Bookservice/addAddress',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: addData,
-                    success:
-                        function (response) {
-                            if (response.value == "true") {
-                                getAddress();
-                                clearAddress()
-                            } else {
-                                alert("fails");
-                            }
-                        },
-                    error:
-                        function (response) {
-                            console.error(response);
-                            alert("fail");
-                        }
-                });
-        }
-        function payDone() {
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: '/Bookservice/addAddress',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: addData,
-                    success:
-                        function (response) {
-                            if (response.value == "true") {
-                                getAddress();
-                                clearAddress()
-                            } else {
-                                alert("fails");
-                            }
-                        },
-                    error:
-                        function (response) {
-                            console.error(response);
-                            alert("fail");
-                        }
-                });
-        }
-    </script>*@
-
-
-
-    <!--------------------------------------------------------------------------->
-<script type="text/javascript">
-        var globalVar = "Global to Booking page";
-        function Tab1Click() {
-            $("#profile-tab-classic-orange").addClass("active-tab");
-            $("#follow-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#contact-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#awesome-tab-classic-orange").removeClass("active-tab").addClass("tab");
-
-            $("#follow-classic-orange").hide();
-            $("#contact-classic-orange").hide();
-            $("#awesome-classic-orange").hide();
-            $("#profile-classic-orange").show();
-        }
-        function Tab2Click() {
-            $("#follow-tab-classic-orange").addClass("active-tab");
-            $("#profile-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#contact-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#awesome-tab-classic-orange").removeClass("active-tab").addClass("tab");
-
-            $("#profile-classic-orange").hide();
-            $("#contact-classic-orange").hide();
-            $("#awesome-classic-orange").hide();
-            $("#follow-classic-orange").show();
-        }
-        function Tab3Click() {
-            $("#contact-tab-classic-orange").addClass("active-tab");
-            $("#profile-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("##follow-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#awesome-tab-classic-orange").removeClass("active-tab").addClass("tab");
-
-            $("#profile-classic-orange").hide();
-            $("#follow-classic-orange").hide();
-            $("#awesome-classic-orange").hide();
-            $("#contact-classic-orange").show();
-            $("#divAddress").html("Loading Address view...")
-            .load('@Url.Action("GetAddress", "BookServiceRequest")');
-        }
-        function Tab4Click() {
-            $("#awesome-tab-classic-orange").addClass("active-tab");
-            $("#profile-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#follow-tab-classic-orange").removeClass("active-tab").addClass("tab");
-            $("#contact-tab-classic-orange").removeClass("active-tab").addClass("tab");
-
-            $("#profile-classic-orange").hide();
-            $("#follow-classic-orange").hide();
-            $("#contact-classic-orange").hide();
-            $("#awesome-classic-orange").show();
-        }
-        function SearchZipCode() {
-            $("#follow-tab-classic-orange").addClass("active");
-            $("#profile-tab-classic-orange").removeClass("active").addClass("tab");
-            $("#profile-classic-orange").hide();
-            $("#follow-classic-orange").show();
-        }
-
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-
     <!-- javascript code start-->
+    <script src="~/Javascript/Bookservice.js"></script>
     <script src="~/Javascript/bootstrap.bundle.min.js"></script>
     <script src="~/Javascript/main.js"></script>
     <!--javasrcipt code end-->

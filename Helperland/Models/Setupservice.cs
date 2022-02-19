@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+
+#nullable disable
 
 namespace Helperland.Models
 {
-    public class Setupservice
+    public partial class Setupservice
     {
-        [Required]
         public string PostalCode { get; set; }
     }
 }

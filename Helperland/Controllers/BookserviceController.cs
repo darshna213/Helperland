@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Helperland.Data;
 using Helperland.Models;
+using Helperland.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +19,15 @@ namespace Helperland.Controllers
             _helperlandContext = helperlandContext;
 
         }
+
+
         public IActionResult Bookservice()
         {
             return View();
         }
+
+
+       
         [HttpPost]
         public ActionResult IsValidZipcode(Setupservice setupservice)
         {
@@ -29,12 +36,14 @@ namespace Helperland.Controllers
             {
                 CookieOptions cookie = new CookieOptions();
                 Response.Cookies.Append("zipcode", setupservice.PostalCode, cookie);
-                return RedirectToAction("Upcoming_service", "Serviceprovider");
+                return Ok(Json("True"));
             }
             else
             {
-                return RedirectToAction("Index", "Home");
 
+
+
+                return Ok(Json("false"));
             }
         }
 
@@ -44,7 +53,7 @@ namespace Helperland.Controllers
 
             if (ModelState.IsValid)
             {
-                return Ok(Json("true"));
+                return Ok(Json("True"));
             }
             else
             {
@@ -52,56 +61,35 @@ namespace Helperland.Controllers
             }
 
         }
-        [HttpGet]
-        public JsonResult getAddressDetails()
 
-
-
-        {
-            int? Id = HttpContext.Session.GetInt32("id");
-            List<Addaddress> addresses = new List<Addaddress>();
-            var zipCode = Request.Cookies["zipcode"];
-            var userAddress = _helperlandContext.UserAddresses.Where(x => x.PostalCode == zipCode && x.UserId == Id).ToList();
-
-            foreach (var address in userAddress)
-            {
-                Addaddress addr = new Addaddress();
-                addr.Id = address.AddressId;
-                addr.AddressLine1 = address.AddressLine1;
-                addr.AddressLine2 = address.AddressLine2;
-                addr.City = address.City;
-                addr.Mobile = address.Mobile;
-                addr.PostalCode = address.PostalCode;
-                addr.IsDefault = address.IsDefault;
-
-                addresses.Add(addr);
-            }
-
-            return new JsonResult(addresses);
-
-        }
         [HttpPost]
-        public IActionResult addAddress(UserAddress address)
+        public string AddAddress(Addaddress addAddress)
         {
-            int? Id = HttpContext.Session.GetInt32("id");
-            if (Id != null)
-            {
-                User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == Id);
-                address.Email = user.Email;
-                address.UserId = user.UserId;
-                address.IsDefault = false;
-                address.IsDeleted = false;
-                _helperlandContext.UserAddresses.Add(address);
-                _helperlandContext.SaveChanges();
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+        
+            UserAddress address = new UserAddress();
+            address.UserId = u.UserId;
+            address.AddressLine1 = addAddress.StreetName;
+            address.AddressLine2 = addAddress.HouseNumber;
+            address.City = addAddress.City;
+            address.Mobile = addAddress.Mobile;
+            address.PostalCode = addAddress.PostalCode;
+            _helperlandContext.UserAddresses.Add(address);
+            _helperlandContext.SaveChanges();
 
-                return Ok(Json("true"));
-
-
-            }
-            return Ok(Json("false"));
+            return "true";
 
         }
 
+        public string GetAddress(string postalcode)
+        {
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
 
+            int userId = u.UserId;
+            List<UserAddress> userAddress = _helperlandContext.UserAddresses.Where(u => u.UserId == userId && u.PostalCode == postalcode).ToList();
+
+            return JsonSerializer.Serialize(userAddress);
+        }
+        //public string Paymentdone(Scheduleservice )
     }
 }

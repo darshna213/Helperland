@@ -11,6 +11,7 @@ body {
 
 nav {
     background-color: #525252;
+    
 }
 
 .navbar-fixed-top {
@@ -124,22 +125,18 @@ nav {
 /*middle code */
 
 
-/*classic tab*/
-/*.content{
-  display: flex;
-}*/
-/* .classic-tabs{
-  width: 100%;
-} */
 #myClassicTabOrange {
     border: 1px solid transparent;
     background-color: #f4f5f8;
-    width: 65%;
 }
 
 .card {
     border: none;
     width: 65%;
+}
+
+.disable-a-tag {
+    pointer-events: none;
 }
 
 .tab-content {
@@ -177,7 +174,7 @@ nav {
 }
 
 #myClassicTabOrange {
-    width: 70%;
+    width: 72% !important;
     margin-right: 0%;
 }
 
@@ -242,6 +239,16 @@ nav {
         height: 35px;
     }
 
+.rounded-circle-active {
+    border: 2px solid #1d7a8c !important;
+    color: #1D7A8C !important;
+    font-weight: bold !important;
+}
+.extra-service-text{
+    color:#1D7A8C !important;
+    font-weight:bold !important;
+}
+
 .image-heading {
     color: #646464;
     font-size: 13px;
@@ -293,8 +300,8 @@ nav {
     }
 /*your-details*/
 .your-details {
-    width: 70%;
-    /* width: 108%;*/
+    /*  width: 70%;*/
+    width: 108%;
 }
 
     .your-details p {
@@ -330,17 +337,22 @@ nav {
     border-radius: 5px;
     width: 100%;
     margin-top: 20px;
+    margin-bottom: 20px;
     background: #F3F3F3;
-    display: none;
+    padding-bottom:10px;
+}
+    
+.add-address-box label{
+    margin-bottom:0px;
 }
 
-.address-taker-box {
-    display: flex;
-    justify-content: space-evenly;
-    margin: 20px;
-    flex-wrap: wrap;
-    color: #646464;
-}
+    .address-taker-box {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin: 20px;
+        flex-wrap: wrap;
+        color: #646464;
+    }
 
 #tel2 {
     width: 300px;
@@ -348,7 +360,8 @@ nav {
 
 
 .address-taker-box input {
-    width: 300px;
+/*    width: 300px;*/
+    width:97%;
     height: 46px;
     border: solid 1px #C8C8C8;
     color: #646464;
@@ -365,9 +378,12 @@ nav {
 
 .tel-icon {
     padding: 5px;
+    border-right: 1px solid #C8C8C8;
+    padding-top: 11px;
 }
 
 .tel-box {
+    display:flex;
     border: solid 1px #C8C8C8;
     border-radius: 5px;
 }
@@ -375,13 +391,13 @@ nav {
 .save-btn {
     height: 42px;
     background: #1D7A8C;
-    border-radius: 23px;
+    border-radius: 20px;
     padding-left: 20px;
     padding-right: 20px;
     border: none;
     color: white;
-    margin-left: 50px;
-    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
     margin-right: 10px;
 }
 
@@ -390,7 +406,7 @@ nav {
     background: white;
     border: solid 1px #C8C8C8;
     color: #646464;
-    border-radius: 23px;
+    border-radius: 20px;
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -651,9 +667,6 @@ nav {
 
 
 
-
-
-
 /*button code*/
 .newsletter {
     /* margin-top:60px;*/
@@ -739,3 +752,48 @@ footer {
         flex-direction: column;
     }
 }
+
+
+
+
+/*thank you popup code */
+
+.thank-you-pop {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+    .thank-you-pop img {
+        width: 76px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+        margin-bottom: 25px;
+    }
+
+    .thank-you-pop h1 {
+        font-size: 30px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        color: #646464;
+    }
+
+    .thank-you-pop p {
+        font-size: 20px;
+        margin-bottom: 27px;
+        color: #646464;
+    }
+
+    .thank-you-pop button {
+        width: 71px;
+        background: #1D7A8C;
+        color: white;
+        border-radius: 21px;
+        border: none;
+        padding: 10px;
+    }
+    #completebookingmodal .modal-header {
+        border: 0px;
+    }
+/*--thank you pop ends here--*/

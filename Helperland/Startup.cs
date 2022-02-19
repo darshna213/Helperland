@@ -28,6 +28,7 @@ namespace Helperland
             services.AddDbContext<HelperlandContext>();
             services.AddSession();
             services.AddMvc();
+            services.AddDistributedMemoryCache();
             services.AddSession();
 
         }
@@ -47,7 +48,7 @@ namespace Helperland
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

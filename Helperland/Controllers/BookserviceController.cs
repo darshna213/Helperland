@@ -31,7 +31,7 @@ namespace Helperland.Controllers
         [HttpPost]
         public ActionResult IsValidZipcode(Setupservice setupservice)
         {
-            var zipcodes = _helperlandContext.Zipcodes.Where(x => x.ZipcodeValue == setupservice.PostalCode);
+            var zipcodes = _helperlandContext.Users.Where(u => u.ZipCode == setupservice.PostalCode && u.UserTypeId == 2).ToList();
             if (zipcodes.Count() > 0)
             {
                 CookieOptions cookie = new CookieOptions();
@@ -40,9 +40,6 @@ namespace Helperland.Controllers
             }
             else
             {
-
-
-
                 return Ok(Json("false"));
             }
         }
@@ -153,7 +150,7 @@ namespace Helperland.Controllers
             _helperlandContext.ServiceRequestAddresses.Add(serviceRequestAddress);
             _helperlandContext.SaveChanges();
 
-            return "true";
+            return "" + serviceId;
 
         }
 

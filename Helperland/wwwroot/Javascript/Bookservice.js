@@ -337,6 +337,7 @@ $("#add-address-save-btn").click(function () {
                 function (response) {
                     if (response == "true") {
                         document.getElementById("add-address-cancel-btn").click();
+                        SetAddressList();
                     } else {
                         alert("INVALID....");
                     }
@@ -392,7 +393,10 @@ $("#payment-complete-booking").click(function () {
             data: model,
             success:
                 function (response) {
-                    alert("true");
+                    if (response != "false") {
+                        document.getElementById("complete-booking-service-id-span").innerHTML = response;
+                        document.getElementById("complete-booking-success-modal").click();
+                    }
                 },
 
             error:

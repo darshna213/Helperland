@@ -127,7 +127,7 @@
                                 </div>
                                 <hr>
                                 @*</form>*@
-                                <button type="button" class="btn complete-btn"  data-toggle="modal" data-target="#completebookingmodal" id="payment-complete-booking">Complete Booking</button>
+                                <button type="button" class="btn complete-btn" id="payment-complete-booking">Complete Booking</button>
                             </div>
                         </div>
                     </div>
@@ -135,6 +135,7 @@
                 </div>
                 <!-- Classic tabs  end-->
                 <!--completebooking modal-->
+                <a class="d-none" data-toggle="modal" data-target="#completebookingmodal" id="complete-booking-success-modal"></a>
                 <div class="modal fade" id="completebookingmodal" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -147,7 +148,7 @@
                                 <div class="thank-you-pop">
                                     <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
                                     <h1>Booking has been successfully submitted</h1>
-                                    <p>Service Request Id: 8488</p>
+                                    <p>Service Request Id: <span id="complete-booking-service-id-span"></span></p>
                                     <button class="btn" type="button">Ok</button>
                                 </div>
 

@@ -350,7 +350,68 @@ $("#add-address-save-btn").click(function () {
 
 });
 
+$("#payment-complete-booking").click(function () {
 
+    var pincode = $("#postal-code").val();
+    var date = $("#schedule-service-date").val();
+    var time = $("#schedule-service-time").val();
+    var basicHour = $("#schedule-service-hour").val();
+    var extraServices = [];
+    var x = document.getElementsByName("extra-service");
+    for (var i = 0; i < x.length; i++) {
+        if (x[i].checked)
+            extraServices.push(i + 1);
+    }
+    var comment = $("#Comments").val();
+    var havePet = document.getElementById("schedule-havePet").checked;
+    var addressId;
+    var y = document.getElementsByName("address");
+    for (var i = 0; i < y.length; i++) {
+        if (y[i].checked) {
+            addressId = y[i].value;
+            break;
+        }
+    }
+
+    var model = {
+        Pincode: pincode,
+        DateTime: date + " " + time,
+        BasicHour: basicHour,
+        Extras: extraServices,
+        Comments: comment,
+        HavePet: havePet,
+        AddressId: addressId
+
+    }
+
+    $.ajax(
+        {
+            type: 'POST',
+            url: '/Bookservice/CompleteBooking',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: model,
+            success:
+                function (response) {
+                    alert("true");
+                },
+
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("wrong");
+                }
+        });
+
+    /*alert(pincode);
+    alert(date);
+    alert(time);
+    alert(basicHour);
+    alert(extraServices);
+    alert(comment);
+    alert(havePet);
+    alert(addressId);*/
+
+});
 function SetAddressList() {
     document.getElementById("addresslist").innerHTML = "";
 
@@ -370,12 +431,13 @@ function SetAddressList() {
 
                         document.getElementById("addresslist").innerHTML +=
                             '<div class="address d-flex  align-items-center">' +
-                            '<input type="radio" id = "' + addressObj.AddressId + '" name = "address" />' +
+                            '<input type="radio" value = "' + addressObj.AddressId + '" name = "address" />' +
                             '<p style="margin-left:12px; margin-top: 10px; margin-bottom: 10px;"><b>Address:</b>' + addressObj.AddressLine1 + ' ' + addressObj.AddressLine2 + ', ' + addressObj.City + ' ' + addressObj.PostalCode + '<br>Phone number: ' + addressObj.Mobile + '</p>' +
                             '</div>';
                     }
 
                 },
+
             error:
                 function (response) {
                     console.error(response);

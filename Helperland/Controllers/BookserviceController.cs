@@ -27,7 +27,7 @@ namespace Helperland.Controllers
         }
 
 
-       
+
         [HttpPost]
         public ActionResult IsValidZipcode(Setupservice setupservice)
         {
@@ -66,7 +66,7 @@ namespace Helperland.Controllers
         public string AddAddress(Addaddress addAddress)
         {
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
-        
+
             UserAddress address = new UserAddress();
             address.UserId = u.UserId;
             address.AddressLine1 = addAddress.StreetName;
@@ -90,6 +90,74 @@ namespace Helperland.Controllers
 
             return JsonSerializer.Serialize(userAddress);
         }
-        //public string Paymentdone(Scheduleservice )
+
+        public string CompleteBooking(CompleteBookViewModel completeBookViewModel)
+        {
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            int userId = u.UserId;
+
+            ServiceRequest serviceRequest = new ServiceRequest();
+
+            serviceRequest.UserId = userId;
+            serviceRequest.ZipCode = completeBookViewModel.Pincode;
+            if (_helperlandContext.ServiceRequests.Max(u => (int?)u.ServiceRequestId) == null)
+            {
+                serviceRequest.ServiceId = 1;
+            }
+            else
+            {
+                serviceRequest.ServiceId = (int)(_helperlandContext.ServiceRequests.Max(u => (int?)u.ServiceRequestId) + 1);
+            }
+            serviceRequest.ServiceStartDate = DateTime.ParseExact(completeBookViewModel.DateTime, "yyyy-MM-dd HH:mm", null);
+            serviceRequest.ServiceHourlyRate = 18;
+            serviceRequest.ServiceHours = completeBookViewModel.BasicHour;
+            serviceRequest.ExtraHours = completeBookViewModel.Extras.Length / 2.0;
+            serviceRequest.SubTotal = (decimal)(completeBookViewModel.BasicHour + completeBookViewModel.Extras.Length / 2);
+            serviceRequest.TotalCost = (Decimal)(serviceRequest.SubTotal * serviceRequest.ServiceHourlyRate);
+            serviceRequest.Comments = completeBookViewModel.Comments;
+            serviceRequest.HasPets = completeBookViewModel.HavePet;
+            serviceRequest.Status = 1;
+            serviceRequest.CreatedDate = DateTime.Now;
+            serviceRequest.ModifiedDate = DateTime.Now;
+            serviceRequest.ModifiedBy = userId;
+
+            _helperlandContext.ServiceRequests.Add(serviceRequest);
+            _helperlandContext.SaveChanges();
+            
+
+            int serviceId = _helperlandContext.ServiceRequests.Where(u => u.UserId == userId).Max(u => u.ServiceRequestId);
+            if(completeBookViewModel.Extras.Length != 0)
+            {
+                for (int i = 0; i < completeBookViewModel.Extras.Length; i++)
+                {
+                    ServiceRequestExtra serviceRequestExtra = new ServiceRequestExtra();
+                    serviceRequestExtra.ServiceRequestId = serviceId;
+                    serviceRequestExtra.ServiceExtraId = completeBookViewModel.Extras[i];
+                    _helperlandContext.ServiceRequestExtras.Add(serviceRequestExtra);
+                }
+                _helperlandContext.SaveChanges();
+
+            }
+
+            UserAddress userAddress = _helperlandContext.UserAddresses.Where(u => u.AddressId == completeBookViewModel.AddressId).FirstOrDefault();
+
+            ServiceRequestAddress serviceRequestAddress = new ServiceRequestAddress();
+            serviceRequestAddress.ServiceRequestId = serviceId;
+            serviceRequestAddress.AddressLine1 = userAddress.AddressLine1;
+            serviceRequestAddress.AddressLine2 = userAddress.AddressLine2;
+            serviceRequestAddress.PostalCode = userAddress.PostalCode;
+            serviceRequestAddress.City = userAddress.City;
+            serviceRequestAddress.Mobile = userAddress.Mobile;
+
+            _helperlandContext.ServiceRequestAddresses.Add(serviceRequestAddress);
+            _helperlandContext.SaveChanges();
+
+            return "true";
+
+        }
+
+
     }
+
 }

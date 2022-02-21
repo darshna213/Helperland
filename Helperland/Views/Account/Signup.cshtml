@@ -79,11 +79,56 @@
             <img src="~/IMAGES/star.png" alt="" />
         </div>
 
-        <div class="text-center">
-            <div class="signup-table ">
+        <div class=" row text-center justify-content-center align-items-center " >
+            <div class=" col signup-table col-md-9">
                 <div class="text-center text-danger mb-3">
                     <b style="margin-left:23%; font-size:18px;">@ViewBag.Message</b>
                 </div>
+
+                <form asp-controller="Account" asp-action="Signup" method="post">
+                    <div class="row signup-row">
+                        <div class="col">
+                            <input id="fname" class="form-control" asp-for="FirstName" placeholder="First name" required />
+                        </div>
+                        <div class="col">
+                            <input id="lname" class="form-control" asp-for="LastName" placeholder="Last name" required />
+                        </div>
+                    </div>
+                    <div class="row signup-row" >
+                        <div class="col">
+                            <input id="" class="form-control" asp-for="Email" placeholder="Email address" required />
+                        </div>
+                        <div class="col input-group mx-0">
+                            <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode" placeholder="+91" required />
+                            <input id="phone" class="form-control col-10" max="10" asp-for="Mobile" placeholder="Phone Number" required />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <input type="password" class="form-control" id="password" asp-for="Password" placeholder="Password" required />
+                        </div>
+                        <div class="col">
+                            <input type="password" class="form-control" id="confirm-password" asp-for="Password" placeholder="Confirm Password" required />
+                            <span id="confirm-password-message" asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                            <input type="checkbox" class="form-check-input" id="readpolicy" required>
+                            <label class="form-check-label" style="padding-left: 0%;" for="readpolicy">I have read the <a>Privacy Policy</a></label>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button type="submit" id="register" value="to register" class="btn register">Register</button>
+                        </div>
+                    </div>
+
+
+
+                </form>
+
+
 
                 <form asp-controller="Account" asp-action="Signup" method="post">
                     <table>
@@ -158,7 +203,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group d-flex">
-                            <input type="text" name="" class="form-control" placeholder="Email"  />
+                            <input type="text" name="" class="form-control" placeholder="Email" />
                             <img src="~/IMAGES/person_black_24dp.svg" alt="person" />
                         </div>
                         <div class="form-group d-flex">

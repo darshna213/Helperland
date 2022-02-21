@@ -1,8 +1,9 @@
 ﻿* {
     font-family: 'roboto' sans-serif;
 }
-body{
-    height:100vh;
+
+body {
+    height: 100vh;
 }
 /*navbar*/
 
@@ -113,12 +114,25 @@ nav {
     }
 
 .signup-heading form {
-    margin-left: 21.4%;
+ /*   margin-left: 21.4%;*/
     margin-top: 20px;
 }
- .signup-table{
-    max-width: 996px;
-  } 
+
+.signup-table {
+    /*max-width: 996px;*/
+    max-width: 50%;
+}
+.signup-row {
+    padding-right: 10px;
+    margin-bottom: 10px !important;
+}
+@media screen and (max-width:810px) {
+    .signup-row {
+        flex-direction: column;
+        display:inline-block;
+    }
+}
+
 .form-control {
     color: #A0A0A0;
 }
@@ -347,4 +361,3 @@ table td {
     color: #1d7a8c;
     background: white;
 }
-

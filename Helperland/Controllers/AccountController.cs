@@ -91,7 +91,7 @@ namespace Helperland.Controllers
                 HttpContext.Session.SetString("CurrentUser", JsonSerializer.Serialize(U));
                 if (U.UserTypeId == 1)
                 {
-                    return RedirectToAction("Service_history", "Client");
+                    return RedirectToAction("Service_history", "Bookservice");
                 }
                 if (U.UserTypeId == 2)
                 {

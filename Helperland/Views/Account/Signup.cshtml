@@ -79,7 +79,7 @@
             <img src="~/IMAGES/star.png" alt="" />
         </div>
 
-        <div class=" row text-center justify-content-center align-items-center " >
+        <div class=" row text-center justify-content-center align-items-center ">
             <div class=" col signup-table col-md-9">
                 <div class="text-center text-danger mb-3">
                     <b style="margin-left:23%; font-size:18px;">@ViewBag.Message</b>
@@ -94,7 +94,7 @@
                             <input id="lname" class="form-control" asp-for="LastName" placeholder="Last name" required />
                         </div>
                     </div>
-                    <div class="row signup-row" >
+                    <div class="row signup-row">
                         <div class="col">
                             <input id="" class="form-control" asp-for="Email" placeholder="Email address" required />
                         </div>
@@ -113,10 +113,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        
-                            <input type="checkbox" class="form-check-input" id="readpolicy" required>
-                            <label class="form-check-label" style="padding-left: 0%;" for="readpolicy">I have read the <a>Privacy Policy</a></label>
-                        
+
+                        <input type="checkbox" class="form-check-input" id="readpolicy" required>
+                        <label class="form-check-label" style="padding-left: 0%;" for="readpolicy">I have read the <a>Privacy Policy</a></label>
+
                     </div>
                     <div class="row">
                         <div class="col text-center">
@@ -130,56 +130,7 @@
 
 
 
-                <form asp-controller="Account" asp-action="Signup" method="post">
-                    <table>
-                        <tr>
-                            <td style="width: 51%;" class="">
-                                <input id="fname" class="form-control" asp-for="FirstName" placeholder="First name" required />
-                            </td>
-                            <td class="">
-                                <input id="lname" class="form-control" asp-for="LastName" placeholder="Last name" required />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="" class="form-control" asp-for="Email" placeholder="Email address" required />
-                            </td>
-                            <td class="input-group mx-0 row">
 
-                                <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode" placeholder="+91" required />
-                                <input id="phone" class="form-control col-10" max="10" asp-for="Mobile" placeholder="Phone Number" required />
-
-                            </td>
-                        </tr>
-                        @*<tr>
-                                <td style="padding-bottom:0;">
-                                    <input type="hidden" asp-for="UserTypeId" value="1" />
-
-                                </td>
-                            </tr>*@
-                        <tr>
-                            <td>
-                                <input type="password" class="form-control" id="password" asp-for="Password" placeholder="Password" required />
-                            </td>
-                            <td>
-                                <input type="password" class="form-control" id="confirm-password" asp-for="Password" placeholder="Confirm Password" required />
-                                <span id="confirm-password-message" asp-validation-for="Password" class="text-danger"></span>
-                            </td>
-                        </tr>
-
-                        <tr class="form-check">
-                            <td colspan="2">
-                                <input type="checkbox" class="form-check-input" id="readpolicy" required>
-                                <label class="form-check-label" style="padding-left: 0%;" for="readpolicy">I have read the <a>Privacy Policy</a></label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" class="text-center">
-                                <button type="submit" id="register" value="to register" class="btn register">Register</button>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
             </div>
         </div>
         <div class="a-footer">

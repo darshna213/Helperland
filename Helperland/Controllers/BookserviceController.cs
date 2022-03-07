@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Helperland.Data;
@@ -62,6 +63,7 @@ namespace Helperland.Controllers
         [HttpPost]
         public string AddAddress(Addaddress addAddress)
         {
+
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
 
             UserAddress address = new UserAddress();
@@ -83,6 +85,7 @@ namespace Helperland.Controllers
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
 
             int userId = u.UserId;
+            Console.WriteLine(userId);
             List<UserAddress> userAddress = _helperlandContext.UserAddresses.Where(u => u.UserId == userId && u.PostalCode == postalcode).ToList();
 
             return JsonSerializer.Serialize(userAddress);
@@ -121,10 +124,10 @@ namespace Helperland.Controllers
 
             _helperlandContext.ServiceRequests.Add(serviceRequest);
             _helperlandContext.SaveChanges();
-            
+
 
             int serviceId = _helperlandContext.ServiceRequests.Where(u => u.UserId == userId).Max(u => u.ServiceRequestId);
-            if(completeBookViewModel.Extras.Length != 0)
+            if (completeBookViewModel.Extras.Length != 0)
             {
                 for (int i = 0; i < completeBookViewModel.Extras.Length; i++)
                 {
@@ -153,8 +156,224 @@ namespace Helperland.Controllers
             return "" + serviceId;
 
         }
+        public IActionResult Service_history()
+        {
+            return View();
+        }
+
+        public string GetServicesDashboard(CustomerServiceNewRequest customerServiceNewRequest)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            if (user.UserId != 0)
+            {
+                var table = _helperlandContext.ServiceRequests.Where(u => u.UserId == user.UserId && u.Status == 1).ToList();
+                return JsonSerializer.Serialize(table);
+            }
+            else
+            {
+                return "loginModal";
+            }
+
+        }
 
 
+        public string GetServiceHistory(string s)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            if (user.UserId != 0)
+            {
+                var table = _helperlandContext.ServiceRequests.Where(u => u.UserId == user.UserId && u.Status != 1).ToList();
+                return JsonSerializer.Serialize(table);
+            }
+            else
+            {
+                return "loginModal";
+            }
+        }
+
+        [HttpPost]
+        public string CancelServiceRequest(int serviceRequestId, ServiceRequest s)
+        {
+            Console.WriteLine("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? userId = u.UserId;
+
+            if (userId != null)
+            {
+                ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == serviceRequestId);
+                request.Comments = s.Comments;
+
+                request.Status = 3;
+                _helperlandContext.ServiceRequests.Update(request);
+                _helperlandContext.SaveChanges();
+
+                return "true";
+
+            }
+            return "false";
+        }
+
+
+
+        public string UpdateServiceRequest(int serviceRequestId, string serviceStartDate, string startTime)
+        {
+            Console.WriteLine("ccccccccccccccccccccccccccccc");
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? Id = u.UserId;
+
+            if (Id != null)
+            {
+                ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == serviceRequestId);
+
+                request.ServiceStartDate = DateTime.Parse(serviceStartDate + " " + startTime);
+
+                _helperlandContext.ServiceRequests.Update(request);
+                _helperlandContext.SaveChanges();
+
+
+                return "true";
+            }
+
+            return "false";
+        }
+
+        public string UpdateUserAddress(int AddressId, string addressLine1, string addressLine2, string postalCode, string city, string mobile)
+        {
+            Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaa");
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? Id = u.UserId;
+            if(Id != null)
+            {
+                
+                UserAddress userAddress = _helperlandContext.UserAddresses.FirstOrDefault(u => u.AddressId == AddressId);
+                userAddress.AddressLine1 = addressLine1;
+                userAddress.AddressLine2 = addressLine2;
+                userAddress.PostalCode = postalCode;
+                userAddress.City = city;
+                userAddress.Mobile = mobile;
+                _helperlandContext.UserAddresses.Update(userAddress);
+                _helperlandContext.SaveChanges();
+
+                return "true";
+            }
+            return "false";
+        }
+
+        [HttpPost]
+        public string CancelUserAddress(int addressId)
+        {
+            Console.WriteLine("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu" + addressId);
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? userId = u.UserId;
+
+            if (userId != null)
+            {
+                UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == addressId && x.UserId==u.UserId).FirstOrDefault();
+                userAddress.IsDeleted = true;
+                _helperlandContext.UserAddresses.Update(userAddress);
+                _helperlandContext.SaveChanges();
+
+                return "true";
+
+            }
+            return "false";
+           
+        }
+
+
+
+        [HttpPost]
+        public string UserAddAddress(Addaddress addAddress)
+        {
+            Console.WriteLine("");
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            UserAddress address = new UserAddress();
+            address.UserId = u.UserId;
+            address.AddressLine1 = addAddress.StreetName;
+            address.AddressLine2 = addAddress.HouseNumber;
+            address.City = addAddress.City;
+            address.Mobile = addAddress.Mobile;
+            address.PostalCode = "395008";
+            _helperlandContext.UserAddresses.Add(address);
+            _helperlandContext.SaveChanges();
+
+            return "true";
+
+        }
+        public string GetUserAddress(string s)
+        {
+            Console.WriteLine("ffffffffffffffffffffff");
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            int userId = u.UserId;
+
+            List<UserAddress> userAddress = _helperlandContext.UserAddresses.Where(u => u.UserId == userId && u.IsDeleted == false).ToList();
+            return JsonSerializer.Serialize(userAddress);
+        }
+
+        public string GetUserDetails(string s)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            var currentUserDetails = _helperlandContext.Users.Where(u => u.UserId == user.UserId).FirstOrDefault();
+            Console.WriteLine(currentUserDetails.FirstName);
+            return JsonSerializer.Serialize(currentUserDetails);
+        }
+
+
+        public string ChangePassword(Login changepassword)
+        {
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? userid = u.UserId;
+            if (userid != null)
+            {
+                User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
+
+                user.Password = changepassword.NewPassword;
+
+                _helperlandContext.Users.Update(user);
+                _helperlandContext.SaveChanges();
+
+
+            }
+            else
+            {
+                return "something wrong please check";
+            }
+
+
+
+            return "true";
+        }
+        public string SaveDetails(Savedetails savedetails)
+        {
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? userid = u.UserId;
+            if (userid != null)
+            {
+                User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
+
+                user.FirstName = savedetails.FirstName;
+                user.LastName = savedetails.LastName;
+                user.Email = savedetails.Email;
+                user.Mobile = savedetails.Mobile;
+
+                _helperlandContext.Users.Update(user);
+                _helperlandContext.SaveChanges();
+
+
+            }
+            else
+            {
+                return "something wrong please check";
+            }
+
+
+
+            return "true";
+        }
     }
 
 }

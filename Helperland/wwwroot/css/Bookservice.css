@@ -322,6 +322,9 @@ nav {
     border-radius: 50px;
     background-color: #ffff;
     margin-bottom: 12px;
+    color: #1D7A8C;
+    font-size: 13px;
+    font-weight: 700;
 }
 
     .add-btn a {
@@ -785,13 +788,14 @@ footer {
         color: #646464;
     }
 
-    .thank-you-pop button {
+    .thank-you-pop a {
         width: 71px;
         background: #1D7A8C;
         color: white;
         border-radius: 21px;
         border: none;
         padding: 10px;
+        text-decoration:none;
     }
     #completebookingmodal .modal-header {
         border: 0px;

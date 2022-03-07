@@ -11,13 +11,18 @@ body {
 
 
 /*navbar*/
+.dropdown-menu[data-bs-popper] {
+    top: 100%;
+    left: -31px;
+    margin-top: .125rem;
+}
 nav {
     background-color: #525252;
 }
 
 .navbar-brand img {
     width: 73px;
-    height: 55px;
+    height: 50px;
 }
 
 #navbarCollapse {
@@ -117,6 +122,147 @@ nav {
 /*middle code*/
 
 
+/*dashboard tab*/
+.db-heading {
+    font-weight: bold;
+    font-size: 22px;
+    color: #646464;
+    margin-right: 312px;
+    padding-left: 15px;
+}
+
+.re-scheduleservice {
+    background: #1d7a8c;
+    color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+    padding: 5px 10px 4px 9px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.cancel-cancel {
+    background: #ff6b6b;
+    color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 20px;
+    padding: 5px 10px 4px 9px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.dashboard-page {
+    margin-top: auto;
+    margin-left: -793px !important;
+}
+/*service details modal*/
+
+#service-detail-modal .service-details {
+    color: #646464;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#service-detail-modal .date-time-duration {
+    font-size: 18px;
+    color: #4F4F4F;
+    font-weight: bold;
+}
+
+#service-detail-modal .modal-body p {
+    margin-bottom: 1px !important;
+}
+
+#service-detail-modal .modal-body .service-detail-body {
+    font-size: 14px !important;
+    color: #646464 !important;
+}
+
+#service-detail-modal .service-detail-body .net-amount {
+    color: #1d7a8c !important;
+    font-size: 18px !important;
+    text-align: center;
+}
+/*re-schedule modal*/
+.reschedule-service-request {
+    color: #4f4f4f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.reschedule-heading {
+    color: #646464;
+    font-size: 14px;
+    margin-bottom: 2px !important;
+    font-weight: bold;
+}
+
+.re-schedule-time select {
+    width: 100%;
+    border: 1px solid #ced4da;
+    padding-top: 6px;
+    padding-bottom: 9px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 5px;
+}
+
+.update {
+    width: 100%;
+    color: #ffff;
+    background: #1d7a8c;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*cancel modal*/
+.cancel-service-request {
+    color: #4f4f4f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.cancel-heading {
+    color: #646464;
+    font-size: 14px;
+    margin-bottom: 2px !important;
+    font-weight: bold;
+}
+
+.modal-textarea {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+}
+
+.cancel-now {
+    width: 100%;
+    color: #ffff;
+    background: #1d7a8c;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*rate-sp modal*/
+#rate-sp-modal .modal-body p {
+    color: #646464;
+    font-size: 14px;
+    margin-bottom: 2px !important;
+}
+
+.rate-your-sp {
+    font-size: 16px;
+    font-weight: bold;
+    color: #646464;
+}
+
+.submit-submit {
+    background: #1d7a8c;
+    color: #ffff;
+    border: 1px solid #1d7a8c;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+/*service history tab*/
 .dashboard {
     max-width: 1100px;
     height: 100%;
@@ -142,7 +288,7 @@ nav {
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 18px 15px;
     background: #1d7a8c;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
     min-width: 260px;
 }
 
@@ -173,17 +319,19 @@ nav {
 .t-row {
     height: 85px;
 }
-
+.dashboard-right a .addnewservicerequest {
+    background: #146371; color: #ffffff; border: 1px solid #e1e1e1; border-radius: 20px; padding: 10px 10px 10px 9px; font-size: 13px; cursor: pointer; margin-bottom: 0px; margin-right: 32px;
+}
 .export {
     background: #146371;
     color: #ffffff;
     border: 1px solid #e1e1e1;
-    border-radius: 20px;
-    padding: 5px 10px 4px 9px;
+    border-radius: 30px;
+    padding: 5px 14px 4px 14px;
     font-size: 13px;
     cursor: pointer;
     margin-bottom: 6px;
-    margin-right: 32px ;
+    margin-right: 32px;
 }
 
 .sh-heading {
@@ -191,7 +339,7 @@ nav {
     font-size: 22px;
     color: #646464;
     margin-right: 460px;
-    padding-left: 15px;
+   
 }
 
     .sh-heading h3 {
@@ -266,7 +414,7 @@ nav {
     padding: 11px 9px 13px 13px;
     border-radius: 20px;
     font-size: 14px;
-    cursor: point;
+    cursor: pointer;
 }
 
 .list-group-item-action:hover {
@@ -423,3 +571,250 @@ footer {
         flex-direction: column;
     }
 }
+
+
+
+/*my setting code*/
+/*tab code*/
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #ffff;
+    color: #646464;
+    font-size: 14px;
+}
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background: white;
+        float: left;
+        border: 1px solid #ffff;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+    }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            color: #1d7a8c;
+            font-weight: bold;
+        }
+
+/* Create an active/current tablink class */
+.tab-button-active {
+    color: #1d7a8c;
+    font-weight: bold;
+    border-bottom: 2px solid #1d7a8c !important;
+}
+
+/*MY setting (3tabs  contents)*/
+.tabcontent {
+    color: #646464;
+    padding: 6px 12px;
+}
+
+    .tabcontent label {
+        font-size: 12px;
+    }
+    /*tab-1 (my details)*/
+    .tabcontent .my-detail-form {
+        padding-left: 6px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+    }
+
+    .tabcontent .mydetail-tel-form {
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        width: 79%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 6px;
+    }
+
+    .tabcontent .mydetail-tel-icon {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        text-align: center;
+        width: 104%;
+        background: #c8c8c8;
+    }
+    .tabcontent .my-detail-save-div .my-details-save-btn btn {
+        color: #ffff !important;
+        text-decoration: none !important;
+        font-weight: bold !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+        border: 1px solid #1d7a8c !important;
+        border-radius: 20px !important;
+        background: #1d7a8c !important;
+        margin-top: 10px;
+    }
+
+    .tel-box {
+        /*padding-top: 10px;
+    padding-bottom: 10px;*/
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+    }
+
+.tel-icon {
+    width: 35px;
+}
+/*tab-2 (my addressses)*/
+.tabcontent .my-addresses-content {
+    margin-top: 10px;
+}
+
+    .tabcontent .my-addresses-content .my-addresses-text {
+        padding-left: 20px !important;
+        margin-top: 10px !important;
+        margin-bottom: -1px !important;
+        padding-right: 380px !important;
+       border-bottom:1px solid #e5e5e5;
+    }
+
+    .tabcontent .my-addresses-content .address-btn {
+        padding-right: 20px;
+        border-bottom:1px solid #e5e5e5;
+    }
+        .tabcontent .my-addresses-content .address-btn .edit-btn {
+            background-color:white;
+            border:none;
+        }
+        .tabcontent .my-addresses-content .address-btn .delete-btn {
+            background-color: white;
+            border: none;
+        }
+
+
+.add-address-btn {
+    width:20%;
+    margin-top: 10px;
+    border: 2px solid #1D7A8C;
+    border-radius: 50px;
+    margin-bottom: 12px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    background: #1d7a8c;
+    margin-left: 15px;
+}
+/*tab-3(change-password)*/
+.tabcontent .change-password-content{
+    color:#646464;
+}
+    .tabcontent .change-password-content p{
+        margin: 15px 0px 3px 0px;
+    }
+    .tabcontent .change-password-content input[type="password"] {
+        width:30%;
+        padding-left: 6px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+    }
+.change-password-save-btn {
+    width: 10%;
+    margin-top: 10px;
+    border: 2px solid #1D7A8C;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    background: #1d7a8c;
+}
+.change-password-save-btn:hover{
+    color:white;
+}
+
+/* add address  */
+
+.add-address-box {
+    border: solid 1px #e1e1e1;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #F3F3F3;
+    padding-bottom: 10px;
+}
+
+    .add-address-box label {
+        margin-bottom: 0px;
+    }
+
+.address-taker-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 20px;
+    flex-wrap: wrap;
+    color: #646464;
+}
+
+#tel2 {
+    width: 300px;
+}
+
+
+.address-taker-box input {
+    /*    width: 300px;*/
+    width: 97%;
+    height: 46px;
+    border: solid 1px #C8C8C8;
+    color: #646464;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .address-taker-box input[type="tel"] {
+        border: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 259px;
+    }
+
+.tel-icon {
+    padding: 5px;
+    border-right: 1px solid #C8C8C8;
+    padding-top: 11px;
+}
+
+.tel-box {
+    display: flex;
+    border: solid 1px #C8C8C8;
+    border-radius: 5px;
+}
+
+.save-btn {
+    height: 42px;
+    background: #1D7A8C;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+.clear-btn {
+    height: 42px;
+    background: white;
+    border: solid 1px #C8C8C8;
+    color: #646464;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+

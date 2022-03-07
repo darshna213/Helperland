@@ -87,12 +87,15 @@ $(document).ready(function () {
     });
 });
 //tab code end
+
+
 $(document).ready(function () {
     $('.add-btn').click(function () {
         $('.add-address-box').show(slow)
     });
 });
 //<!--jquery code end-- >
+
 //< !--bootstrap js cdn-- >
 /*<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -100,6 +103,7 @@ $(document).ready(function () {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*/
 
 //JS code
+//when click on button and open new tab
 function Tab2Click() {
 
     $("#follow-tab-classic-orange").removeClass("disable-a-tag");
@@ -118,6 +122,7 @@ function Tab4Click() {
     document.getElementById("awesome-tab-classic-orange").click();
 
 }
+
 //zipcode tab code
 function SearchZipCode() {
     $("#PostalCode").val($("#postal-code").val());
@@ -181,7 +186,7 @@ $("#schedule-service-time").change(function () {
 
 
 
-
+//extra services add in summary and select
 $("#schedule-service-inside-cabinet").change(function () {
     if ($(this).is(':checked')) {
         $("#payment-summary-inside-cabinet").removeClass("d-none");
@@ -263,7 +268,7 @@ $("#schedule-service-interior-window").change(function () {
     }
 })
 
-//extra-service checkd and add into summary
+//total hours & payment count and add into a payment summery
 function CreatePaySummery() {
     var dur = 0;
     var totalhour = 0;
@@ -335,6 +340,7 @@ $("#add-address-save-btn").click(function () {
             data: model,
             success:
                 function (response) {
+                   
                     if (response == "true") {
                         document.getElementById("add-address-cancel-btn").click();
                         SetAddressList();
@@ -351,6 +357,7 @@ $("#add-address-save-btn").click(function () {
 
 });
 
+//complete booking
 $("#payment-complete-booking").click(function () {
 
     var pincode = $("#postal-code").val();
@@ -450,7 +457,7 @@ function SetAddressList() {
         });
 }
 
-
+/// add ours and update payment
 function updatePayment() {
     //add hours
     alert("Hey Payment");
@@ -475,3 +482,28 @@ function updatePayment() {
     $("#payment-summary-total-time").html('<strong>' + totalhour + ' Hrs</strong>');
     $("#payment-summary-total-payment").text("$" + totalhour * 18);
 }
+
+
+
+
+
+//date
+$(function () {
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if (month < 10)
+        month = '0' + month.toString();
+    if (day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+    
+    $('#schedule-service-date').attr('min', maxDate);
+});

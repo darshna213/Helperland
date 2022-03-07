@@ -46,5 +46,6 @@ namespace Helperland.Models
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<ServiceRequestAddress> ServiceRequestAddresses { get; set; }
         public virtual ICollection<ServiceRequestExtra> ServiceRequestExtras { get; set; }
+        //public decimal SPRatings { get; internal set; }
     }
 }

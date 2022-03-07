@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "a5c34wJuDutajs2G184b4TkmWrZoTOV483yOYbdZOs/lZa5dUu0GKl/Q79GvU0pq0XVayfcscOsNwWqGS9DgIA==",
+  "dgSpecHash": "bwMJ1DhH7q1xqdsxsev4luLIu+lcHkihDtrwD6/8sqgbH8SPG/XL5irgIQBWJh41+HsHpn0MvJxeeDxP3F+kmg==",
   "success": true,
   "projectFilePath": "C:\\Users\\pca11\\Desktop\\Helperland\\Helperland\\Helperland.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pca11\\.nuget\\packages\\bcrypt.net\\0.1.0\\bcrypt.net.0.1.0.nupkg.sha512",
     "C:\\Users\\pca11\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\pca11\\.nuget\\packages\\md5stringencrypt\\1.0.1\\md5stringencrypt.1.0.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",

@@ -307,7 +307,6 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.genruntimeconfig.cache
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Provider.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Signup.cshtml.g.cs
-C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Client\Service_history.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\BCrypt.Net.dll
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Account\Resetpassword.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\Upcoming_service.cshtml.g.cs
@@ -316,5 +315,7 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Bookservice\Addaddress.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Bookservice\Scheduleservice.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Bookservice\Service_history.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\md5StringEncrypt.dll
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.CoreCompileInputs.cache
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.MvcApplicationPartsAssemblyInfo.cache

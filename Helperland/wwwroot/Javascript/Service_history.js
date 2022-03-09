@@ -3,24 +3,60 @@
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*/
-//excel sheet (servicehistory) download
-function ExportToExcel(type, fn, dl) {
-    var elt = document.getElementById('content2-table');
-    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
-    return dl ?
-        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
-        XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
-}
+
 //leftside vertical tab
 $("#dashboard-tab").click(function () {
     $("#rightside-dashboard").removeClass("d-none");
     $("#rightside").addClass("d-none");
     $("#my-setting-tabs").addClass("d-none");
+    $("#favourite-pro-tab-rightside").addClass("d-none");
+    $("#invoices-tab-rightside").addClass("d-none");
+    $("#notifications-tab-rightside").addClass("d-none");
 })
 
 $("#service-history-tab").click(function () {
     $("#rightside").removeClass("d-none");
     $("#rightside-dashboard").addClass("d-none");
+    $("#my-setting-tabs").addClass("d-none");
+    $("#favourite-pro-tab-rightside").addClass("d-none");
+    $("#invoices-tab-rightside").addClass("d-none");
+    $("#notifications-tab-rightside").addClass("d-none");
+    $("#service-schedule-tab-rightside").addClass("d-none");
+})
+$("#service-schedule-tab").click(function () {
+    $("#service-schedule-tab-rightside").removeClass("d-none");
+    $("#rightside").addClass("d-none");
+    $("#rightside-dashboard").addClass("d-none");
+    $("#my-setting-tabs").addClass("d-none");
+    $("#favourite-pro-tab-rightside").addClass("d-none");
+    $("#invoices-tab-rightside").addClass("d-none");
+    $("#notifications-tab-rightside").addClass("d-none");
+})
+$("#favourite-pro-tab").click(function () {
+    $("#favourite-pro-tab-rightside").removeClass("d-none");
+    $("#rightside-dashboard").addClass("d-none");
+    $("#service-schedule-tab-rightside").addClass("d-none");
+    $("#rightside").addClass("d-none");
+    $("#invoices-tab-rightside").addClass("d-none");
+    $("#notifications-tab-rightside").addClass("d-none");
+    $("#my-setting-tabs").addClass("d-none");
+})
+$("#invoices-tab").click(function () {
+    $("#invoices-tab-rightside").removeClass("d-none");
+    $("#favourite-pro-tab-rightside").addClass("d-none");
+    $("#service-schedule-tab-rightside").addClass("d-none");
+    $("#rightside-dashboard").addClass("d-none");
+    $("#rightside").addClass("d-none");
+    $("#notifications-tab-rightside").addClass("d-none");
+    $("#my-setting-tabs").addClass("d-none");
+})
+$("#notification-tab").click(function () {
+    $("#notifications-tab-rightside").removeClass("d-none");
+    $("#invoices-tab-rightside").addClass("d-none");
+    $("#favourite-pro-tab-rightside").addClass("d-none");
+    $("#rightside-dashboard").addClass("d-none");
+    $("#service-schedule-tab-rightside").addClass("d-none");
+    $("#rightside").addClass("d-none");
     $("#my-setting-tabs").addClass("d-none");
 })
 //my setting
@@ -28,6 +64,10 @@ $("#my-setting-dropdown").click(function () {
     $("#my-setting-tabs").removeClass("d-none");
     $("#rightside-dashboard").addClass("d-none");
     $("#rightside").addClass("d-none");
+    $("#service-schedule-tab-rightside").addClass("d-none");
+    $("#favourite-pro-tab-rightside").addClass("d-none");
+    $("#invoices-tab-rightside").addClass("d-none");
+    $("#notifications-tab-rightside").addClass("d-none");
 })
 //my setting tab code
 $("#my-details-tab").click(function () {
@@ -70,11 +110,13 @@ function changepassword() {
     $("#my-addresses").addClass("d-none");
     $("#change-password").removeClass("d-none");
 }
-
-function export_excel() {
-    $("#content2-table").table2excel({
-        filename: "Service history.xls"
-    });
+//excel sheet (servicehistory) download
+function ExportToExcel(type, fn, dl) {
+    var elt = document.getElementById('content2-table');
+    var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+    return dl ?
+        XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+        XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
 }
 
 
@@ -145,17 +187,21 @@ function getServicehistoryData() {
                         var cell2 = row.insertCell(1);
                         var cell3 = row.insertCell(2);
                         var cell4 = row.insertCell(3);
+                        var cell5 = row.insertCell(4);
                         cell1.innerHTML = '<td>' + '<p class="date">' + ' <img src = "/IMAGES/calendar-grey.png" />' + json[i].ServiceStartDate + '</p>' + ' <p>' + json[i].ServiceStartDate + '</p>' + '</td>';
                         cell2.innerHTML = json[i].ServiceProviderId;
                         cell3.innerHTML += ' <td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
-                        cell4.innerHTML = json[i].Status;
+                        cell4.innerHTML = '<button class="status-cancelled" value="(\'' + json[i].Status + '\')">Cancelled</button>';
+                        cell5.innerHTML = '<button class="rate-sp" type="submit" onclick="ratesp(\'' + json[i].ServiceRequestId + '\')">Rate SP</button>';
+
                     }
                 },
-            error:
-                function (response) {
-                    console.error(response);
-                    alert("wrong");
-                }
+                    error:
+                    function (response) {
+                        console.error(response);
+                        alert("wrong");
+                    }
+                
         });
 }
 /////////row model popup///////////
@@ -223,10 +269,14 @@ function getDataFromDashboardTable(thisTd) {
     document.getElementById("dashboard-service-details-a-tag").click();
 }
 
+function ratesp(serviceID) {
 
+    document.getElementById("rate-sp-modal-open-button").click();
+    document.getElementById("rescheduleID").value = serviceID;
+}
 
 function rescheduleService(serviceID) {
-    
+
     document.getElementById("reschedule-modal-open-button").click();
     document.getElementById("rescheduleID").value = serviceID;
 }
@@ -293,18 +343,27 @@ document.getElementById("cancel-now-btn").addEventListener("click", () => {
 
 ///////add address(my settting)/////
 $("#add-address-new-address-button").click(function () {
-    $("#postalcode").val($("#postal-code").val());
+    
+    //$("#postalcode").val($("#postal-code").val());
     $("#add-address-new-address-button").addClass("d-none");
     $("#add-adress-box").removeClass("d-none");
 })
 
-$("#add-address-cancel-btn").click(function () {
+$("#setting-add-address-cancel-btn").click(function () {
     $("#add-address-new-address-button").removeClass("d-none");
     $("#add-adress-box").addClass("d-none");
 });
+$("#setting-add-address-save-btn").click(function () {
+    $("#add-adress-box").addClass("d-none");
+    $("#add-address-new-address-button").removeClass("d-none");
+})
+$("#edit-address-save-btn-modal").click(function () {
+    $("#edit-adddress-modal").addClass("d-none");
+    
+})
 
 
-/////////get user details///////////////
+/////////get user details(my-setting)///////////////
 getUserDetails();
 function getUserDetails() {
 
@@ -321,8 +380,6 @@ function getUserDetails() {
                     $("#my-details-lname").val(json.LastName);
                     $("#my-details-email").val(json.Email);
                     $("#my-details-contact-number").val(json.Mobile);
-
-
                 },
             error:
                 function (response) {
@@ -333,58 +390,58 @@ function getUserDetails() {
 }
 ///////////save user details/////////////
 $("#my-detail-save-btn").click(function () {
-    alert("dd");
-    //var firstName = $("#my-details-fname").val();
-    //var lastName = $("#my-details-lname").val();
-    //var email = $("#my-details-email").val();
-    //var mobile = $("#my-details-contact-number").val();
+    
+    var firstName = $("#my-details-fname").val();
+    var lastName = $("#my-details-lname").val();
+    var email = $("#my-details-email").val();
+    var mobile = $("#my-details-contact-number").val();
 
-    //var model = {
-    //    FirstName: firstName,
-    //    LastName: lastName,
-    //    Email: email,
-    //    Mobile: mobile
-          
-    //$.ajax(
-    //        {
-    //            type: 'POST',
-    //            url: '/Bookservice/SaveDetails',
-    //            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-    //            data: model,
-    //            success:
-    //                function (response) {
+    var model = {
+        FirstName: firstName,
+        LastName: lastName,
+        Email: email,
+        Mobile: mobile
+    }
+    $.ajax(
+            {
+                type: 'POST',
+                url: '/Bookservice/SaveDetails',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: model,
+                success:
+                    function (response) {
 
-    //                    alert("your details are successfully saved");
-    //                },
-    //            error:
-    //                function (response) {
-    //                    console.error(response);
-    //                    alert("not updated");
-    //                }
-    //        });
-    });
+                        alert("your details are successfully saved");
+                    },
+                error:
+                    function (response) {
+                        console.error(response);
+                        alert("not updated");
+                    }
+            });
+});
 ////////////////////get user address//////////////////
 
 SetAddressList()
 function SetAddressList() {
-    
+
     document.getElementById("UserAddressList").innerHTML = "";
-    
+
     $.ajax(
         {
             type: 'POST',
             url: '/Bookservice/GetUserAddress',
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-           
-            //data: { postalCode: document.getElementById("postal-code").value },
+
+           // data: { postalCode: document.getElementById("postal-code").value},
             success:
                 function (response) {
-                   
+
                     //document.getElementById("UserAddressList").innerHTML = "";
                     var json = JSON.parse(response);
                     var table = document.getElementById("UserAddressList");
                     for (var i = 0; i < json.length; i++) {
-                        
+
                         var row = table.insertRow();
 
                         var cell1 = row.insertCell(0);
@@ -408,7 +465,7 @@ function SetAddressList() {
 function UserAddAddress() {
     var streetName = $("#streetname").val();
     var houseNumber = $("#housename").val();
-    var postalCode = $("#postalcode").val();
+    var postalCode =$("#postalcode").val();
     var city = $("#city").val();
     var mobile = $("#phonenumber").val();
 
@@ -428,8 +485,9 @@ function UserAddAddress() {
             data: model,
             success:
                 function (response) {
-                    
+
                     SetAddressList();
+                   
                 },
             error:
                 function (response) {
@@ -440,13 +498,13 @@ function UserAddAddress() {
 }
 ///////////edit address(my-setting)//////////
 function editaddressbtn(AddressId) {
-    
     document.getElementById("edit-address-modal-open").click();
     document.getElementById("addressid").value = AddressId;
 }
 
 $("#edit-address-save-btn-modal").click(function () {
-    
+
+
     var data = {}
     data.AddressId = parseInt(document.getElementById("addressid").value);
     data.addressLine1 = document.getElementById("streetname-modal").value;
@@ -455,7 +513,7 @@ $("#edit-address-save-btn-modal").click(function () {
     data.city = document.getElementById("city-modal").value;
     data.mobile = document.getElementById("phonenumber-modal").value;
 
-    
+
     $.ajax(
         {
             type: 'POST',
@@ -464,8 +522,15 @@ $("#edit-address-save-btn-modal").click(function () {
             data: data,
             success:
                 function (response) {
-                    alert("asdfghj");
+                    var json = JSON.parse(response);
+                    $("#streetname-modal").val(json.AddressLine1);
+                    $("#housename-modal").val(json.AddressLine2);
+                    $("#postalcode-modal").val(json.Email);
+                    $("#city-modal").val(json.City);
+                    $("#phonenumber-modal").val(json.Mobile);
+
                     SetAddressList();
+
                 },
             error:
                 function (response) {
@@ -477,12 +542,12 @@ $("#edit-address-save-btn-modal").click(function () {
 });
 ///////////////cancel address ///////////////
 function deleteaddressbtn(AddressId) {
-   
+
     document.getElementById("delete-address-modal-open-button").click();
     document.getElementById("deleteId").value = AddressId;
 }
 document.getElementById("remove-now-btn").addEventListener("click", () => {
-    
+
     var data = {};
     data.addressId = parseInt(document.getElementById("deleteId").value);
 
@@ -495,7 +560,7 @@ document.getElementById("remove-now-btn").addEventListener("click", () => {
             data: data,
             success:
                 function (response) {
-                   
+
                     SetAddressList();
 
                 },

@@ -246,7 +246,7 @@ namespace Helperland.Controllers
             if(Id != null)
             {
                 
-                UserAddress userAddress = _helperlandContext.UserAddresses.FirstOrDefault(u => u.AddressId == AddressId);
+                UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == AddressId && x.UserId == u.UserId).FirstOrDefault();
                 userAddress.AddressLine1 = addressLine1;
                 userAddress.AddressLine2 = addressLine2;
                 userAddress.PostalCode = postalCode;
@@ -295,7 +295,7 @@ namespace Helperland.Controllers
             address.AddressLine2 = addAddress.HouseNumber;
             address.City = addAddress.City;
             address.Mobile = addAddress.Mobile;
-            address.PostalCode = "395008";
+            address.PostalCode = addAddress.PostalCode;
             _helperlandContext.UserAddresses.Add(address);
             _helperlandContext.SaveChanges();
 

@@ -1,9 +1,9 @@
 ﻿@*@model IEnumerable<Helperland.Models.ViewModels.CustomerServiceNewRequest>*@
 @{
     ViewData["Title"] = "Service_history";
-    
-}
 
+}
+@using Microsoft.AspNetCore.Http;
 
 
 <!DOCTYPE html>
@@ -90,7 +90,7 @@
     <section class="welcome-Gaurang">
         <div class="container">
             <h2 class="text-center">
-                Welcome, <span class="customer-name">Gaurang!</span>
+                Welcome, <span class="customer-name"> @Context.Session.GetString("Name") </span>
             </h2>
         </div>
     </section>
@@ -100,6 +100,11 @@
     <section>
         <div class="container d-flex dashboard" id="dashboard">
             <!--leftside content code start-->
+            <style>
+                .list-group-item-action:active {
+                    background-color: #1d7a8c !important;
+                }
+            </style>
             <div id="#leftsidebar" class="leftsidebar">
                 <a class="list-group-item list-group-item-action" id="dashboard-tab">Dashboard</a>
                 <a href="#rightside" class="list-group-item list-group-item-action" id="service-history-tab">Service History</a>
@@ -109,6 +114,18 @@
                 <a href="#" class="list-group-item list-group-item-action" id="notification-tab">Notifications</a>
             </div>
             <!--leftside content code end-->
+            <div class="d-none" id="service-schedule-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Service Schedule</h1>
+            </div>
+            <div class="d-none" id="favourite-pro-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Favourite pros</h1>
+            </div>
+            <div class="d-none" id="invoices-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Invoices</h1>
+            </div>
+            <div class="d-none" id="notifications-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Notifications</h1>
+            </div>
             <!--rightside content code start-->
             <!--Dashboard code start-->
             <div class="dashboard-right" id="rightside-dashboard">
@@ -149,96 +166,96 @@
                                 <!--1st row start-->
                                 @*<tr class="t-row">
 
-                                        <td data-target="#service-detail-modal" data-toggle="modal ">8465</td>
-                                        <td data-target="#service-detail-modal" data-toggle="modal">
-                                            <p class="date">
-                                                <img src="~/IMAGES/calendar2.png">31/03/2018
+                                <td data-target="#service-detail-modal" data-toggle="modal ">8465</td>
+                                <td data-target="#service-detail-modal" data-toggle="modal">
+                                    <p class="date">
+                                        <img src="~/IMAGES/calendar2.png">31/03/2018
+                                    </p>
+                                    <p>
+                                        <img src="~/IMAGES/time.png" /> 12:00 - 18:00
+                                    </p>
+                                </td>
+                                <td data-target="#service-detail-modal" data-toggle="modal">
+
+
+                                    <div class="a flex-wrap">
+                                        <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
+                                            <img src="~/IMAGES/cap.png">
+
+                                        </div>
+                                        <div>
+
+                                            <p class="lum-watson">
+                                                Lyum Watson
                                             </p>
                                             <p>
-                                                <img src="~/IMAGES/time.png" /> 12:00 - 18:00
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-grey.png">
                                             </p>
-                                        </td>
-                                        <td data-target="#service-detail-modal" data-toggle="modal">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-target="#service-detail-modal" data-toggle="modal">
+                                    <p class="euro d-flex justify-content-center">
+                                        &euro; 63
+                                    </p>
+                                </td>
 
-
-                                            <div class="a flex-wrap">
-                                                <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
-                                                    <img src="~/IMAGES/cap.png">
-
-                                                </div>
-                                                <div>
-
-                                                    <p class="lum-watson">
-                                                        Lyum Watson
-                                                    </p>
-                                                    <p>
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-grey.png">
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td data-target="#service-detail-modal" data-toggle="modal">
-                                            <p class="euro d-flex justify-content-center">
-                                                &euro; 63
-                                            </p>
-                                        </td>
-
-                                        <td>
-                                            <input class="re-scheduleservice" data-target="#re-schedule-modal" data-toggle="modal" type="button" value="Reschedule">
-                                            <input class="cancel-cancel" data-target="#cancel-modal" data-toggle="modal" type="button" value="Cancel">
-                                        </td>
-                                    </tr>*@
+                                <td>
+                                    <input class="re-scheduleservice" data-target="#re-schedule-modal" data-toggle="modal" type="button" value="Reschedule">
+                                    <input class="cancel-cancel" data-target="#cancel-modal" data-toggle="modal" type="button" value="Cancel">
+                                </td>
+                            </tr>*@
                                 <!--1st row end-->
                                 <!--2nd row start-->
                                 @*<tr class="t-row">
 
-                                        <td data-target="#service-detail-modal" data-toggle="modal">8466</td>
-                                        <td data-target="#service-detail-modal" data-toggle="modal">
-                                            <p class="date">
-                                                <img src="~/IMAGES/calendar2.png"> 31/03/2018
+                                <td data-target="#service-detail-modal" data-toggle="modal">8466</td>
+                                <td data-target="#service-detail-modal" data-toggle="modal">
+                                    <p class="date">
+                                        <img src="~/IMAGES/calendar2.png"> 31/03/2018
+                                    </p>
+                                    <p>
+                                        <img src="~/IMAGES/time.png" /> 12:00 - 18:00
+                                    </p>
+                                </td>
+                                <td data-target="#service-detail-modal" data-toggle="modal">
+
+
+                                    <div class="a flex-wrap">
+                                        <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
+                                            <img src="~/IMAGES/cap.png">
+
+                                        </div>
+                                        <div>
+
+                                            <p class="lum-watson">
+                                                Lyum Watson
                                             </p>
                                             <p>
-                                                <img src="~/IMAGES/time.png" /> 12:00 - 18:00
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-yellow.png">
+                                                <img src="~/IMAGES/star-grey.png">
                                             </p>
-                                        </td>
-                                        <td data-target="#service-detail-modal" data-toggle="modal">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-target="#service-detail-modal" data-toggle="modal">
+                                    <p class="euro d-flex justify-content-center">
+                                        &euro; 63
+                                    </p>
+                                </td>
 
-
-                                            <div class="a flex-wrap">
-                                                <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
-                                                    <img src="~/IMAGES/cap.png">
-
-                                                </div>
-                                                <div>
-
-                                                    <p class="lum-watson">
-                                                        Lyum Watson
-                                                    </p>
-                                                    <p>
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-yellow.png">
-                                                        <img src="~/IMAGES/star-grey.png">
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td data-target="#service-detail-modal" data-toggle="modal">
-                                            <p class="euro d-flex justify-content-center">
-                                                &euro; 63
-                                            </p>
-                                        </td>
-
-                                        <td>
-                                            <input class="re-scheduleservice" type="button" data-target="#re-schedule-modal" data-toggle="modal" value="Reschedule">
-                                            <input class="cancel-cancel" type="button" data-target="#cancel-modal" data-toggle="modal" value="Cancel">
-                                        </td>
-                                    </tr>*@
+                                <td>
+                                    <input class="re-scheduleservice" type="button" data-target="#re-schedule-modal" data-toggle="modal" value="Reschedule">
+                                    <input class="cancel-cancel" type="button" data-target="#cancel-modal" data-toggle="modal" value="Cancel">
+                                </td>
+                            </tr>*@
                                 <!--2nd row end-->
                             </tbody>
                         </table>
@@ -529,7 +546,7 @@
             </div>
 
             <!--rate-sp modal code start-->
-
+            <input class="rate-sp d-none" data-target="#rate-sp-modal" data-toggle="modal" type="button" id="rate-sp-modal-open-button">
             <div class="modal fade" id="rate-sp-modal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -601,11 +618,23 @@
 
             <!--rate-sp modal code end-->
             <!--service history code end-->
+            <div class="d-none" id="service-schedule-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Service Schedule</h1>
+            </div>
+            <div class="d-none" id="favourite-pro-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Favourite pros</h1>
+            </div>
+            <div class="d-none" id="invoices-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Invoices</h1>
+            </div>
+            <div class="d-none" id="notifications-tab-rightside">
+                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Notifications</h1>
+            </div>
             <!--my setting code start-->
             <div class="col d-none" id="my-setting-tabs">
                 <!-- Tab links -->
                 <div class="tab" id="">
-                    <button class="tablinks" onclick="mydetails()" id="my-details-tab">My Details</button>
+                    <button class="tablinks tab-button-active" onclick="mydetails()" id="my-details-tab">My Details</button>
                     <button class="tablinks" onclick="myaddresses()" id="my-addresses-tab">My Addressess</button>
                     <button class="tablinks" onclick="changepassword()" id="change-password-tab">Change Password</button>
 
@@ -616,7 +645,7 @@
                     <div class="row " style="margin-top:10px;">
                         <div class="col-md-3">
                             <label>Firstname</label><br />
-                            <input class="my-detail-form" type="text" placeholder="Firstname" id="my-details-fname" />
+                            <input class="my-detail-form " type="text" placeholder="Firstname" id="my-details-fname" />
                         </div>
                         <div class="col-md-3">
                             <label>Lastname</label><br />
@@ -624,7 +653,7 @@
                         </div>
                         <div class="col-md-3">
                             <label>E-mail address</label><br />
-                            <input class="my-detail-form" type="email" placeholder="Email" id="my-details-email" />
+                            <input disabled class="my-detail-form" type="email" placeholder="Email" id="my-details-email" />
                         </div>
                     </div>
                     <div class="row " style="margin-top:10px;">
@@ -751,47 +780,8 @@
                                     </tr>
                                 </thead>
                                 <tbody id="UserAddressList">
-                                    <tr>
-                                        <td>
-                                            <p class="my-addresses-text">
-                                                <b>Address:</b>karnavati 112, tamoz-Dirthwz 99097<br><b>Phone number:</b> 9955648797
-                                            </p>
-                                        </td>
-                                        <td class="address-btn">
-                                            <div class="d-flex">
-                                                <button type="button" class="btn edit-btn" data-toggle="modal" data-target="#edit-adddress-modal"><i class="far fa-edit"></i></button>
-                                                <button type="button" class="btn delete-btn"><i class="far fa-trash-alt"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p class="my-addresses-text">
-                                                <b>Address:</b>karnavati 112, tamoz-Dirthwz 99097<br><b>Phone number:</b> 9955648797
-                                            </p>
-                                        </td>
-                                        <td class="address-btn">
-                                            <div class="d-flex">
-                                                <button type="button" class="btn edit-btn" data-toggle="modal" data-target="#edit-adddress-modal"><i class="far fa-edit"></i></button>
-                                                <button type="button" class="btn delete-btn"><i class="far fa-trash-alt"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>
-                                            <p class="my-addresses-text">
-                                                <b>Address:</b>karnavati 112, tamoz-Dirthwz 99097<br><b>Phone number:</b> 9955648797
-                                            </p>
-                                        </td>
-                                        <td class="address-btn">
-                                            <div class="d-flex">
-                                                <button type="button" class="btn edit-btn" data-toggle="modal" data-target="#edit-adddress-modal"><i class="far fa-edit"></i></button>
-                                                <button type="button" class="btn delete-btn"><i class="far fa-trash-alt"></i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    
+                                    
                                     <tr>
                                         <td>
                                             <p class="my-addresses-text">
@@ -837,7 +827,7 @@
                                         Postal code
                                     </label>
                                     <br>
-                                    <input disabled type="text" name="postalcode" placeholder="Postal code" id="postalcode" />
+                                    <input  type="text" name="postalcode" placeholder="Postal code" id="postalcode" />
 
                                 </div>
                                 <div style="width:45%;">
@@ -953,7 +943,7 @@
 
                             </div>
                             <div class="Button">
-                                <button class="save-btn" type="button" id="edit-address-save-btn-modal">Save</button>
+                                <button class="save-btn" type="submit" id="edit-address-save-btn-modal">Save</button>
                                 <button class="clear-btn" type="reset" id="edit-address-cancel-btn-modal">Cancel</button>
                             </div>
                         </div>

@@ -146,7 +146,7 @@ function getnewServiceRequest() {
                         var cell5 = row.insertCell(4);
                         var cell6 = row.insertCell(5);
                         cell1.innerHTML = '<td >' + json[i].ServiceRequestId + '</td>';
-                        cell2.innerHTML = '<td>' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate + '</p>' + '</td>';
+                        cell2.innerHTML = '<td>' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate.split("T")[0] + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
                         cell3.innerHTML = '<td>' + '<p>' + '...' + '</p>' + '<p>' + '<img src="/IMAGES/home.png">' + '...' + '</p>' + '</td >';
                         cell4.innerHTML = ' <td >' + '<p class="euro d-flex justify-content-center" style="color: #1d7a8c; font-size: 24px; font-weight: bold">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
                         cell5.innerHTML = json[i].SubTotal;
@@ -187,7 +187,7 @@ function getupcomingServiceRequest() {
                         var cell5 = row.insertCell(4);
                         var cell6 = row.insertCell(5);
                         cell1.innerHTML = '<td >' + json[i].ServiceRequestId + '</td>';
-                        cell2.innerHTML = '<td>' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate + '</p>' + '</td>';
+                        cell2.innerHTML = '<td>' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate.split("T")[0] + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
                         cell3.innerHTML = '<td>' + '<p>' + '...' + '</p>' + '<p>' + '<img src="/IMAGES/home.png">' + '...' + '</p>' + '</td >';
                         cell4.innerHTML = ' <td >' + '<p class="euro d-flex justify-content-center" style="color: #1d7a8c; font-size: 24px; font-weight: bold">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
                         cell5.innerHTML = json[i].Distance;
@@ -294,6 +294,32 @@ function acceptService(serviceID) {
     document.getElementById("accept-modal-open-button").click();
 }
 
+$("#new-service-request-accept-modal-btn").click(function () {
+    var data = {};
+
+    //document.getElementById("acceptId").value = $("#newServiceRequestId").html();
+    data.servicerequestId = $("#newServiceRequestId").html();
+    data.comments = "accepted";
+    $.ajax(
+        {
+            type: 'POST',
+            url: '/Serviceprovider/AcceptServiceRequest',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: data,
+            success:
+                function (response) {
+                    alert("Your service request is successfully accepted !");
+                    getnewServiceRequest();
+
+                },
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("not accepted");
+                }
+        });
+});
+
 document.getElementById("accept-now-btn").addEventListener("click", () => {
     var data = {};
     data.servicerequestId = document.getElementById("acceptId").value;
@@ -326,10 +352,35 @@ document.getElementById("accept-now-btn").addEventListener("click", () => {
 
 ////////////cancel upcoming-service-request///////////
 function cancelServicerequest(serviceID) {
-    alert("a" + serviceID);
+   
     document.getElementById("cancelId").value = serviceID;
     document.getElementById("cancel-modal-open-button").click();
 }
+$("#service-detail-modal-cancel-btn").click(function () {
+    var data = {};
+
+    //document.getElementById("acceptId").value = $("#newServiceRequestId").html();
+    data.servicerequestId = $("#upcomingServiceRequestId").html();
+    data.comments = "Cancelled";
+    $.ajax(
+        {
+            type: 'POST',
+            url: '/Serviceprovider/CancelUpcomingServiceRequest',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: data,
+            success:
+                function (response) {
+                    alert("Your service request is successfully Cancelled !");
+                    getupcomingServiceRequest();
+
+                },
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("not accepted");
+                }
+        });
+});
 document.getElementById("cancel-modal-btn").addEventListener("click", () => {
     var data = {};
     data.servicerequestId = document.getElementById("cancelId").value;
@@ -361,6 +412,31 @@ document.getElementById("cancel-modal-btn").addEventListener("click", () => {
 //    document.getElementById("completeId").value = serviceID;
 //    document.getElementById("complete-modal-open-button").click();
 //}
+$("#service-detail-modal-complete-btn").click(function () {
+    var data = {};
+
+    //document.getElementById("acceptId").value = $("#newServiceRequestId").html();
+    data.servicerequestId = $("#upcomingServiceRequestId").html();
+    data.comments = "Completed";
+    $.ajax(
+        {
+            type: 'POST',
+            url: '/Serviceprovider/CompleteUpcomingServiceRequest',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: data,
+            success:
+                function (response) {
+                    alert("Your service request is successfully Completed !");
+                    getupcomingServiceRequest();
+
+                },
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("not accepted");
+                }
+        });
+});
 document.getElementById("complete-modal-btn").addEventListener("click", () => {
     var data = {};
     data.servicerequestId = document.getElementById("completeId").value;
@@ -386,7 +462,72 @@ document.getElementById("complete-modal-btn").addEventListener("click", () => {
         });
 });
 
+//////////service history////////////////
+getServiceHistory();
+function getServiceHistory() {
+    
+    data = {}
+    $.ajax(
+        { 
+            type: 'POST',
+            url: '/Serviceprovider/GetServiceHistory',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: data,
+            success:
+                function (response) {
 
+                    var json = JSON.parse(response);
+                    var table = document.getElementById("service-history-table");
+                    $("#service-history-table td").remove();
+
+
+                    for (var i = 0; i < json.length; i++) {
+                        var row = table.insertRow();
+
+                        var cell1 = row.insertCell(0);
+
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                     
+                        cell1.innerHTML = '<td >' + json[i].ServiceRequestId + '</td>';
+                        cell2.innerHTML = '<td>' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate.split("T")[0] + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
+                        cell3.innerHTML = '<td>' + '<p>' + '...' + '</p>' + '<p>' + '<img src="/IMAGES/home.png">' + '...' + '</p>' + '</td >';
+                        
+                       
+                    }
+                },
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("success");
+                }
+        });
+}
+
+/////////row modal popup(upcoming service request)
+$('#service-history-table').on('click', 'td:nth-child(1)', function () {
+    getHistoryFromTable(this);
+});
+$('#service-history-table').on('click', 'td:nth-child(2)', function () {
+    getHistoryFromTable(this);
+});
+$('#service-history-table').on('click', 'td:nth-child(3)', function () {
+    getHistoryFromTable(this);
+});
+
+function getHistoryFromTable(thisTd) {
+    var currentRow = $(thisTd).closest("tr");
+    var col1_ServiceId = currentRow.find("td:eq(0)").text();
+    var col2_ServiceDate = currentRow.find("td:eq(1)").text();
+    var col4_Payment = currentRow.find("td:eq(3)").text();
+
+    $("#servicehistoryDateTime").html(col2_ServiceDate);
+    //$("#serviceRequestDuration").html(col11_Comments);
+    $("#servicehistoryId").html(col1_ServiceId);
+    //$("#serviceExtra").html(col6_Extras);
+    $("#history-total-payment").html(col4_Payment);
+    document.getElementById("service-history-row-detail-modal-open-button").click();
+}
 
 
 
@@ -395,13 +536,13 @@ document.getElementById("complete-modal-btn").addEventListener("click", () => {
 
 
 //service & schedule (calendar)
-const calendar = document.querySelector("#app-calendar");
+//const calendar = document.querySelector("#app-calendar");
 
-for (let day = 1; day <= 31; day++) {
-    console.log(day)
+//for (let day = 1; day <= 31; day++) {
+//    console.log(day)
    
     //calendar.insertAdjacentHTML("beforeend", '<div class= "day" > ${ day } </div > ');
-}
+//}
 
 
 

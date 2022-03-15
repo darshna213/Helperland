@@ -72,7 +72,8 @@
                                 <img src="~/IMAGES/down-arrow-white.png" alt="down-arrow-white">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-                                <li class="dropdown-item">Welcome,<br /> <span class="customer-name"><b> @Context.Session.GetString("Name")</b> </span></li><hr />
+                                <li class="dropdown-item">Welcome,<br /> <span class="customer-name"><b> @Context.Session.GetString("Name")</b> </span></li>
+                                <hr />
                                 <li><a class="dropdown-item" asp-controller="Bookservice" asp-action="Service_history">My Dashboard</a></li>
                                 <li><a class="dropdown-item" id="my-setting-dropdown">My Settings</a></li>
                                 <li><a class="dropdown-item" asp-controller="Home" asp-action="Index" onclick="LogOut()">Logout</a></li>
@@ -90,7 +91,7 @@
     <section class="welcome-Gaurang">
         <div class="container">
             <h2 class="text-center">
-                Welcome, <span ><b> @Context.Session.GetString("Name") </b></span>
+                Welcome, <span><b> @Context.Session.GetString("Name") </b></span>
             </h2>
         </div>
     </section>
@@ -154,96 +155,96 @@
                                 <!--1st row start-->
                                 @*<tr class="t-row">
 
-                                <td data-target="#service-detail-modal" data-toggle="modal ">8465</td>
-                                <td data-target="#service-detail-modal" data-toggle="modal">
-                                    <p class="date">
-                                        <img src="~/IMAGES/calendar2.png">31/03/2018
-                                    </p>
-                                    <p>
-                                        <img src="~/IMAGES/time.png" /> 12:00 - 18:00
-                                    </p>
-                                </td>
-                                <td data-target="#service-detail-modal" data-toggle="modal">
-
-
-                                    <div class="a flex-wrap">
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
-                                            <img src="~/IMAGES/cap.png">
-
-                                        </div>
-                                        <div>
-
-                                            <p class="lum-watson">
-                                                Lyum Watson
+                                        <td data-target="#service-detail-modal" data-toggle="modal ">8465</td>
+                                        <td data-target="#service-detail-modal" data-toggle="modal">
+                                            <p class="date">
+                                                <img src="~/IMAGES/calendar2.png">31/03/2018
                                             </p>
                                             <p>
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-grey.png">
+                                                <img src="~/IMAGES/time.png" /> 12:00 - 18:00
                                             </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-target="#service-detail-modal" data-toggle="modal">
-                                    <p class="euro d-flex justify-content-center">
-                                        &euro; 63
-                                    </p>
-                                </td>
+                                        </td>
+                                        <td data-target="#service-detail-modal" data-toggle="modal">
 
-                                <td>
-                                    <input class="re-scheduleservice" data-target="#re-schedule-modal" data-toggle="modal" type="button" value="Reschedule">
-                                    <input class="cancel-cancel" data-target="#cancel-modal" data-toggle="modal" type="button" value="Cancel">
-                                </td>
-                            </tr>*@
+
+                                            <div class="a flex-wrap">
+                                                <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
+                                                    <img src="~/IMAGES/cap.png">
+
+                                                </div>
+                                                <div>
+
+                                                    <p class="lum-watson">
+                                                        Lyum Watson
+                                                    </p>
+                                                    <p>
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-grey.png">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-target="#service-detail-modal" data-toggle="modal">
+                                            <p class="euro d-flex justify-content-center">
+                                                &euro; 63
+                                            </p>
+                                        </td>
+
+                                        <td>
+                                            <input class="re-scheduleservice" data-target="#re-schedule-modal" data-toggle="modal" type="button" value="Reschedule">
+                                            <input class="cancel-cancel" data-target="#cancel-modal" data-toggle="modal" type="button" value="Cancel">
+                                        </td>
+                                    </tr>*@
                                 <!--1st row end-->
                                 <!--2nd row start-->
                                 @*<tr class="t-row">
 
-                                <td data-target="#service-detail-modal" data-toggle="modal">8466</td>
-                                <td data-target="#service-detail-modal" data-toggle="modal">
-                                    <p class="date">
-                                        <img src="~/IMAGES/calendar2.png"> 31/03/2018
-                                    </p>
-                                    <p>
-                                        <img src="~/IMAGES/time.png" /> 12:00 - 18:00
-                                    </p>
-                                </td>
-                                <td data-target="#service-detail-modal" data-toggle="modal">
-
-
-                                    <div class="a flex-wrap">
-                                        <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
-                                            <img src="~/IMAGES/cap.png">
-
-                                        </div>
-                                        <div>
-
-                                            <p class="lum-watson">
-                                                Lyum Watson
+                                        <td data-target="#service-detail-modal" data-toggle="modal">8466</td>
+                                        <td data-target="#service-detail-modal" data-toggle="modal">
+                                            <p class="date">
+                                                <img src="~/IMAGES/calendar2.png"> 31/03/2018
                                             </p>
                                             <p>
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-yellow.png">
-                                                <img src="~/IMAGES/star-grey.png">
+                                                <img src="~/IMAGES/time.png" /> 12:00 - 18:00
                                             </p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-target="#service-detail-modal" data-toggle="modal">
-                                    <p class="euro d-flex justify-content-center">
-                                        &euro; 63
-                                    </p>
-                                </td>
+                                        </td>
+                                        <td data-target="#service-detail-modal" data-toggle="modal">
 
-                                <td>
-                                    <input class="re-scheduleservice" type="button" data-target="#re-schedule-modal" data-toggle="modal" value="Reschedule">
-                                    <input class="cancel-cancel" type="button" data-target="#cancel-modal" data-toggle="modal" value="Cancel">
-                                </td>
-                            </tr>*@
+
+                                            <div class="a flex-wrap">
+                                                <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
+                                                    <img src="~/IMAGES/cap.png">
+
+                                                </div>
+                                                <div>
+
+                                                    <p class="lum-watson">
+                                                        Lyum Watson
+                                                    </p>
+                                                    <p>
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-yellow.png">
+                                                        <img src="~/IMAGES/star-grey.png">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td data-target="#service-detail-modal" data-toggle="modal">
+                                            <p class="euro d-flex justify-content-center">
+                                                &euro; 63
+                                            </p>
+                                        </td>
+
+                                        <td>
+                                            <input class="re-scheduleservice" type="button" data-target="#re-schedule-modal" data-toggle="modal" value="Reschedule">
+                                            <input class="cancel-cancel" type="button" data-target="#cancel-modal" data-toggle="modal" value="Cancel">
+                                        </td>
+                                    </tr>*@
                                 <!--2nd row end-->
                             </tbody>
                         </table>
@@ -487,7 +488,7 @@
                                         Status <img src="~/IMAGES/up-down-sort.png">
                                     </th>
                                     <th>Rate SP</th>
-                                   
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -548,22 +549,22 @@
                         <div class="modal-body">
                             <div class="row" style="margin-top:-10%">
                                 <div class="col-auto">
-                                    <img src="~/IMAGES/cap.png" alt="cap" class=""/>
+                                    <img src="~/IMAGES/cap.png" alt="cap" class="" />
                                 </div>
                                 @ViewBag.Name
                             </div>
                             <div class="row">
                                 <div class="col-auto provider-name-inrating ml-5">
-                                    @{ 
+                                    @{
                                         int totalstars = Convert.ToInt32(ViewBag.rating);
                                         int stars = 5 - totalstars;
-                                        for(int i =1; i<=totalstars;i++)
+                                        for (int i = 1; i <= totalstars; i++)
                                         {
                                             <span class="star">
                                                 <img src="~/IMAGES/star-yellow.png" alt="yellow-star">
                                             </span>
                                         }
-                                        for(int j=1;j<=stars;j++)
+                                        for (int j = 1; j <= stars; j++)
                                         {
                                             <span class="star">
                                                 <img src="~/IMAGES/star-grey.png" alt="grey-star" />
@@ -691,6 +692,8 @@
                 <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Notifications</h1>
             </div>
 
+
+
             <!--my setting code start-->
             <div class="col d-none" id="my-setting-tabs">
                 <!-- Tab links -->
@@ -707,25 +710,31 @@
                         <div class="col-md-3">
                             <label>Firstname</label><br />
                             <input class="my-detail-form " type="text" placeholder="Firstname" id="my-details-fname" />
+                            <span></span>
                         </div>
                         <div class="col-md-3">
                             <label>Lastname</label><br />
                             <input class="my-detail-form" type="text" placeholder="Lastname" id="my-details-lname" />
+                            <span></span>
                         </div>
+
                         <div class="col-md-3">
                             <label>E-mail address</label><br />
                             <input disabled class="my-detail-form" type="email" placeholder="Email" id="my-details-email" />
+
                         </div>
                     </div>
+
                     <div class="row " style="margin-top:10px;">
-                        <div class="col-md-3 ">
+                        <div class="col-md-3">
                             <label>Mobile number</label><br />
-                            <div class="d-flex tel-box'">
-                                <span class="" style="padding:0% !important; width: 35px;">
-                                    <input class="mydetail-tel-icon" type="text" placeholder="+49" />
+                            @*<p class="d-flex tel-box">*@
+                                <span class="mydetail-tel-icon" style="padding-top:8px !important; width: 35px;">
+                                   +49
                                 </span>
                                 <input class="mydetail-tel-form" type="tel" placeholder="Phone number" id="my-details-contact-number" />
-                            </div>
+                          
+                            <span></span>
                         </div>
                         <div class="col-md-3" style="padding-right:10px;">
                             <label>Date of Birth</label><br />
@@ -944,7 +953,6 @@
                 </div>
             </div>
             <!--my setting code end-->
-
         </div>
 
         <!--edit address modal code start-->

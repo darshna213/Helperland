@@ -325,3 +325,5 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPMyrating.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPMysettings.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPBlockcustomer.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.CoreCompileInputs.cache
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.MvcApplicationPartsAssemblyInfo.cache

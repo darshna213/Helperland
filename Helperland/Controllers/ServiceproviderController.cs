@@ -42,7 +42,7 @@ namespace Helperland.Controllers
         }
 
         [HttpPost]
-        public string AcceptServiceRequest(int servicerequestId, ServiceRequest s)
+        public string AcceptServiceRequest(int servicerequestId, string? comments)
         {
             Console.WriteLine("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
@@ -51,7 +51,7 @@ namespace Helperland.Controllers
             if (userId != null)
             {
                 ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == servicerequestId);
-                request.Comments = s.Comments;
+                request.Comments = comments;
                 request.Status = 4;
                 _helperlandContext.ServiceRequests.Update(request);
                 _helperlandContext.SaveChanges();
@@ -119,6 +119,23 @@ namespace Helperland.Controllers
 
             }
             return "false";
+        }
+
+        [HttpPost]
+        public string GetServiceHistory(CustomerServiceNewRequest customerServiceNewRequest)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            if (user.UserId != 0)
+            {
+                var table = _helperlandContext.ServiceRequests.Where(u => u.Status == 2).ToList();
+                return JsonSerializer.Serialize(table);
+            }
+            else
+            {
+                return "loginModal";
+            }
+
         }
 
 

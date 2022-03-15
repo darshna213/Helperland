@@ -15,6 +15,7 @@ $("#dashboard-tab").click(function () {
     $("#favourite-pro-tab-rightside").addClass("d-none");
     $("#invoices-tab-rightside").addClass("d-none");
     $("#notifications-tab-rightside").addClass("d-none");
+    $("#service-schedule-tab-rightside").addClass("d-none");
 })
 
 $("#service-history-tab").click(function () {
@@ -150,7 +151,7 @@ function getDashboardData() {
                         var cell5 = row.insertCell(4);
 
                         cell1.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + json[i].ServiceRequestId + '</td>';
-                        cell2.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate + '</p>' + '</td>';
+                        cell2.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate.split("T")[0] + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
                         cell3.innerHTML = json[i].ServiceProviderId;
                         cell4.innerHTML = ' <td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
                         cell5.innerHTML =
@@ -192,7 +193,7 @@ function getServicehistoryData() {
                         var cell4 = row.insertCell(3);
                         var cell5 = row.insertCell(4);
                         
-                        cell1.innerHTML = '<td>' + '<p class="date">' + ' <img src = "/IMAGES/calendar-grey.png" />' + json[i].ServiceStartDate + '</p>' + ' <p>' + json[i].ServiceStartDate + '</p>' + '</td>';
+                        cell1.innerHTML = '<td>' + '<p class="date">' + ' <img src = "/IMAGES/calendar-grey.png" />' + json[i].ServiceStartDate.split("T")[0] + '</p>' + ' <p>' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
                         cell2.innerHTML = json[i].ServiceProviderId;
                         cell3.innerHTML += ' <td  data-target="#service-detail-modal" data-toggle="modal">'   + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
                         cell4.innerHTML = '<button class="status-cancelled" value="(\'' + json[i].Status + '\')">Cancelled</button>';
@@ -425,6 +426,7 @@ $("#my-detail-save-btn").click(function () {
         Email: email,
         Mobile: mobile
     }
+    
     $.ajax(
             {
                 type: 'POST',
@@ -433,16 +435,67 @@ $("#my-detail-save-btn").click(function () {
                 data: model,
                 success:
                     function (response) {
-
-                        alert("your details are successfully saved");
+                        checkData();
+                        
                     },
                 error:
                     function (response) {
                         console.error(response);
-                        alert("not updated");
+                       
+                        checkData();
                     }
             });
 });
+//save details validation
+var fname = document.getElementById("my-details-fname");
+var lname = document.getElementById("my-details-lname");
+var contactnumber = document.getElementById("my-details-contact-number");
+function checkData() {
+    var fnameValue = fname.value.trim();
+    var lnameValue = lname.value.trim();
+    var contactnumberValue = contactnumber.value.trim();
+
+    if (fnameValue == "") {
+        setError(fname, "FirstName are requird");
+       
+    } else {
+        setSuccess(fname);
+        
+    }
+    if (lnameValue == "") {
+        setError(lname, "LastName are requird");
+
+    } else {
+        setSuccess(lname);
+      
+    }
+    if (contactnumberValue == "") {
+        setError(contactnumber, "Contactnumber ");
+
+    } else {
+        setSuccess(contactnumber);
+    }
+    
+}
+function setError(u, msg) {
+    var parentBox = u.parentElement;
+    parentBox.className = "col-md-3 error";
+    var span = parentBox.querySelector("span");
+    
+    span.innerText = msg;
+}
+function setSuccess(u) {
+    var parentBox = u.parentElement; 
+    parentBox.className = "col-md-3 success";
+  
+}
+
+
+
+
+
+
+
 ////////////////////get user address//////////////////
 
 SetAddressList()

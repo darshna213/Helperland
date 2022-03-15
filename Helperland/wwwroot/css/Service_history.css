@@ -904,3 +904,43 @@ footer {
     padding-right: 20px;
 }
 
+
+
+
+
+.error {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+    .error span {
+        color: #f00 !important;
+    }
+    .error input {
+        border-color: #f00 !important;
+        border-width: 2px !important;
+    }
+
+/*form validation*/
+.col-md-3 .error input {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+.col-md-3 .success input {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+.col-md-3 span {
+    display: block;
+}
+.col-md-3 .error span {
+    color: #f00 !important;
+    display: block !important;
+}
+ .success span {
+    color: white !important;
+}
+.success {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+    
+}

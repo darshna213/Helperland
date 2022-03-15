@@ -365,18 +365,20 @@ namespace Helperland.Controllers
                 user.Mobile = savedetails.Mobile;
 
                 _helperlandContext.Users.Update(user);
-                _helperlandContext.SaveChanges();
 
+                _helperlandContext.SaveChanges();
+                return "true";
 
             }
             else
             {
+               
                 return "something wrong please check";
             }
 
+            return "false";
+           
 
-
-            return "true";
         }
 
         //public IActionResult SpRating()

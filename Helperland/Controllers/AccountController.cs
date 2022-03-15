@@ -84,12 +84,13 @@ namespace Helperland.Controllers
         public IActionResult Login(User user)
         {
             var U = _helperlandContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
-            var Name = U.FirstName + " " + U.LastName;
-            HttpContext.Session.SetString("Name", Name);
+           
 
 
             if (U != null)
             {
+                var Name = U.FirstName + " " + U.LastName;
+                HttpContext.Session.SetString("Name", Name);
                 HttpContext.Session.SetString("CurrentUser", JsonSerializer.Serialize(U));
                 if (U.UserTypeId == 1)
                 {

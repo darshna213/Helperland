@@ -203,7 +203,6 @@ namespace Helperland.Controllers
             {
                 ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == serviceRequestId);
                 request.Comments = s.Comments;
-
                 request.Status = 3;
                 _helperlandContext.ServiceRequests.Update(request);
                 _helperlandContext.SaveChanges();
@@ -249,7 +248,7 @@ namespace Helperland.Controllers
                 UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == AddressId && x.UserId == u.UserId).FirstOrDefault();
                 userAddress.AddressLine1 = addressLine1;
                 userAddress.AddressLine2 = addressLine2;
-                userAddress.PostalCode = postalCode;
+                //userAddress.PostalCode = postalCode;
                 userAddress.City = city;
                 userAddress.Mobile = mobile;
                 _helperlandContext.UserAddresses.Update(userAddress);
@@ -330,22 +329,27 @@ namespace Helperland.Controllers
             if (userid != null)
             {
                 User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
+                if(user.Password==changepassword.Password)
+                {
+                    user.Password = changepassword.NewPassword;
 
-                user.Password = changepassword.NewPassword;
-
-                _helperlandContext.Users.Update(user);
-                _helperlandContext.SaveChanges();
-
-
+                    _helperlandContext.Users.Update(user);
+                    _helperlandContext.SaveChanges();
+                    return "true";
+                }
+                else
+                {
+                    ViewBag.message = "old password is not matched with current password";
+                    return "false";
+                }
+               
             }
             else
             {
                 return "something wrong please check";
             }
+            return "false";
 
-
-
-            return "true";
         }
         public string SaveDetails(Savedetails savedetails)
         {
@@ -374,6 +378,35 @@ namespace Helperland.Controllers
 
             return "true";
         }
+
+        //public IActionResult SpRating()
+        //{
+        //    User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+        //    List<ServiceRequest> serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.Status == 1 && x.ServiceProviderId).ToList();
+        //    List<User> user = new List<User>();
+        //    foreach (ServiceRequest users in serviceRequest)
+        //        {
+        //        var customername = _helperlandContext.Users.Where(u => u.UserId == users.UserId).FirstOrDefault();
+        //        users.Name = customername.FirstName + " " + customername.LastName;
+        //        var rate=_helperlandContext.Ratings.Where(c=>c.ServiceRequestId==users.ServiceRequestId)ToList();
+        //        decimal temp = 0;
+        //        foreach(Rating rating in rate)
+        //        {
+        //             if(rating.Ratings !=0)
+        //            {
+        //                temp += rating.Ratings;
+        //            }
+        //        }
+        //        if(rate.Count() !=0)
+        //        {
+        //            temp /= rate.Count();
+        //        }
+        //        users.Ratings = temp;
+        //    }
+        //    ViewBag.services = serviceRequest;
+
+        //    return View();
+        //}
     }
 
 }

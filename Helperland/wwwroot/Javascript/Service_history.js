@@ -5,6 +5,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*/
 
 //leftside vertical tab
+function LogOut() {
+    alert("you are SuccessFully LogOut");
+}
 $("#dashboard-tab").click(function () {
     $("#rightside-dashboard").removeClass("d-none");
     $("#rightside").addClass("d-none");
@@ -188,12 +191,13 @@ function getServicehistoryData() {
                         var cell3 = row.insertCell(2);
                         var cell4 = row.insertCell(3);
                         var cell5 = row.insertCell(4);
+                        
                         cell1.innerHTML = '<td>' + '<p class="date">' + ' <img src = "/IMAGES/calendar-grey.png" />' + json[i].ServiceStartDate + '</p>' + ' <p>' + json[i].ServiceStartDate + '</p>' + '</td>';
                         cell2.innerHTML = json[i].ServiceProviderId;
-                        cell3.innerHTML += ' <td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
+                        cell3.innerHTML += ' <td  data-target="#service-detail-modal" data-toggle="modal">'   + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
                         cell4.innerHTML = '<button class="status-cancelled" value="(\'' + json[i].Status + '\')">Cancelled</button>';
                         cell5.innerHTML = '<button class="rate-sp" type="submit" onclick="ratesp(\'' + json[i].ServiceRequestId + '\')">Rate SP</button>';
-
+                        
                     }
                 },
                     error:
@@ -339,7 +343,26 @@ document.getElementById("cancel-now-btn").addEventListener("click", () => {
         });
 });
 
+//date validation
+$(function () {
+    var dtToday = new Date();
 
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if (month < 10)
+        month = '0' + month.toString();
+    if (day < 10)
+        day = '0' + day.toString();
+
+    var maxDate = year + '-' + month + '-' + day;
+
+    // or instead:
+    // var maxDate = dtToday.toISOString().substr(0, 10);
+
+
+    $('#schedule-service-date').attr('min', maxDate);
+});
 
 ///////add address(my settting)/////
 $("#add-address-new-address-button").click(function () {
@@ -583,6 +606,7 @@ $("#change-password-save-btn").click(function () {
             var model = {
                 Password: oldPass,
                 NewPassword: newPass,
+                ConfirmPassword: confPass,
             }
             $.ajax(
                 {
@@ -604,6 +628,7 @@ $("#change-password-save-btn").click(function () {
 
         }
         else {
+
             alert("Both Password are not same");
         }
     }

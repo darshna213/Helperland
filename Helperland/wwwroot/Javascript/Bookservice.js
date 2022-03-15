@@ -460,7 +460,7 @@ function SetAddressList() {
 /// add ours and update payment
 function updatePayment() {
     //add hours
-    alert("Hey Payment");
+   
     dur = parseFloat($("#schedule-service-hour").val());
     $("#payment-summary-basic-hour").text(dur + " Hrs");
     if (document.getElementById("schedule-service-inside-cabinet").checked) {

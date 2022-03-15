@@ -2,11 +2,12 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
     color: white;
+    font-family: "Roboto", sans-serif;
 }
 
 
@@ -123,6 +124,12 @@ nav {
     background-clip: padding-box;
 }
 
+    #leftsidebar a:hover {
+        background: #146371 !important;
+        color: white !important;
+        text-decoration: none !important;
+    }
+
 .list-group-item {
     border: 1px solid rgba(255, 255, 255, 0.4);
     padding: 18px 15px;
@@ -184,9 +191,10 @@ nav {
     cursor: pointer;
 }
 
-.list-group-item-action:hover {
+.list-group-item:hover {
     background: #146371 !important;
-    color: #f9f9f9;
+    color: white !important;
+    text-decoration: none !important;
 }
 
 .cancel-btn:hover {
@@ -200,6 +208,206 @@ nav {
         max-width: 600px;
     }
 }
+
+.accept-btn {
+    color: white;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    background-color: #1d7a8c;
+    border-radius: 20px;
+    border: 1px solid #1d7a8c;
+}
+
+.payment-status select {
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.service-history-export-btn {
+    background: #146371;
+    color: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 30px;
+    padding: 5px 14px 4px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-bottom: 6px;
+}
+
+.sh-heading {
+    font-weight: 300;
+    font-size: 16px;
+    color: #646464;
+    padding-left: 0 !important;
+}
+
+.euro {
+    color: #1d7a8c !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+}
+/*new service request (row-detail-modal)*/
+#new-service-request-row-detail-modal {
+    color: #646464;
+}
+
+    #new-service-request-row-detail-modal .service-detail-body {
+        color: #646464;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #new-service-request-row-detail-modal .service-detail-leftside {
+        color: #646464;
+        font-size: 13px;
+    }
+
+        #new-service-request-row-detail-modal .service-detail-leftside p {
+            margin-bottom: 1px;
+            color: #646464;
+            font-size: 13px;
+        }
+
+        #new-service-request-row-detail-modal .service-detail-leftside .total-payment {
+            font-size: 16px !important;
+            color: #1d7a8c !important;
+        }
+
+        #new-service-request-row-detail-modal .service-detail-leftside .accept-btn {
+            color: white;
+            font-weight: bold;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 8px;
+            padding-top: 8px;
+            background-color: #57a825;
+            border-radius: 20px;
+            border: 1px solid #57a825;
+        }
+
+/*accept modal*/
+.accept-service-request {
+    color: #4f4f4f;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.accept-heading {
+    color: #646464;
+    font-size: 14px;
+    margin-bottom: 2px !important;
+    font-weight: bold;
+}
+
+.modal-textarea {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+}
+
+.accept-now {
+    width: 100%;
+    color: #ffff;
+    background: #1d7a8c;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+/*upcoming service request (row-detail-modal)*/
+#upcoming-service-request-row-detail-modal {
+    color: #646464;
+}
+
+    #upcoming-service-request-row-detail-modal .service-detail-body {
+        color: #646464;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #upcoming-service-request-row-detail-modal .service-detail-leftside {
+        color: #646464;
+        font-size: 13px;
+    }
+
+        #upcoming-service-request-row-detail-modal .service-detail-leftside p {
+            margin-bottom: 1px;
+            color: #646464;
+            font-size: 13px;
+        }
+
+        #upcoming-service-request-row-detail-modal .service-detail-leftside .total-payment {
+            font-size: 16px !important;
+            color: #1d7a8c !important;
+        }
+
+        #upcoming-service-request-row-detail-modal .service-detail-leftside .upcoming-cancel-btn {
+            color: white;
+            font-weight: bold;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 8px;
+            padding-top: 8px;
+            background-color: #ff6b6b;
+            border-radius: 20px;
+        }
+
+        #upcoming-service-request-row-detail-modal .service-detail-leftside .upcoming-complete-btn {
+            color: white;
+            font-weight: bold;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 8px;
+            padding-top: 8px;
+            background-color: #1d7a8c;
+            border-radius: 20px;
+        }
+/*service history (row-detail-modal)*/
+#service-history-row-detail-modal {
+    color: #646464;
+}
+
+    #service-history-row-detail-modal .service-detail-body {
+        color: #646464;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #service-history-row-detail-modal .service-detail-leftside {
+        color: #646464;
+        font-size: 13px;
+    }
+
+        #service-history-row-detail-modal .service-detail-leftside p {
+            margin-bottom: 1px;
+            color: #646464;
+            font-size: 13px;
+        }
+
+        #service-history-row-detail-modal .service-detail-leftside .total-payment {
+            font-size: 16px !important;
+            color: #1d7a8c !important;
+        }
+
+        #service-history-row-detail-modal .service-detail-leftside .service-history-ok-btn {
+            color: white;
+            font-weight: bold;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-bottom: 6px;
+            padding-top: 6px;
+            background-color: #1d7a8c;
+            border-radius: 18px;
+        }
+
+
+
+
+
+
 
 /*footer*/
 footer {
@@ -246,3 +454,265 @@ footer {
         flex-direction: column;
     }
 }
+
+/*block-customer*/
+.contant-right table {
+    border: solid 1px #e1e1e1;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100% !important;
+}
+
+    .contant-right table td span {
+        display: block;
+    }
+
+.contant-right tr {
+    border-bottom: solid 1px #e1e1e1;
+}
+
+.contant-right th,
+.contant-right td {
+    /*padding: 15px 20px 13px 15px;*/
+    color: #646464;
+}
+
+.contant-right {
+    /*width: 75%;*/
+    padding-left: 20px;
+}
+
+.block-icon {
+    margin: 20px;
+}
+
+.cap-icon {
+    margin: auto 10px auto 0px;
+    text-align: center;
+    border: solid 1px #aaaaaa;
+    padding: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 100px;
+}
+
+.cap-upgrade {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    padding: 19px;
+}
+
+.block-btn {
+    padding: 8px 16px;
+    margin: 0;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 26px;
+    width: 100px;
+    /*margin-top: 20px;*/
+    border: none;
+}
+
+.block {
+    border: 1px solid #e1e1e1;
+    display: inline-flex;
+    flex-direction: column;
+    padding: 40px 50px;
+    justify-content: center;
+    align-items: center;
+    height: 280px;
+    width: 33%;
+}
+
+    .block p {
+        color: #646464;
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        text-align: center;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*schedule & service (calender)*/
+:root {
+    --light-gray: #DADCE0;
+    --light-blue: #189CE2;
+}
+
+#app-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5,1fr);
+    color:#646464;
+    /*background-color: green;*/
+/*    height: 100%;
+*/}
+
+.name {
+    padding-bottom: 5px;
+}
+
+.selected {
+    background-color: lightblue;
+    color: white;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*my setting code*/
+/*tab code*/
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #ffff;
+    color: #646464;
+    font-size: 14px;
+}
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background: white;
+        float: left;
+        border: 1px solid #ffff;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+    }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            color: #1d7a8c;
+            font-weight: bold;
+        }
+
+/* Create an active/current tablink class */
+.tab-button-active {
+    color: #1d7a8c;
+    font-weight: bold;
+    border-bottom: 2px solid #1d7a8c !important;
+}
+
+/*MY setting (3tabs  contents)*/
+.tabcontent {
+    color: #646464;
+    padding: 6px 12px;
+}
+
+    .tabcontent label {
+        font-size: 12px;
+    }
+    /*tab-1 (my details)*/
+    .tabcontent .my-detail-form {
+        padding-left: 6px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+    }
+
+    .tabcontent .mydetail-tel-form {
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        width: 79%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 6px;
+    }
+
+    .tabcontent .mydetail-tel-icon {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+        text-align: center;
+        width: 104%;
+        background: #c8c8c8;
+    }
+
+    .tabcontent .my-detail-save-div .my-details-save-btn btn {
+        color: #ffff !important;
+        text-decoration: none !important;
+        font-weight: bold !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 6px !important;
+        padding-right: 6px !important;
+        border: 1px solid #1d7a8c !important;
+        border-radius: 20px !important;
+        background: #1d7a8c !important;
+        margin-top: 10px;
+    }
+
+.tel-box {
+    /*padding-top: 10px;
+    padding-bottom: 10px;*/
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+}
+
+.tel-icon {
+    width: 35px;
+}
+/*tab-2(change-password)*/
+.tabcontent .change-password-content {
+    color: #646464;
+}
+
+    .tabcontent .change-password-content p {
+        margin: 15px 0px 3px 0px;
+    }
+
+    .tabcontent .change-password-content input[type="password"] {
+        width: 30%;
+        padding-left: 6px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border: 1px solid #e5e5e5;
+        border-radius: 4px;
+    }
+
+.change-password-save-btn {
+    width: 10%;
+    margin-top: 10px;
+    border: 2px solid #1D7A8C;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    background: #1d7a8c;
+}
+
+    .change-password-save-btn:hover {
+        color: white;
+    }

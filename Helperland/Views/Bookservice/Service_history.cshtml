@@ -72,10 +72,10 @@
                                 <img src="~/IMAGES/down-arrow-white.png" alt="down-arrow-white">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-
+                                <li class="dropdown-item">Welcome,<br /> <span class="customer-name"><b> @Context.Session.GetString("Name")</b> </span></li><hr />
                                 <li><a class="dropdown-item" asp-controller="Bookservice" asp-action="Service_history">My Dashboard</a></li>
                                 <li><a class="dropdown-item" id="my-setting-dropdown">My Settings</a></li>
-                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Index">Logout</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="Index" onclick="LogOut()">Logout</a></li>
 
                             </ul>
                         </div>
@@ -90,7 +90,7 @@
     <section class="welcome-Gaurang">
         <div class="container">
             <h2 class="text-center">
-                Welcome, <span class="customer-name"> @Context.Session.GetString("Name") </span>
+                Welcome, <span ><b> @Context.Session.GetString("Name") </b></span>
             </h2>
         </div>
     </section>
@@ -114,18 +114,6 @@
                 <a href="#" class="list-group-item list-group-item-action" id="notification-tab">Notifications</a>
             </div>
             <!--leftside content code end-->
-            <div class="d-none" id="service-schedule-tab-rightside">
-                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Service Schedule</h1>
-            </div>
-            <div class="d-none" id="favourite-pro-tab-rightside">
-                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Favourite pros</h1>
-            </div>
-            <div class="d-none" id="invoices-tab-rightside">
-                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Invoices</h1>
-            </div>
-            <div class="d-none" id="notifications-tab-rightside">
-                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Notifications</h1>
-            </div>
             <!--rightside content code start-->
             <!--Dashboard code start-->
             <div class="dashboard-right" id="rightside-dashboard">
@@ -394,7 +382,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="update rounded-pill m-auto d-flex align-items-center justify-content-center" id="service-request-update-btn" type="submit" data-toggle="modal">
+                                <button class="update rounded-pill m-auto d-flex align-items-center justify-content-center" id="service-request-update-btn" type="submit" data-dismiss="modal">
                                     Update
                                 </button>
                             </form>
@@ -425,7 +413,7 @@
                                     <p class="cancel-heading">Why you want to cancel the service request?</p>
                                     <textarea class="modal-textarea" id="cancel-modal-textarea" style="color:#646464;" required></textarea>
                                 </div>
-                                <button class="cancel-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="cancel-now-btn" type="button" data-toggle="modal">
+                                <button class="cancel-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="cancel-now-btn" type="button" data-dismiss="modal">
                                     Cancel Now
                                 </button>
                             </form>
@@ -499,10 +487,12 @@
                                         Status <img src="~/IMAGES/up-down-sort.png">
                                     </th>
                                     <th>Rate SP</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="d-none">
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                     <td></td>
@@ -556,23 +546,31 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <div class="a flex-wrap">
-                                <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon" style="margin-left:0px; margin-right:0px;">
-                                    <img src="~/IMAGES/cap.png">
-
+                            <div class="row" style="margin-top:-10%">
+                                <div class="col-auto">
+                                    <img src="~/IMAGES/cap.png" alt="cap" class=""/>
                                 </div>
-                                <div>
-
-                                    <p class="lum-watson">
-                                        Lyum Watson
-                                    </p>
-                                    <p>
-                                        <img src="~/IMAGES/star-yellow.png">
-                                        <img src="~/IMAGES/star-yellow.png">
-                                        <img src="~/IMAGES/star-yellow.png">
-                                        <img src="~/IMAGES/star-yellow.png">
-                                        <img src="~/IMAGES/star-grey.png">
-                                    </p>
+                                @ViewBag.Name
+                            </div>
+                            <div class="row">
+                                <div class="col-auto provider-name-inrating ml-5">
+                                    @{ 
+                                        int totalstars = Convert.ToInt32(ViewBag.rating);
+                                        int stars = 5 - totalstars;
+                                        for(int i =1; i<=totalstars;i++)
+                                        {
+                                            <span class="star">
+                                                <img src="~/IMAGES/star-yellow.png" alt="yellow-star">
+                                            </span>
+                                        }
+                                        for(int j=1;j<=stars;j++)
+                                        {
+                                            <span class="star">
+                                                <img src="~/IMAGES/star-grey.png" alt="grey-star" />
+                                            </span>
+                                        }
+                                    }
+                                    <span>@ViewBag.rating</span>
                                 </div>
                             </div>
                             <h5 class="rate-your-sp">Rate your service provider</h5>
@@ -607,7 +605,7 @@
                                     <p style="margin-top:8px;">Feedback on service provider</p>
                                     <textarea class="modal-textarea"></textarea>
                                 </div>
-                                <button class="submit-submit rounded-pill d-flex " type="submit" data-toggle="modal">
+                                <button class="submit-submit rounded-pill d-flex " type="submit" data-dismiss="modal">
                                     Submit
                                 </button>
                             </form>
@@ -618,18 +616,81 @@
 
             <!--rate-sp modal code end-->
             <!--service history code end-->
-            <div class="d-none" id="service-schedule-tab-rightside">
+            <div class="d-none contant-right" id="service-schedule-tab-rightside">
                 <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Service Schedule</h1>
             </div>
+            <!--favorite-pro code start-->
+
             <div class="d-none" id="favourite-pro-tab-rightside">
-                <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Favourite pros</h1>
+                <table id="mytable5">
+                    <tbody>
+                        <tr class="block">
+                            <td>
+                                <div><img class="cap-icon cap-upgrade" src="~/IMAGES/cap.png" alt="cap"></div>
+                            </td>
+                            <td>
+                                <div class="block-icon">
+                                    <p>Drshti patel</p>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="remove-btn">Remove</button>
+                                <button class="block-btn">Block</button>
+                            </td>
+                        </tr>
+                        <tr class="block">
+                            <td>
+                                <div><img class="cap-icon cap-upgrade" src="~/IMAGES/cap.png" alt="cap"></div>
+                            </td>
+                            <td>
+                                <div class="block-icon">
+                                    <p>Darshna patel</p>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="remove-btn">Remove</button>
+                                <button class="block-btn">Block</button>
+                            </td>
+                        </tr>
+                        <tr class="block">
+                            <td>
+                                <div><img class="cap-icon cap-upgrade" src="~/IMAGES/cap.png" alt="cap"></div>
+                            </td>
+                            <td>
+                                <div class="block-icon">
+                                    <p>Darshna </p>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="remove-btn">Remove</button>
+                                <button class="block-btn">Block</button>
+                            </td>
+                        </tr>
+                        <tr class="block">
+                            <td>
+                                <div><img class="cap-icon cap-upgrade" src="~/IMAGES/cap.png" alt="cap"></div>
+                            </td>
+                            <td>
+                                <div class="block-icon">
+                                    <p>DK patel</p>
+                                </div>
+                            </td>
+                            <td>
+                                <button class="remove-btn">Remove</button>
+                                <button class="block-btn">Block</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+            <!--favorite-pro code end-->
             <div class="d-none" id="invoices-tab-rightside">
                 <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Invoices</h1>
             </div>
             <div class="d-none" id="notifications-tab-rightside">
                 <h1 style="color:#646464; font-weight:bold; font-size:46px;"> Notifications</h1>
             </div>
+
             <!--my setting code start-->
             <div class="col d-none" id="my-setting-tabs">
                 <!-- Tab links -->
@@ -780,8 +841,8 @@
                                     </tr>
                                 </thead>
                                 <tbody id="UserAddressList">
-                                    
-                                    
+
+
                                     <tr>
                                         <td>
                                             <p class="my-addresses-text">
@@ -827,7 +888,7 @@
                                         Postal code
                                     </label>
                                     <br>
-                                    <input  type="text" name="postalcode" placeholder="Postal code" id="postalcode" />
+                                    <input type="text" name="postalcode" placeholder="Postal code" id="postalcode" />
 
                                 </div>
                                 <div style="width:45%;">
@@ -865,10 +926,17 @@
                 <div id="change-password" class="tabcontent  d-none">
                     <div class="change-password-content">
                         <p><b>Old Password</b></p>
+                        <div class=" text-danger mb-3">
+                            <b font-size:14px;">@ViewBag.Message</b>
+                        </div>
                         <input type="password" class="form-control" placeholder="Current Passowrd" id="current-password" />
+
                         <p><b>New Password</b></p>
                         <input type="password" class="form-control" placeholder="Password" id="password" />
                         <p><b>Confirm Password</b></p>
+                        <div class=" text-danger mb-3">
+                            <b font-size:14px;">@ViewBag.Message</b>
+                        </div>
                         <input type="password" class="form-control" placeholder=" Confirm Password" id="confirm-password" />
                         <br />
                         <button type="submit" class="btn change-password-save-btn " id="change-password-save-btn">Save</button>
@@ -943,8 +1011,8 @@
 
                             </div>
                             <div class="Button">
-                                <button class="save-btn" type="submit" id="edit-address-save-btn-modal">Save</button>
-                                <button class="clear-btn" type="reset" id="edit-address-cancel-btn-modal">Cancel</button>
+                                <button class="save-btn" type="submit" id="edit-address-save-btn-modal" data-dismiss="modal">Save</button>
+                                <button class="clear-btn" type="reset" id="edit-address-cancel-btn-modal" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -970,7 +1038,7 @@
                                 <p class="cancel-heading">Are you sure delete this address?</p>
                                 @*<textarea class="modal-textarea" id="cancel-modal-textarea" style="color:#646464;" required></textarea>*@
                             </div>
-                            <button class="cancel-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="remove-now-btn" type="button" data-toggle="modal" style="font-size:16px;">
+                            <button class="cancel-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="remove-now-btn" type="button" data-dismiss="modal" style="font-size:16px;">
                                 <b>Delete</b>
                             </button>
                         </form>

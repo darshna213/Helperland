@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewData["Title"] = "SPMysettings";
+}
+
+
+<!--my setting code start-->
+<div class="col d-none" id="sp-mysetting">
+    <!-- Tab links -->
+    <div class="tab" id="">
+        <button class="tablinks tab-button-active" onclick="mydetails()" id="my-details-tab">My Details</button>
+        <button class="tablinks" onclick="changepassword()" id="change-password-tab">Change Password</button>
+
+    </div>
+
+
+    <div id="my-details" class="tabcontent  ">
+        <div class="row" style="margin-top:10px;">
+            <p><b>Account Status:&nbsp;</b><span style="color:#57a825;"><b>Active</b></span></p>
+            <p><b>Basic Details</b></p>
+            <hr/>
+        </div>
+    
+
+        <div class="row " style="margin-top:10px;">
+            <div class="col-md-3">
+                <label>Firstname</label><br />
+                <input class="my-detail-form " type="text" placeholder="Firstname" id="sp-my-details-fname" />
+            </div>
+            <div class="col-md-3">
+                <label>Lastname</label><br />
+                <input class="my-detail-form" type="text" placeholder="Lastname" id="sp-my-details-lname" />
+            </div>
+            <div class="col-md-3">
+                <label>E-mail address</label><br />
+                <input disabled class="my-detail-form" type="email" placeholder="Email" id="sp-my-details-email" />
+            </div>
+        </div>
+        <div class="row " style="margin-top:10px;">
+            <div class="col-md-3 ">
+                <label>Mobile number</label><br />
+                <div class="d-flex tel-box'">
+                    <span class="" style="padding:0% !important; width: 35px;">
+                        <input class="mydetail-tel-icon" type="text" placeholder="+49" />
+                    </span>
+                    <input class="mydetail-tel-form" type="tel" placeholder="Phone number" id="sp-my-details-contact-number" />
+                </div>
+            </div>
+            <div class="col-md-3" style="padding-right: 0%;">
+                <label>Date of Birth</label><br />
+                <div class="d-flex">
+                    <input type="text" class="my-detail-form d-block" placeholder="30" style="width: 33%; margin-right: 5px;" id="sp-my-details-bdate" />
+                    <input type="text" class="my-detail-form d-block" placeholder="Jan" style="width: 33%; margin-right: 5px;" id="sp-my-details-bmonth" />
+                    <input type="text" class="my-detail-form d-block" placeholder="2001" style="width: 33%;" id="sp-my-details-byear" />
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <label>Nationality</label><br />
+                <input class="my-detail-form" type="text" placeholder="Indian" id="sp-my-details-nationality" />
+            </div>
+        </div>
+        <hr />
+        <div class="row" style="font-size:12px;">
+            <div class="col-md-3">
+                <label>Gender</label><br />
+                <input type="radio" id="radio1" name="gender" value="Male" />Male
+                <input type="radio" id="radio2" name="gender" value="Female" />Female
+                <input type="radio" id="radio3" name="gender" value="Rather not to say" />Other
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+
+            <p><b>My Address</b></p>
+            <hr />
+        </div>
+        <div class="row">
+            <input type="hidden" id="addressId" name="addressID"/>
+            <div class="col-md-3">
+                <label>Street name</label><br />
+                <input class="my-detail-form" type="text" placeholder="Street name" id="sp-my-address-street-name" />
+            </div>
+            <div class="col-md-3">
+                <label>House number</label><br />
+                <input class="my-detail-form" type="text" placeholder="House number" id="sp-my-address-house-number" />
+            </div>
+            <div class="col-md-3">
+                <label>Postal code</label><br />
+                <input class="my-detail-form" type="text" placeholder="Postal code" id="sp-my-address-postal-code" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>City</label><br />
+                <input class="my-detail-form" type="text" placeholder="City" id="sp-my-address-city" />
+            </div>
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-md-3 my-detail-save-div">
+                <button class="my-details-save-btn btn" type="submit" onclick="AddproviderAddress()" id="sp-my-detail-save-btn"
+                        style=" color: #ffff !important;
+                                            text-decoration: none !important;
+                                            font-weight: bold !important;
+                                            padding-top: 8px !important;
+                                            padding-bottom: 8px !important;
+                                            padding-left: 12px !important;
+                                            padding-right: 12px !important;
+                                            border: 1px solid #1d7a8c !important;
+                                            border-radius: 18px !important;
+                                            background: #1d7a8c !important;
+                                            margin-top: 10px;
+                                        ">
+                    Save
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div id="change-password" class="tabcontent  d-none">
+        <div class="change-password-content">
+            <p><b>Old Password</b></p>
+            <input type="password" class="form-control" placeholder="Current Passowrd" id="sp-current-password" />
+            <p><b>New Password</b></p>
+            <input type="password" class="form-control" placeholder="Password" id="sp-password" />
+            <p><b>Confirm Password</b></p>
+            <input type="password" class="form-control" placeholder=" Confirm Password" id="sp-confirm-password" />
+            <br />
+            <button type="submit" class="btn change-password-save-btn " id="sp-change-password-save-btn">Save</button>
+        </div>
+    </div>
+</div>
+<!--my setting code end-->

@@ -317,5 +317,11 @@ C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views
 C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Bookservice\Service_history.cshtml.g.cs
 C:\Users\pca11\Desktop\Helperland\Helperland\bin\Debug\netcoreapp3.1\md5StringEncrypt.dll
-C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.CoreCompileInputs.cache
-C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPUpcomingservice.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPDashboard.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPNewservicerequest.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPServiceschedule.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPServicehistory.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPMyrating.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPMysettings.cshtml.g.cs
+C:\Users\pca11\Desktop\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Serviceprovider\SPBlockcustomer.cshtml.g.cs

@@ -207,6 +207,89 @@ nav {
     margin-bottom: 53px;
 }
 
+/* add address  */
+
+.add-address-box {
+    border: solid 1px #e1e1e1;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #F3F3F3;
+    padding-bottom: 10px;
+}
+
+    .add-address-box label {
+        margin-bottom: 0px;
+    }
+
+.address-taker-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 20px;
+    flex-wrap: wrap;
+    color: #646464;
+}
+
+#tel2 {
+    width: 300px;
+}
+
+
+.address-taker-box input {
+    /*    width: 300px;*/
+    width: 97%;
+    height: 46px;
+    border: solid 1px #C8C8C8;
+    color: #646464;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .address-taker-box input[type="tel"] {
+        border: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 259px;
+    }
+
+.tel-icon {
+    padding: 5px;
+    border-right: 1px solid #C8C8C8;
+    padding-top: 11px;
+}
+
+.tel-box {
+    display: flex;
+    border: solid 1px #C8C8C8;
+    border-radius: 5px;
+}
+
+.save-btn {
+    height: 42px;
+    background: #1D7A8C;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+.clear-btn {
+    height: 42px;
+    background: white;
+    border: solid 1px #C8C8C8;
+    color: #646464;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+
 
 
 /*footer*/

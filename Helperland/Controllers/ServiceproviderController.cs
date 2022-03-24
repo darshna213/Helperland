@@ -28,16 +28,33 @@ namespace Helperland.Controllers
         public string GetNewServiceRequest(CustomerServiceNewRequest customerServiceNewRequest)
         {
             User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int userid = user.UserId;
+            var newservice = (from sr in _helperlandContext.ServiceRequests
+                              join u in _helperlandContext.Users on sr.UserId equals u.UserId
+                              join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
+                              where sr.Status == 1
+                              select new
+                              {
 
-            if (user.UserId != 0)
-            {
-                var table = _helperlandContext.ServiceRequests.Where(u => u.Status == 1).ToList();
-                return JsonSerializer.Serialize(table);
-            }
-            else
-            {
-                return "loginModal";
-            }
+                                  RequestId = sr.ServiceRequestId,
+                                  ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                                  ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                                  CustomerName = u.FirstName + " " + u.LastName,
+                                  ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                                  TotalCost = sr.TotalCost,
+                                  SubTotal = sr.SubTotal,
+
+                                  AddressLine1 = add.AddressLine1,
+                                  AddressLine2 = add.AddressLine2,
+                                  City = add.City,
+                                  PostalCode = add.PostalCode,
+                                  Mobile = add.Mobile,
+
+                              }).ToList();
+
+            return JsonSerializer.Serialize(newservice);
+
+
 
         }
 
@@ -66,16 +83,31 @@ namespace Helperland.Controllers
         public string GetUpcomingServiceRequest(CustomerServiceNewRequest customerServiceNewRequest)
         {
             User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int userid = user.UserId;
+            var upcomingservice = (from sr in _helperlandContext.ServiceRequests
+                                   join u in _helperlandContext.Users on sr.UserId equals u.UserId
+                                   join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
+                                   where sr.Status == 4
+                                   select new
+                                   {
 
-            if (user.UserId != 0)
-            {
-                var table = _helperlandContext.ServiceRequests.Where(u => u.Status == 4).ToList();
-                return JsonSerializer.Serialize(table);
-            }
-            else
-            {
-                return "loginModal";
-            }
+                                       RequestId = sr.ServiceRequestId,
+                                       ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                                       ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                                       CustomerName = u.FirstName + " " + u.LastName,
+                                       ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                                       TotalCost = sr.TotalCost,
+                                       Distance = sr.Distance,
+
+                                       AddressLine1 = add.AddressLine1,
+                                       AddressLine2 = add.AddressLine2,
+                                       City = add.City,
+                                       PostalCode = add.PostalCode,
+                                       Mobile = add.Mobile,
+                                       Email = add.Email,
+                                   }).ToList();
+
+            return JsonSerializer.Serialize(upcomingservice);
 
         }
 
@@ -126,77 +158,110 @@ namespace Helperland.Controllers
         {
             User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
 
-            if (user.UserId != 0)
-            {
-                var table = _helperlandContext.ServiceRequests.Where(u => u.Status == 2).ToList();
-                return JsonSerializer.Serialize(table);
-            }
-            else
-            {
-                return "loginModal";
-            }
+            int userid = user.UserId;
+            var servicehistory = (from sr in _helperlandContext.ServiceRequests
+                                  join u in _helperlandContext.Users on sr.UserId equals u.UserId
+                                  join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
+                                  where sr.Status == 2
+                                  select new
+                                  {
 
+                                      RequestId = sr.ServiceRequestId,
+                                      ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                                      ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                                      CustomerName = u.FirstName + " " + u.LastName,
+                                      ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                                      TotalCost = sr.TotalCost,
+                                      Distance = sr.Distance,
+
+                                      AddressLine1 = add.AddressLine1,
+                                      AddressLine2 = add.AddressLine2,
+                                      City = add.City,
+                                      PostalCode = add.PostalCode,
+                                      Mobile = add.Mobile,
+                                  }).ToList();
+
+            return JsonSerializer.Serialize(servicehistory);
         }
 
+        [HttpPost]
+        public string GetMyRating(CustomerServiceNewRequest customerServiceNewRequest)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+            int userid = user.UserId;
+            var rating = (from rate in _helperlandContext.Ratings
+                          join u in _helperlandContext.Users on rate.RatingFrom equals u.UserId
+                          join sr in _helperlandContext.ServiceRequests on rate.ServiceRequestId equals sr.ServiceRequestId
+                          where rate.RatingTo == userid
+                          select new
+                          {
+
+                              RequestId = sr.ServiceRequestId,
+                              ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                              ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                              CustomerName = u.FirstName + " " + u.LastName,
+                              ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                              TotalCost = sr.TotalCost,
+                              Distance = sr.Distance,
+
+                              Ratings = rate.Ratings,
+                              Comments = rate.Comments,
+
+                          }).ToList();
+
+            return JsonSerializer.Serialize(rating);
+        }
 
         [HttpPost]
         public string GetBlockCustomer(string s)
         {
-            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
-            int? userId = u.UserId;
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int userid = user.UserId;
+            var block = (from sr in _helperlandContext.ServiceRequests
+                         join u in _helperlandContext.Users on sr.UserId equals u.UserId
 
-            if (userId != null)
-            {
-                var table = _helperlandContext.Users.Where(u => u.UserTypeId == 1).ToList();
-                    return JsonSerializer.Serialize(table);
-            }
-            else
-            {
-                return "loginModal";
-            }
+                         where sr.ServiceProviderId == userid
+                         select new
+                         {
+                             RequestId = sr.UserId,
+                             CustomerName = u.FirstName + " " + u.LastName,
+                             IsBlocked = _helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == userid && x.TargetUserId == sr.UserId).Select(x => x.IsBlocked).FirstOrDefault()
+                         }).Distinct().ToList();
+
+            return JsonSerializer.Serialize(block);
         }
 
-        public string BlockCustomerService(int BlockUserId)
+        public string BlockCustomerService(int BlockUserId , bool IsBlocked)
         {
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? userid = u.UserId;
-           // var p = _helperlandContext.FavoriteAndBlockeds.Where(c =>c.TargetUserId == BlockUserId).FirstOrDefault();
-            //_helperlandContext.FavoriteAndBlockeds.Where(x => x.UserId == userid).FirstOrDefault();
-            if (userid !=null)
+
+            if (userid != null)
             {
-                var p = _helperlandContext.FavoriteAndBlockeds.Where(c => c.TargetUserId == BlockUserId).FirstOrDefault();
-                //    FavoriteAndBlocked favoriteAndBlocked = _helperlandContext.FavoriteAndBlockeds.FirstOrDefault(x => x.TargetUserId == BlockUserId);
-                if (p == null)
+              FavoriteAndBlocked favoriteAndBlocked = _helperlandContext.FavoriteAndBlockeds.Where(c => c.TargetUserId == BlockUserId && c.UserId==userid).FirstOrDefault();
+                if (favoriteAndBlocked != null)
                 {
-                    FavoriteAndBlocked favoriteAndBlocked = new FavoriteAndBlocked
-                    {
-                        UserId = (int)userid,
-                        TargetUserId = BlockUserId,
-                        IsBlocked = true,
-                        IsFavorite = false
-                    };
-                    _helperlandContext.FavoriteAndBlockeds.Add(favoriteAndBlocked);
+                    favoriteAndBlocked.IsBlocked = IsBlocked;
+                    _helperlandContext.FavoriteAndBlockeds.Update(favoriteAndBlocked);
                     _helperlandContext.SaveChanges();
+                  
                 }
                 else
                 {
-                    p.IsBlocked = true;
-                    _helperlandContext.SaveChanges();
+                    FavoriteAndBlocked favoriteAndBlocked1 = new FavoriteAndBlocked();
+                    favoriteAndBlocked1.UserId = u.UserId;
+                    favoriteAndBlocked1.TargetUserId = BlockUserId;
+                    favoriteAndBlocked1.IsBlocked = IsBlocked;
+                    _helperlandContext.FavoriteAndBlockeds.Add(favoriteAndBlocked1);
+
                 }
 
-                //favoriteAndBlocked.UserId = u.UserId;
-                ////favoriteAndBlocked.TargetUserId = BlockUserId;
-                //favoriteAndBlocked.IsBlocked = true;
-                //favoriteAndBlocked.IsFavorite = false;
-                //_helperlandContext.FavoriteAndBlockeds.Update(favoriteAndBlocked);
-                //_helperlandContext.SaveChanges();
-                return "true";
             }
-            return "false";
+            return "true";
         }
 
-
-
+       
 
 
 
@@ -204,13 +269,11 @@ namespace Helperland.Controllers
 
         public string GetUserDetails(string s)
         {
-           User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
- 
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
             var currentProviderDetails = _helperlandContext.Users.Where(u => u.UserId == user.UserId).FirstOrDefault();
             Console.WriteLine(currentProviderDetails.FirstName);
-            
-           
-            return JsonSerializer.Serialize(currentProviderDetails) ;
+            return JsonSerializer.Serialize(currentProviderDetails);
         }
         public string GetAddressDetails(string s)
         {
@@ -273,31 +336,36 @@ namespace Helperland.Controllers
         }
 
 
+
+        public string GetStoredPassword(string StoredPassword)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+
+
+            var s = _helperlandContext.Users.Where(x => x.UserId == user.UserId).FirstOrDefault();
+            return JsonSerializer.Serialize(s);
+
+        }
         public string ChangePassword(Login changepassword)
         {
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? userid = u.UserId;
             if (userid != null)
             {
-                User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
-                if(user.Password==changepassword.Password)
-                { 
+                User user = _helperlandContext.Users.Where(x => x.UserId == userid && x.Password == changepassword.Password).FirstOrDefault();
+
                 user.Password = changepassword.NewPassword;
 
                 _helperlandContext.Users.Update(user);
                 _helperlandContext.SaveChanges();
-                }
-                else
-                {
-                    return "Old password is not matched with current password";
-                }
+                return "true";
             }
             else
             {
-                return "something wrong please check";
+                return "false";
             }
 
-            return "true";
+
         }
     }
 }

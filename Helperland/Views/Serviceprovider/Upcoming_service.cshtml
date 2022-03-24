@@ -85,7 +85,7 @@
     <section class="welcome-sandip ">
         <div class="container">
             <h2 class="text-center">
-                Welcome, <span><b> @Context.Session.GetString("Name")</b></span>
+                Welcome, <span><b> @Context.Session.GetString("Name")</b></span> !
             </h2>
         </div>
     </section>
@@ -114,64 +114,10 @@
             @await Html.PartialAsync("SPUpcomingservice")
             @await Html.PartialAsync("SPServiceschedule")
             @await Html.PartialAsync("SPServicehistory")
-            @await Html.PartialAsync("SPMyrating")
+            @await Html.PartialAsync("SPMyratings")
             @await Html.PartialAsync("SPBlockcustomer")
             @await Html.PartialAsync("SPMysettings")
 
-            @*<div class="container-fluid row" id="rightsidebar">
-                <div class="col">
-                    <table id="content-table" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    Service ID <img src="~/IMAGES/up-down-sort.png">
-                                </th>
-                                <th id="sd">
-                                    Service date <img src="~/IMAGES/up-down-sort.png">
-                                </th>
-                                <th id="cd">
-                                    Customer details <img src="~/IMAGES/up-down-sort.png">
-                                </th>
-                                <th>
-                                    Distance <img src="~/IMAGES/up-down-sort.png">
-                                </th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>*@
-            <!--1st row start-->
-            @*<tr>
-                                    <td>
-                                        323436
-                                    </td>
-                                    <td>
-                                        <p class="date">
-                                            <img src="~/IMAGES/calendar2.png"> 09/04/2018
-                                        </p>
-                                        <p>
-                                            <img src="~/IMAGES/time.png"> 12:00 - 18:00
-                                        </p>
-                                    </td>
-                                    <td>
-                                        <p>
-                                            David Bough
-                                        </p>
-                                        <p>
-                                            <img src="~/IMAGES/home.png"> Musterstrabe 5,12345 Bonn
-                                        </p>
-                                    </td>
-                                    <td>
-                                        15 km
-                                    </td>
-                                    <td>
-                                        <input class="cancel-btn" type="button" value="Cancel">
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>*@
             <!--rightside content code end-->
         </div>
     </section>

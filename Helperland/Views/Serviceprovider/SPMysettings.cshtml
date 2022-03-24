@@ -1,4 +1,4 @@
-﻿
+﻿@model Helperland.Models.User
 @{
     ViewData["Title"] = "SPMysettings";
 }
@@ -18,18 +18,20 @@
         <div class="row" style="margin-top:10px;">
             <p><b>Account Status:&nbsp;</b><span style="color:#57a825;"><b>Active</b></span></p>
             <p><b>Basic Details</b></p>
-            <hr/>
+            <hr />
         </div>
-    
+
 
         <div class="row " style="margin-top:10px;">
             <div class="col-md-3">
                 <label>Firstname</label><br />
                 <input class="my-detail-form " type="text" placeholder="Firstname" id="sp-my-details-fname" />
+                <span></span>
             </div>
             <div class="col-md-3">
                 <label>Lastname</label><br />
                 <input class="my-detail-form" type="text" placeholder="Lastname" id="sp-my-details-lname" />
+                <span></span>
             </div>
             <div class="col-md-3">
                 <label>E-mail address</label><br />
@@ -39,12 +41,11 @@
         <div class="row " style="margin-top:10px;">
             <div class="col-md-3 ">
                 <label>Mobile number</label><br />
-                <div class="d-flex tel-box'">
-                    <span class="" style="padding:0% !important; width: 35px;">
-                        <input class="mydetail-tel-icon" type="text" placeholder="+49" />
-                    </span>
-                    <input class="mydetail-tel-form" type="tel" placeholder="Phone number" id="sp-my-details-contact-number" />
-                </div>
+                @*<div class="d-flex tel-box'">*@
+
+                <input class="my-detail-form" type="tel" placeholder="Phone number" id="sp-my-details-contact-number" />
+                <span></span>
+                @*</div>*@
             </div>
             <div class="col-md-3" style="padding-right: 0%;">
                 <label>Date of Birth</label><br />
@@ -75,24 +76,27 @@
             <hr />
         </div>
         <div class="row">
-            <input type="hidden" id="addressId" name="addressID"/>
+            <input type="hidden" id="addressId" name="addressID" />
             <div class="col-md-3">
                 <label>Street name</label><br />
                 <input class="my-detail-form" type="text" placeholder="Street name" id="sp-my-address-street-name" />
+                <span></span>
             </div>
             <div class="col-md-3">
                 <label>House number</label><br />
                 <input class="my-detail-form" type="text" placeholder="House number" id="sp-my-address-house-number" />
+                <span></span>
             </div>
             <div class="col-md-3">
                 <label>Postal code</label><br />
-                <input class="my-detail-form" type="text" placeholder="Postal code" id="sp-my-address-postal-code" />
+                <input class="my-detail-form" type="text" placeholder="Postal code" id="sp-my-address-postal-code" disabled />
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <label>City</label><br />
                 <input class="my-detail-form" type="text" placeholder="City" id="sp-my-address-city" />
+                <span></span>
             </div>
 
         </div>
@@ -125,12 +129,23 @@
 
     <div id="change-password" class="tabcontent  d-none">
         <div class="change-password-content">
-            <p><b>Old Password</b></p>
-            <input type="password" class="form-control" placeholder="Current Passowrd" id="sp-current-password" />
-            <p><b>New Password</b></p>
-            <input type="password" class="form-control" placeholder="Password" id="sp-password" />
-            <p><b>Confirm Password</b></p>
-            <input type="password" class="form-control" placeholder=" Confirm Password" id="sp-confirm-password" />
+            <input type="hidden" id="sp-stored-password" name="storedpassword" />
+            <div class="pass-error">
+                <p><b>Old Password</b></p>
+                <input type="password" class="form-control" placeholder="Current Passowrd" id="sp-current-password" />
+                <span></span>
+            </div>
+            <div class="pass-error">
+                <p><b>New Password</b></p>
+                <input type="password" class="form-control" placeholder="Password" id="sp-password" />
+                <span></span>
+            </div>
+            <div class="pass-error">
+                <p><b>Confirm Password</b></p>
+                <input type="password" class="form-control" placeholder=" Confirm Password" id="sp-confirm-password" />
+                <span></span>
+            </div>
+
             <br />
             <button type="submit" class="btn change-password-save-btn " id="sp-change-password-save-btn">Save</button>
         </div>

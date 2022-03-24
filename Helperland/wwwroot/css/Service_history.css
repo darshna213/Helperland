@@ -230,7 +230,8 @@ nav {
 
 .modal-textarea {
     width: 100%;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #6464;
+    border-radius:4px;
 }
 
 .cancel-now {
@@ -244,14 +245,18 @@ nav {
 #rate-sp-modal .modal-body p {
     color: #646464;
     font-size: 14px;
-    margin-bottom: 2px !important;
+   /* margin-bottom: 2px !important;*/
 }
-
-.rate-your-sp {
+.provider-name {
+    color: #646464;
     font-size: 16px;
     font-weight: bold;
-    color: #646464;
 }
+.rate-your-sp {
+    font-size: 16px !important;
+    font-weight: bold !important;
+    color: #646464 !important;
+} 
 
 .submit-submit {
     background: #1d7a8c;
@@ -406,6 +411,15 @@ nav {
     font-size: 13px;
     cursor: pointer;
 }
+.status-pending {
+    background:#ff9900;
+    color: #ffffff;
+    border: 1px solid #e1e1e1;
+    padding: 5px 10px 4px 9px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
 
 .rate-sp {
     background-color: #6da9b5;
@@ -416,7 +430,19 @@ nav {
     font-size: 14px;
     cursor: pointer;
 }
-
+.cap-icon-modal {
+    border: 1px solid #aaaaaa;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 50%;
+    width:64px;
+}
+.rating {
+    font-size: 30px;
+    line-height: 20px;
+    cursor: pointer;
+}
 .list-group-item-action:hover {
     background: #146371 !important;
     color: #f9f9f9;
@@ -907,7 +933,7 @@ footer {
 
 
 
-
+/*form validation*/
 .error {
     border-color: #f00 !important;
     border-width: 2px !important;
@@ -920,7 +946,7 @@ footer {
         border-width: 2px !important;
     }
 
-/*form validation*/
+
 .col-md-3 .error input {
     border-color: #f00 !important;
     border-width: 2px !important;
@@ -943,4 +969,24 @@ footer {
     border-color: #0b0 !important;
     border-width: 2px !important;
     
+}
+/*form validation(password)*/
+
+.pass-error .error input {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+.pass-error .success input {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+
+.pass-error span {
+    display: block;
+}
+
+.pass-error .error span {
+    color: #f00 !important;
+    display: block !important;
 }

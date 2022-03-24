@@ -1,0 +1,337 @@
+﻿
+@{
+    ViewData["Title"] = "AdminUserManagement";
+}
+<style>
+
+    #admin-user-management {
+        width: 100% !important;
+    }
+
+    .rightsidebar {
+        /*  width: 80%;*/
+        background: #f2f4f5;
+    }
+
+    .heading {
+        margin: 20px 20px 10px 20px;
+    }
+
+        .heading h2 {
+            color: #646464;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+    .add-new-user {
+        background: #1FB6FF !important;
+        color: #ffff !important;
+        border-radius: 4px;
+        text-decoration: none !important;
+        width: 132px;
+        height: 36px;
+        padding: 10px 10px 10px 10px;
+        font-size: 14px;
+    }
+
+    .export-btn {
+        background: #1FB6FF;
+        rightsidebar color: #ffff !important;
+        border-radius: 4px;
+        text-decoration: none !important;
+        width: 132px;
+        height: 36px;
+        padding: 10px 10px 10px 10px;
+        font-size: 14px;
+        margin-right: 20px;
+        margin-bottom: 30px !important;
+    }
+
+    .user-table1 {
+        margin: 20px;
+    }
+
+    #data-table1 {
+        width: 100%;
+        border: solid 1px #E1E1E1;
+    }
+
+        #data-table1 thead {
+            background: #F9F9F9;
+        }
+
+        #data-table1 tbody {
+            background: #FFFFFF;
+        }
+
+        #data-table1 tr {
+            border-bottom: solid 1px #E1E1E1;
+        }
+
+        #data-table1 th, #data-table1 td {
+            padding: 15px 20px 13px 15px;
+            color: #646464;
+        }
+
+    .active-btn {
+        background: #67B644;
+        border: none;
+        color: #ffff;
+        font-size: 13px;
+        padding: 5px 10px 5px 10px;
+        text-align: center;
+        line-height: 24px;
+    }
+
+    .inactive-btn {
+        background: #FF6B6B;
+        border: none;
+        color: #ffff;
+        font-size: 13px;
+        padding: 5px 10px 5px 10px;
+        text-align: center;
+        line-height: 24px;
+    }
+
+    .user-table-menu {
+        text-align: center !important;
+        position: relative;
+    }
+    /*paging css*/
+    .paging {
+        background: white;
+        border: 1px solid #e1e1e1;
+    }
+
+    .um-bottom {
+        text-decoration: none;
+        margin-right: 8px;
+        padding-left: 15px;
+        font-size: 14px;
+    }
+
+        .um-bottom a {
+            color: #646464;
+            text-decoration: none;
+            margin-right: 8px;
+            margin-top: 18px;
+        }
+
+        .um-bottom select {
+            border-radius: 4px;
+            border: 1px solid #E1E1E1;
+            margin-right: 8px;
+            padding-left: 13px;
+            padding-right: 11px;
+            height: 38px;
+            width: 62px;
+            margin-top: 10px;
+            line-height: 24px;
+            color: #646464;
+        }
+
+    .user-table1 .datatable-page {
+        margin-top: 14px;
+        margin-bottom: 12px;
+        margin-right: 15px;
+    }
+
+        .user-table1 .datatable-page .page-no {
+            box-sizing: border-box;
+            display: inline-block;
+            text-align: center;
+            padding-top: 10px;
+            text-decoration: none !important;
+            height: 40px;
+            width: 40px;
+            color: #333 !important;
+            border: 1px solid #D6D6D6;
+            border-radius: 2px;
+            font-size: 14px;
+            margin-left: 0px;
+        }
+
+            .user-table1 .datatable-page .page-no .disabled {
+                cursor: default;
+                color: #666 !important;
+                /* border: 1px solid transparent;*/
+                background: transparent;
+                box-shadow: none;
+            }
+
+
+
+    #current {
+        color: white !important;
+        background: #565656 !important;
+        border: 1px solid transparent;
+        padding-right: 0px !important;
+    }
+
+    #now {
+        color: #646464;
+        background: #ffffff;
+    }
+</style>
+
+
+
+
+<div id="admin-user-management" class="d-none">
+
+    <!--rightside content code start-->
+    <div id="rightsidebar" class="rightsidebar">
+        <!--table heading code start-->
+        <div class="heading justify-content-between d-flex">
+            <div>
+                <h2>User Management</h2>
+            </div>
+            <div>
+                <a class="add-new-user" href="#"> <img style="margin-right:5px;margin-bottom:2px;" src="~/IMAGES/add.png" alt="add"> Add New Call Center</a>
+            </div>
+        </div>
+        <!--table heading code end-->
+        <!--filer code start-->
+        <div>
+            <form class="filter-form" action="" method="post">
+
+                <select class="form-select" id="admin-management-user-name" onchange="SelectedDataValue(this)">
+                    <option value="" selected>User name</option>
+                    <option value="1">Drashti Patel</option>
+                    <option value="2">dk patel</option>
+                    <option value="3">john jery</option>
+                    <option value="4">siri patel</option>
+                    <option value="5">hello hello</option>
+                    <option value="6">aaa aaa</option>
+                    <option value="7">demo test</option>
+                    <option value="8">test patel</option>
+                    <option value="9">Drashna Khokhariya</option>
+                    <option value="10">Demo due</option>
+                    <option value="11">Jhon karthy</option>
+                    <option value="12">piggy boy</option>
+
+                </select>
+                <select class="form-select" id="admin-management-user-type" onchange="SelectedDataValue(this)">
+                    <option selected>User Type</option>
+                    <option value="1">Customer</option>
+                    <option value="2">Service Provider</option>
+                </select>
+                <input type="text" id="myInputs" class="d-none" />
+                <div class="input-group me-2">
+                    <span class="form-input-text" id="basic-addon1">+49</span>
+                    <input type="text" class="form-control" placeholder="Phone number" aria-label="telephone" aria-describedby="basic-addon1" id="admin-management-phone-number">
+                </div>
+                <input type="text" class="form-control" placeholder="Zip code" aria-label="telephone" aria-describedby="basic-addon1" id="admin-management-zipcode">
+                <input class="submit-btn button" type="button" value="search" id="admin-management-search-btn" onclick="mysearchFunction()">
+                <input class="reset-btn button" id="reset-btn" type="reset" value="clear">
+            </form>
+            <div class="float-right">
+                <a class="export-btn" onclick="ExportToExcel('xlsx')">Export</a>
+            </div>
+        </div>
+        <!--filer code end-->
+        <!--export button code start-->
+        <!--export button code end-->
+        <!--table code start-->
+        <div class="user-table1">
+            <table class="data-table" id="data-table1">
+                <thead>
+                    <tr>
+                        <th>User Name <img src="~/IMAGES/up-down-sort.png" /> </th>
+                        <th>Role</th>
+                        <th>Date of Registration</th>
+                        <th>User Type</th>
+                        <th>Phone<img src="~/IMAGES/up-down-sort.png" /> </th>
+                        <th>Postal Code<img src="~/IMAGES/up-down-sort.png" /> </th>
+                        <th style="text-align: center;">Status</th>
+                        <th style="text-align:center;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--1 row start-->
+                    <tr>
+                        <td>Lyum watson </td>
+                        <td>Call Center </td>
+                        <td>Inquiry Manager </td>
+                        <td>123456</td>
+                        <td> Berlin</td>
+                        <td></td>
+                        <td style="text-align: center;"><button class="active-btn">Active</button></td>
+                        <td style="text-align:center;" class="user-table-menu">
+                        </td>
+                    </tr>
+                    <!--1 row end-->
+
+
+                </tbody>
+            </table>
+            <!--table code end-->
+            <!--paging code start-->
+            <div class="d-flex flex-wrap  justify-content-between paging">
+                <div class="um-bottom  d-flex flex-wrap justify-content-start" id="um-bottom">
+                    <a href="#" class="justify-content-center align-items-center mt-">Show</a>
+                    <select>
+                        <option selected="">10</option>
+                        <option value="1">20</option>
+                        <option value="2">30</option>
+                        <option value="3">40</option>
+                        <option value="4">50</option>
+                    </select>
+                    <a href="#">entries</a>
+                </div>
+
+                <div class="datatable-page justify-content-right" id="datatable-page">
+                    <a class="page-no previous disabled">
+                        <img src="~/IMAGES/left-polygon-black.png" />
+                    </a>
+                    <a class="page-no current" id="current">1</a>
+                    <a class="page-no now" id="now">2</a>
+                    <a class="page-no now" id="now">3</a>
+                    <a class="page-no now" id="now">4</a>
+                    <a class="page-no now" id="now">5</a>
+                    <a class="page-no next disabled">
+                        <img src="~/IMAGES/right-polygon-black - Copy.png" />
+                    </a>
+                </div>
+            </div>
+            <!--paging code end-->
+
+        </div>
+
+
+        <div class="footer">
+            ©2018 Helperland. All rights reserved.
+        </div>
+
+    </div>
+
+    <!--rightside content code end-->
+</div>
+
+
+<input class="cancel-hidden-input d-none" data-target="#active-modal" data-toggle="modal" type="button" id="active-modal-open-button">
+    <div class="modal fade" id="active-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title cancel-service-request" id="exampleModal2Label">Active/ Inactive</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <div class="form-group ">
+                            <input type="hidden" id="activeId" name="activeID" />
+                            <input type="hidden" id="emailId" name="emailID" />
+                            <input type="hidden" id="status" name="statusID" />
+
+                        </div>
+                        <button class="cancel-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="active-inactive-btn" type="button" data-dismiss="modal">
+                            Active / InActive
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

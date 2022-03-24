@@ -164,16 +164,34 @@ namespace Helperland.Controllers
         public string GetServicesDashboard(CustomerServiceNewRequest customerServiceNewRequest)
         {
             User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int userid = user.UserId;
+            var servicedashboard = (from sr in _helperlandContext.ServiceRequests
+                                  join u in _helperlandContext.Users on sr.UserId equals u.UserId
+                                  join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
+                                  where sr.UserId == userid && sr.Status == 1
+                                  select new
+                                  {
+                                      RequestId = sr.ServiceRequestId,
+                                      ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                                      ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                                      CustomerName = u.FirstName + " " + u.LastName,
+                                      ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                                      TotalCost = sr.TotalCost,
+                                      ServiceProviderId = sr.ServiceProviderId,
+                                      SpFirstName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.FirstName).FirstOrDefault(),
+                                      SpLastName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.LastName).FirstOrDefault(),
 
-            if (user.UserId != 0)
-            {
-                var table = _helperlandContext.ServiceRequests.Where(u => u.UserId == user.UserId && u.Status == 1).ToList();
-                return JsonSerializer.Serialize(table);
-            }
-            else
-            {
-                return "loginModal";
-            }
+                                      AverageRatings = _helperlandContext.Ratings.Where(u => u.RatingTo == sr.ServiceProviderId).Select(u => u.Ratings).ToList(),
+
+                                      AddressLine1 = add.AddressLine1,
+                                      AddressLine2 = add.AddressLine2,
+                                      City = add.City,
+                                      PostalCode = add.PostalCode,
+                                      Mobile = add.Mobile,
+
+                                  }).ToList();
+
+            return JsonSerializer.Serialize(servicedashboard);
 
         }
 
@@ -181,15 +199,36 @@ namespace Helperland.Controllers
         public string GetServiceHistory(string s)
         {
             User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
-            if (user.UserId != 0)
-            {
-                var table = _helperlandContext.ServiceRequests.Where(u => u.UserId == user.UserId && u.Status != 1).ToList();
-                return JsonSerializer.Serialize(table);
-            }
-            else
-            {
-                return "loginModal";
-            }
+            int userid = user.UserId;
+            var servicehistory = (from sr in _helperlandContext.ServiceRequests
+                                    join u in _helperlandContext.Users on sr.UserId equals u.UserId
+                                    join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
+                                    where sr.UserId == userid && sr.Status != 1
+                                    select new
+                                    {
+                                        RequestId = sr.ServiceRequestId,
+                                        ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                                        ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                                        CustomerName = u.FirstName + " " + u.LastName,
+                                        ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                                        TotalCost = sr.TotalCost,
+                                        Status = sr.Status,
+                                        ServiceProviderId = sr.ServiceProviderId,
+                                        SpFirstName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.FirstName).FirstOrDefault(),
+                                        SpLastName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.LastName).FirstOrDefault(),
+
+                                        AverageRatings = _helperlandContext.Ratings.Where(u => u.RatingTo == sr.ServiceProviderId).Select(u => u.Ratings).ToList(),
+
+                                        AddressLine1 = add.AddressLine1,
+                                        AddressLine2 = add.AddressLine2,
+                                        City = add.City,
+                                        PostalCode = add.PostalCode,
+                                        Mobile = add.Mobile,
+
+                                    }).ToList();
+
+            return JsonSerializer.Serialize(servicehistory);
+
         }
 
         [HttpPost]
@@ -320,7 +359,15 @@ namespace Helperland.Controllers
             Console.WriteLine(currentUserDetails.FirstName);
             return JsonSerializer.Serialize(currentUserDetails);
         }
+        public string GetStoredPassword(string StoredPassword)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
 
+
+            var s = _helperlandContext.Users.Where(x => x.UserId == user.UserId).FirstOrDefault();
+            return JsonSerializer.Serialize(s);
+
+        }
 
         public string ChangePassword(Login changepassword)
         {
@@ -346,9 +393,10 @@ namespace Helperland.Controllers
             }
             else
             {
-                return "something wrong please check";
+                return "false";
+               
             }
-            return "false";
+           
 
         }
         public string SaveDetails(Savedetails savedetails)
@@ -372,43 +420,39 @@ namespace Helperland.Controllers
             }
             else
             {
+                return "false";
                
-                return "something wrong please check";
             }
-
-            return "false";
-           
 
         }
 
-        //public IActionResult SpRating()
-        //{
-        //    User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
-        //    List<ServiceRequest> serviceRequest = _helperlandContext.ServiceRequests.Where(x => x.Status == 1 && x.ServiceProviderId).ToList();
-        //    List<User> user = new List<User>();
-        //    foreach (ServiceRequest users in serviceRequest)
-        //        {
-        //        var customername = _helperlandContext.Users.Where(u => u.UserId == users.UserId).FirstOrDefault();
-        //        users.Name = customername.FirstName + " " + customername.LastName;
-        //        var rate=_helperlandContext.Ratings.Where(c=>c.ServiceRequestId==users.ServiceRequestId)ToList();
-        //        decimal temp = 0;
-        //        foreach(Rating rating in rate)
-        //        {
-        //             if(rating.Ratings !=0)
-        //            {
-        //                temp += rating.Ratings;
-        //            }
-        //        }
-        //        if(rate.Count() !=0)
-        //        {
-        //            temp /= rate.Count();
-        //        }
-        //        users.Ratings = temp;
-        //    }
-        //    ViewBag.services = serviceRequest;
+        public string RateService(RatespViewModel ratespViewModel)
+        {
+            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int? userid = u.UserId;
+            if (userid != null)
+            {
+                int n = _helperlandContext.Ratings.Count(u => u.ServiceRequestId == ratespViewModel.ServiceId);
+                if(n==0)
+                {
+                    Rating rating = new Rating();
+                    rating.ServiceRequestId = ratespViewModel.ServiceId;
+                    rating.RatingFrom = u.UserId;
+                    rating.RatingTo = ratespViewModel.ServiceProviderId;
+                    rating.Ratings = (int)ratespViewModel.Average;
+                    rating.Comments = ratespViewModel.Comments;
+                    rating.RatingDate = DateTime.Now;
+                    rating.OnTimeArrival = ratespViewModel.OnTime;
+                    rating.Friendly = ratespViewModel.Friendly;
+                    rating.QualityOfService = ratespViewModel.QualityOfService;
 
-        //    return View();
-        //}
+                    _helperlandContext.Ratings.Update(rating);
+                    _helperlandContext.SaveChanges();
+                }
+            }
+
+                return "true";
+        }
     }
 
 }

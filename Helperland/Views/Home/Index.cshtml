@@ -472,6 +472,15 @@
             });
         </script>
     }
+    
+    @if (TempData["ActiveMessage"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("User are Inactive");
+            });
+        </script>
     }
     <!-- customer section end -->
     <!-- Modal code start -->
@@ -516,7 +525,7 @@
 
 
     <!--LOGIN modal code end-->
-   
+
     @if (TempData["SuccessMsg"] != null)
     {
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -525,8 +534,8 @@
                 alert("mail has sent successfully!");
             });
         </script>
-     }
-    
+    }
+
 
     <!--FORG0T PASSWORD CODE START-->
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">

@@ -365,6 +365,19 @@ nav {
             background-color: #1d7a8c;
             border-radius: 20px;
         }
+.upcoming-complete-btn {
+    color: white;
+    font-weight: bold;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+    padding-top: 8px;
+    background-color: #1d7a8c;
+    border-radius: 20px;
+    border:none;
+    margin-left:2px;
+
+}
 /*service history (row-detail-modal)*/
 #service-history-row-detail-modal {
     color: #646464;
@@ -402,7 +415,33 @@ nav {
             background-color: #1d7a8c;
             border-radius: 18px;
         }
+/*cancel modal*/
+.cancel-service-request {
+    color: #4f4f4f;
+    font-size: 18px;
+    font-weight: bold;
+}
 
+.cancel-heading {
+    color: #646464;
+    font-size: 14px;
+    margin-bottom: 2px !important;
+    font-weight: bold;
+}
+
+.modal-textarea {
+    width: 100%;
+    border: 1px solid #6464;
+    border-radius: 4px;
+}
+
+.cancel-now {
+    width: 100%;
+    color: #ffff;
+    background: #1d7a8c;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 
 
@@ -716,3 +755,70 @@ footer {
     .change-password-save-btn:hover {
         color: white;
     }
+
+
+
+
+/*form validation*/
+.error {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+    .error span {
+        color: #f00 !important;
+    }
+
+    .error input {
+        border-color: #f00 !important;
+        border-width: 2px !important;
+    }
+
+
+.col-md-3 .error input {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+.col-md-3 .success input {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+
+.col-md-3 span {
+    display: block;
+}
+
+.col-md-3 .error span {
+    color: #f00 !important;
+    display: block !important;
+}
+
+.success span {
+    color: white !important;
+}
+
+.success {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+/*form validation(password)*/
+
+.pass-error .error input {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+.pass-error .success input {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+
+.pass-error span {
+    display: block;
+}
+
+.pass-error .error span {
+    color: #f00 !important;
+    display: block !important;
+}

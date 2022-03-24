@@ -1,0 +1,327 @@
+﻿
+@{
+    ViewData["Title"] = "AdminServicehistory";
+}
+<!--admin-service-history code start-->
+<div class="" id="admin-service-history">
+    <div id="rightsidebar" class="rightsidebar">
+        <!--table heading code start-->
+        <div class="heading justify-content-between d-flex">
+            <div>
+                <h2>Service Requests</h2>
+            </div>
+        </div>
+        <!--table heading code end-->
+        <!--filer code start-->
+        <div>
+            <form class="filter-form" action="" method="post">
+
+                <input type="text" class="form-control" placeholder="Service ID" aria-label="telephone" aria-describedby="basic-addon1" id="serviceID">
+
+                <select class="form-select" style="width: 120px;" onchange="SelectedTextValue(this)">
+                    <option selected>Customer</option>
+                    <option value="1">Drashti Patel</option>
+                    <option value="2">dk patel</option>
+                    <option value="3">john jery</option>
+                    <option value="4">siri patel</option>
+                    <option value="5">hello hello</option>
+                    <option value="6">aaa aaa</option>
+                    <option value="7">demo test</option>
+                    <option value="8">test patel</option>
+                    <option value="9">Drashna Khokhariya</option>
+                </select>
+                <select class="form-select" onchange="SelectedTextValue(this)">
+                    <option selected>Service Provider</option>
+                    <option value="1">Demo due</option>
+                    <option value="2">Jhon karthy</option>
+                    <option value="2">piggy boy</option>
+                </select>
+                <select class="form-select" style="width: 120px;" onchange="SelectedTextValue(this)">
+                    <option value="Nothing" selected>Status</option>
+                    <option value="1">New</option>
+                    <option value="2">Completed</option>
+                    <option value="4">Pending</option>
+                    <option value="3">Cancelled</option>
+                </select>
+                <input type="text" id="myInput" class="d-none" />
+                <div class="input-group me-2">
+                    <span class="input-group-text" id="basic-addon1" style="background-color: #fff; border-right: none;"> <img src="~/IMAGES/calendar-blue.png" alt="calander"> </span>
+                    <input type="date" class="form-control" id="from-date" style="border-left: none;" placeholder="From Date" aria-label="date" aria-describedby="basic-addon1" >
+
+                </div>
+                <div class="input-group me-2">
+                    <span class="input-group-text" id="basic-addon1" style="background-color: #fff; border-right: none;"> <img src="~/IMAGES/calendar-blue.png" alt="calander"> </span>
+                    <input type="date" class="form-control" id="to-date" style="border-left: transparent;" placeholder="To Date" aria-label="date" aria-describedby="basic-addon1" >
+
+                </div>
+                <input class="submit-btn button" type="button" value="search" onclick="myFunction()">
+                <input class="reset-btn button" id="reset-btn" type="reset" value="clear">
+            </form>
+        </div>
+
+        <!--filer code end-->
+        <!--table code start-->
+        <div class="user-table">
+            <table class="data-table" id="data-table">
+                <thead>
+                    <tr>
+                        <th>Service ID &nbsp;<img src="~/IMAGES/up-down-sort.png" /></th>
+                        <th>Service date &nbsp;<img src="~/IMAGES/up-down-sort.png" /></th>
+                        <th>Customer details &nbsp;<img src="~/IMAGES/up-down-sort.png" /></th>
+                        <th>Service provider&nbsp;<img src="~/IMAGES/up-down-sort.png" /></th>
+                        <th style="text-align: center;">Status&nbsp;<img src="~/IMAGES/up-down-sort.png" /></th>
+                        <th style="text-align:center;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    <!--5 row start-->
+                    <tr>
+                        <td>323436</td>
+                        <td>
+                            <p class="date" id="service-content"><img src="~/IMAGES/calendar2.png"> 09/04/2018</p>
+                            <p id="service-content"><img src="~/IMAGES/time.png"> 12:00 - 18:00</p>
+                        </td>
+                        <td>
+                            <p id="service-content">David Bough</p>
+                            <p id="service-content"><img src="~/IMAGES/home.png"> Musterstrabe 5,12345 Bonn</p>
+                        </td>
+                        <td>
+                            <div class="a flex-wrap">
+                                <div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">
+                                    <img src="~/IMAGES/cap.png">
+
+                                </div>
+                                <div>
+
+                                    <p class="lum-watson">
+                                        Lyum Watson
+                                    </p>
+                                    <p id="service-content">
+                                        <img src="~/IMAGES/star-yellow.png">
+                                        <img src="~/IMAGES/star-yellow.png">
+                                        <img src="~/IMAGES/star-yellow.png">
+                                        <img src="~/IMAGES/star-yellow.png">
+                                        <img src="~/IMAGES/star-grey.png"> 4
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="text-align: center;"><button class="completed-btn">Completed</button></td>
+                        <td style="text-align:center;" @*class="user-table-menu"*@>
+                            <div class="btn-group user_menu">
+                                <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false" style="padding-right:45px;">
+                                    <img src="~/IMAGES/menu-3dots.png" alt="3dots">
+
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+
+                                    <li><a class="dropdown-item" href="#">My Dashboard</a></li>
+                                    <li><a class="dropdown-item" href="#">My Settings</a></li>
+                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    <li><a class="dropdown-item" href="#">login</a></li>
+                                    <li><a class="dropdown-item" href="#">history</a></li>
+
+
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <!--5 row end-->
+
+                </tbody>
+            </table>
+            <!--table code end-->
+            <!--paging code start-->
+            <div class="d-flex flex-wrap  justify-content-between paging">
+                <div class="um-bottom  d-flex flex-wrap justify-content-start" id="um-bottom">
+                    <a href="#" class="justify-content-center align-items-center mt-">Show</a>
+                    <select>
+                        <option selected="">10</option>
+                        <option value="1">20</option>
+                        <option value="2">30</option>
+                        <option value="3">40</option>
+                        <option value="4">50</option>
+                    </select>
+                    <a href="#">entries</a>
+                </div>
+
+                <div class="datatable-page justify-content-right" id="datatable-page">
+                    <a class="page-no previous disabled">
+                        <img src="~/IMAGES/left-polygon-black.png" />
+                    </a>
+                    <a class="page-no current" id="current">1</a>
+                    <a class="page-no now" id="now">2</a>
+                    <a class="page-no now" id="now">3</a>
+                    <a class="page-no now" id="now">4</a>
+                    <a class="page-no now" id="now">5</a>
+                    <a class="page-no next disabled">
+                        <img src="~/IMAGES/right-polygon-black - Copy.png" />
+                    </a>
+                </div>
+            </div>
+            <!--paging code end-->
+        </div>
+
+    </div>
+</div>
+<!--admin-service-history code end-->
+<!--edit-reschedule modal code start-->
+<input class="edit-hidden-input d-none" data-target="#accept-modal" data-toggle="modal" type="button" id="edit-modal-open-button">
+<div class="modal fade" id="accept-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title " id="exampleModal2Label" style=" font-weight: bold; color: #646464;">Edit Service Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group ">
+                        <div class="add-address-box" id="add-adress-box-modal">
+
+                            <div class="address-taker-box d-flex" style="width:100%;">
+                                <div style="width:45%;">
+                                    <label for="date">
+                                        <b>Date</b>
+                                    </label>
+                                    <br>
+                                    <input type="date" name="date" id="edit-date-modal" />
+                                </div>
+                                <div style="width:45%;">
+                                    <label for="time">
+                                        <b>Time</b>
+                                    </label>
+                                    <br>
+                                    <select id="edit-time-modal" style="color:#646464">
+                                        <option selected value="2:00">2:00</option>
+                                        <option value="4:00">4:00</option>
+                                        <option value="6:00">6:00</option>
+                                        <option value="8:00">8:00</option>
+                                    </select>
+                                    <input hidden type="number" id="editId" name="editID" />
+                                </div>
+                            </div>
+                            <div style="color: #646464; margin-left: 20px; padding-left: 10px;">
+                                <p><b>Service Address</b></p>
+                            </div>
+                            <div class="address-taker-box d-flex" style="width:100%;">
+                                <div style="width:45%;">
+                                    <label for="streetname">
+                                        Street name
+                                    </label>
+                                    <br>
+                                    <input type="text" name="streetname" placeholder="Street name" id="edit-streetname-modal" />
+                                </div>
+                                <div style="width:45%;">
+                                    <label for="housename">
+                                        House number
+                                    </label>
+                                    <br>
+
+                                    <input type="text" name="housename" placeholder="House number" id="edit-housename-modal" />
+                                </div>
+                            </div>
+                            <div class="address-taker-box d-flex" style="width:100%;">
+                                <div style="width:45%;">
+                                    <label for="postalcode">
+                                        Postal code
+                                    </label>
+                                    <br>
+                                    <input type="text" name="postalcode" placeholder="Postal code" id="edit-postalcode-modal" />
+
+                                </div>
+                                <div style="width:45%;">
+                                    <label for="city">
+                                        City
+                                    </label>
+                                    <br>
+                                    <input type="text" name="city" placeholder="City" id="edit-city-modal" />
+                                </div>
+                            </div>
+                            <div style="color: #646464; margin-left: 20px; padding-left: 10px;">
+                                <p><b>Invoice Address</b></p>
+                            </div>
+                            <div class="address-taker-box d-flex" style="width:100%;">
+                                <div style="width:45%;">
+                                    <label for="streetname">
+                                        Street name
+                                    </label>
+                                    <br>
+                                    <input type="text" name="streetname" placeholder="Street name" id="invoice-edit-streetname-modal" />
+                                </div>
+                                <div style="width:45%;">
+                                    <label for="housename">
+                                        House number
+                                    </label>
+                                    <br>
+
+                                    <input type="text" name="housename" placeholder="House number" id="invoice-edit-housename-modal" />
+                                </div>
+                            </div>
+                            <div class="address-taker-box d-flex" style="width:100%;">
+                                <div style="width:45%;">
+                                    <label for="postalcode">
+                                        Postal code
+                                    </label>
+                                    <br>
+                                    <input type="text" name="postalcode" placeholder="Postal code" id="invoice-edit-postalcode-modal" />
+
+                                </div>
+                                <div style="width:45%;">
+                                    <label for="city">
+                                        City
+                                    </label>
+                                    <br>
+                                    <input type="text" name="city" placeholder="City" id="invoice-edit-city-modal" />
+                                </div>
+                            </div>
+                            <div class="address-taker-box " style="width:100%;">
+                                <label class="accept-heading"><b>Why do you want to reschedule service request?</b></label>
+                                <textarea class="modal-textarea" id="reschedule-modal-textarea" style="color: #646464; width: 90%; border: 1px solid #c8c8c8; border-radius: 5px;" placeholder="Why do you want to reschedule service request?"></textarea>
+                            </div>
+                            <div class="address-taker-box " style="width:100%;">
+                                <label class="accept-heading"><b>Call Center EMP Notes</b></label>
+                                <textarea class="modal-textarea" id="emp-modal-textarea" style="color: #646464; width: 90%; border: 1px solid #c8c8c8; border-radius: 5px;" placeholder="Enter Notes"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="update-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="update-now-btn" type="button" data-dismiss="modal">
+                        Update
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--edit-reschedule modal code end-->
+<!--cancel modal code start-->
+<input class="cancel-hidden-input d-none" data-target="#cancel-modal" data-toggle="modal" type="button" id="cancel-modal-open-button">
+<div class="modal fade" id="cancel-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title cancel-service-request" id="exampleModal2Label">Cancel Service Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-group ">
+                        <input type="hidden" id="cancelId" name="cacnelID" />
+                        <p class="cancel-heading">Why you want to cancel the service request?</p>
+                        <textarea class="modal-textarea" id="cancel-modal-textarea" style="color:#646464;" required></textarea>
+                    </div>
+                    <button class="cancel-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="cancel-now-btn" type="button" data-dismiss="modal">
+                        Cancel Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--cancel modal code end-->

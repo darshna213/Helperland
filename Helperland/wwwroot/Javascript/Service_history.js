@@ -150,13 +150,71 @@ function getDashboardData() {
                         var cell4 = row.insertCell(3);
                         var cell5 = row.insertCell(4);
 
-                        cell1.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + json[i].ServiceRequestId + '</td>';
-                        cell2.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + json[i].ServiceStartDate.split("T")[0] + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
-                        cell3.innerHTML = json[i].ServiceProviderId;
-                        cell4.innerHTML = ' <td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
+                        var CustomerName = json[i].CustomerName;
+                        var startDate = json[i].ServiceStartDate;
+                        var duration = json[i].ServiceTotalHour;
+                        var startTime = json[i].ServiceStartTime;
+                        var endTime = '';
+                        if (startTime.split(":")[1] == '30') {
+                            endTime = parseFloat(startTime.split(":")[0]) + duration + 0.5;
+                        }
+                        else {
+                            endTime = parseFloat(startTime.split(":")[0]) + duration;
+                        }
+                        if ((endTime + "").split(".")[1] == 5) {
+                            endTime = (endTime + "").split(".")[0] + ":30";
+                        }
+                        else {
+                            endTime = (endTime + "").split(".")[0] + ":00";
+                        }
+
+                        var TotalCost = json[i].TotalCost;
+                        var add = json[i].AddressLine2 + json[i].AddressLine1 + json[i].PostalCode + json[i].City;
+                        var SubTotal = json[i].SubTotal;
+
+                        cell1.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + json[i].RequestId + '</td>';
+                        cell2.innerHTML = '<td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="date">' + ' <img src="/IMAGES/calendar2.png"/>' + startDate + ' </p>' + '<p> <img src="/IMAGES/time.png" />' + startTime + '-' + endTime + '</p>' + '</td>';
+
+                        if (json[i].ServiceProviderId != null) {
+                            var sum = 0.0;
+                            for (var rat = 0; rat < json[i].AverageRatings.length; rat++) {
+                                sum += parseFloat(json[i].AverageRatings[rat]);
+                            }
+                            var averageRatings = 0;
+                            if (json[i].AverageRatings.length != 0) {
+                                averageRatings = sum / json[i].AverageRatings.length;
+                            }
+                            // const averageRatings = 3.0;
+                            Start =
+                                '<div class="a flex-wrap">' +
+                                '<div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">' +
+                                '<img src="/IMAGES/cap.png">' +
+                                '</div>' +
+                                '<div>' +
+                                '<p class="lum-watson">' + json[i].SpFirstName + " " + json[i].SpLastName + ' </p>';
+
+
+                            end =
+                                "<span>" + averageRatings + "</span>" + "</div>" + "</div>";
+
+                            middle = "";
+                            for (let i = 0; i < averageRatings; i++) {
+                                middle =
+                                    middle + '<img src="/IMAGES/star-yellow.png">';
+                            }
+                            for (let i = 0; i < 5 - averageRatings; i++) {
+                                middle =
+                                    middle + '<img src="/IMAGES/star-grey.png">';
+                            }
+                            cell3.innerHTML = Start + middle + end;
+
+                        }
+
+
+                        cell4.innerHTML = ' <td data-target="#service-detail-modal" data-toggle="modal">' + '<p class="euro d-flex justify-content-center">' + ' &euro;' + TotalCost + '</p>' + '</td>';
                         cell5.innerHTML =
-                            '<button class="re-scheduleservice" onclick="rescheduleService(\'' + json[i].ServiceRequestId + '\')">Reschedule</button>' +
-                            '<button class="cancel-cancel" onclick="cancelService(\'' + json[i].ServiceRequestId + '\')">Cancel</button>';
+                            '<button class="re-scheduleservice" onclick="rescheduleService(\'' + json[i].RequestId + '\')">Reschedule</button>' +
+                            '<button class="cancel-cancel" onclick="cancelService(\'' + json[i].RequestId + '\')">Cancel</button>';
                     }
                 },
             error:
@@ -192,21 +250,99 @@ function getServicehistoryData() {
                         var cell3 = row.insertCell(2);
                         var cell4 = row.insertCell(3);
                         var cell5 = row.insertCell(4);
+
+                        var CustomerName = json[i].CustomerName;
+                        var startDate = json[i].ServiceStartDate;
+                        var duration = json[i].ServiceTotalHour;
+                        var startTime = json[i].ServiceStartTime;
+                        var endTime = '';
+                        if (startTime.split(":")[1] == '30') {
+                            endTime = parseFloat(startTime.split(":")[0]) + duration + 0.5;
+                        }
+                        else {
+                            endTime = parseFloat(startTime.split(":")[0]) + duration;
+                        }
+                        if ((endTime + "").split(".")[1] == 5) {
+                            endTime = (endTime + "").split(".")[0] + ":30";
+                        }
+                        else {
+                            endTime = (endTime + "").split(".")[0] + ":00";
+                        }
+
+                        var TotalCost = json[i].TotalCost;
+                        var add = json[i].AddressLine2 + json[i].AddressLine1 + json[i].PostalCode + json[i].City;
+                        var SubTotal = json[i].SubTotal;
+
+                        cell1.innerHTML = '<td>' + '<p class="date">' + ' <img src = "/IMAGES/calendar-grey.png" />' + startDate + '</p>' + ' <p> <img src="/IMAGES/time.png">'  + startTime + '-' + endTime + '</p>' + '</td>';
+
+                        if (json[i].ServiceProviderId != null) {
+                            var sum = 0.0;
+                            for (var rat = 0; rat < json[i].AverageRatings.length; rat++) {
+                                sum += parseFloat(json[i].AverageRatings[rat]);
+                            }
+                            var averageRatings = 0;
+                            if (json[i].AverageRatings.length != 0) {
+                                averageRatings = sum / json[i].AverageRatings.length;
+                            }
+                            // const averageRatings = 3.0;
+                            Start =
+                                '<div class="a flex-wrap">' +
+                                '<div class="rounded-circle d-flex justify-content-center align-items-center cap-icon">' +
+                                '<img src="/IMAGES/cap.png">' +
+                                '</div>' +
+                                '<div>' +
+                                '<p class="lum-watson">' + json[i].SpFirstName + " " + json[i].SpLastName + ' </p>';
+
+
+                            end =
+                                "<span>" + averageRatings + "</span>" + "</div>" + "</div>";
+
+                            middle = "";
+                            for (let i = 0; i < averageRatings; i++) {
+                                middle =
+                                    middle + '<img src="/IMAGES/star-yellow.png">';
+                            }
+                            for (let i = 0; i < 5 - averageRatings; i++) {
+                                middle =
+                                    middle + '<img src="/IMAGES/star-grey.png">';
+                            }
+                            cell2.innerHTML = Start + middle + end;
+
+                        }
+
                         
-                        cell1.innerHTML = '<td>' + '<p class="date">' + ' <img src = "/IMAGES/calendar-grey.png" />' + json[i].ServiceStartDate.split("T")[0] + '</p>' + ' <p>' + json[i].ServiceStartDate.split("T")[1] + '</p>' + '</td>';
-                        cell2.innerHTML = json[i].ServiceProviderId;
-                        cell3.innerHTML += ' <td  data-target="#service-detail-modal" data-toggle="modal">'   + '<p class="euro d-flex justify-content-center">' + ' &euro;' + json[i].TotalCost + '</p>' + '</td>';
-                        cell4.innerHTML = '<button class="status-cancelled" value="(\'' + json[i].Status + '\')">Cancelled</button>';
-                        cell5.innerHTML = '<button class="rate-sp" type="submit" onclick="ratesp(\'' + json[i].ServiceRequestId + '\')">Rate SP</button>';
-                        
+                        cell3.innerHTML += ' <td  data-target="#service-detail-modal" data-toggle="modal">' + '<p class="euro d-flex justify-content-center">' + ' &euro;' + TotalCost + '</p>' + '</td>';
+
+                        var Status = json[i].Status;
+                        if (Status == 3) {
+                            cell4.innerHTML =
+                                '<button class="status-cancelled" disabled>Cancelled</button>';
+
+                            cell5.innerHTML =
+                                '<button class="rate-sp" type="submit" disabled>Rate SP</button>';
+                        } else if (Status == 2) {
+                            cell4.innerHTML =
+                                '<button disabled href="#" class="status-completed text-white">Completed</button>';
+
+                            cell5.innerHTML =
+                                '<input class="rate-sp" type="button" value="Rate SP"   onclick="rateService(\'' + json[i].RequestId + '\',\'' + json[i].ServiceProviderId + '\',\'' + json[i].SpFirstName + " " + json[i].SpLastName + '\')">';
+
+                        } else if (Status == 4) {
+                            cell4.innerHTML =
+                                '<button disabled href="#" class="status-pending text-white">Pending</button>';
+                            cell5.innerHTML =
+                                '<button class="rate-sp" type="submit" disabled>Rate SP</button>';
+
+                        }
+
                     }
                 },
-                    error:
-                    function (response) {
-                        console.error(response);
-                        alert("wrong");
-                    }
-                
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("wrong");
+                }
+
         });
 }
 /////////row model popup///////////
@@ -364,10 +500,228 @@ $(function () {
 
     $('#schedule-service-date').attr('min', maxDate);
 });
+//////////rating modal////////////
+$("input:radio[name=on-time-arrival-radio]").change(function () {
+    var onTimeArrivalRating = document.querySelector('input[name="on-time-arrival-radio"]:checked').value;
+    var friendlyRating = document.querySelector('input[name="friendly-radio"]:checked').value;
+    var qualityOfServiceRating = document.querySelector('input[name="quality-of-service-radio"]:checked').value;
+
+    var x = (parseInt(onTimeArrivalRating) + parseInt(friendlyRating) + parseInt(qualityOfServiceRating)) / 3 + "";
+    $("#ratesp-modal-average-ratings").html(parseFloat(x).toFixed(2));
+    
+    switch (onTimeArrivalRating) {
+        case "1":
+            $("#on-time-arrival-star-2").html("☆");
+            $("#on-time-arrival-star-3").html("☆");
+            $("#on-time-arrival-star-4").html("☆");
+            $("#on-time-arrival-star-5").html("☆");
+            break;
+        case "2":
+            $("#on-time-arrival-star-2").html("★");
+            $("#on-time-arrival-star-3").html("☆");
+            $("#on-time-arrival-star-4").html("☆");
+            $("#on-time-arrival-star-5").html("☆");
+            break;
+        case "3":
+            $("#on-time-arrival-star-2").html("★");
+            $("#on-time-arrival-star-3").html("★");
+            $("#on-time-arrival-star-4").html("☆");
+            $("#on-time-arrival-star-5").html("☆");
+            break;
+        case "4":
+            $("#on-time-arrival-star-2").html("★");
+            $("#on-time-arrival-star-3").html("★");
+            $("#on-time-arrival-star-4").html("★");
+            $("#on-time-arrival-star-5").html("☆");
+            break;
+        case "5":
+            $("#on-time-arrival-star-2").html("★");
+            $("#on-time-arrival-star-3").html("★");
+            $("#on-time-arrival-star-4").html("★");
+            $("#on-time-arrival-star-5").html("★");
+            break;
+    }
+});
+$("input:radio[name=friendly-radio]").change(function () {
+    var onTimeArrivalRating = document.querySelector('input[name="on-time-arrival-radio"]:checked').value;
+    var friendlyRating = document.querySelector('input[name="friendly-radio"]:checked').value;
+    var qualityOfServiceRating = document.querySelector('input[name="quality-of-service-radio"]:checked').value;
+
+    var x = (parseInt(onTimeArrivalRating) + parseInt(friendlyRating) + parseInt(qualityOfServiceRating)) / 3 + "";
+    $("#ratesp-modal-average-ratings").html(parseFloat(x).toFixed(2));
+
+
+    switch (friendlyRating) {
+        case "1":
+            $("#friendly-star-2").html("☆");
+            $("#friendly-star-3").html("☆");
+            $("#friendly-star-4").html("☆");
+            $("#friendly-star-5").html("☆");
+            break;
+        case "2":
+            $("#friendly-star-2").html("★");
+            $("#friendly-star-3").html("☆");
+            $("#friendly-star-4").html("☆");
+            $("#friendly-star-5").html("☆");
+            break;
+        case "3":
+            $("#friendly-star-2").html("★");
+            $("#friendly-star-3").html("★");
+            $("#friendly-star-4").html("☆");
+            $("#friendly-star-5").html("☆");
+            break;
+        case "4":
+            $("#friendly-star-2").html("★");
+            $("#friendly-star-3").html("★");
+            $("#friendly-star-4").html("★");
+            $("#friendly-star-5").html("☆");
+            break;
+        case "5":
+            $("#friendly-star-2").html("★");
+            $("#friendly-star-3").html("★");
+            $("#friendly-star-4").html("★");
+            $("#friendly-star-5").html("★");
+            break;
+    }
+});
+$("input:radio[name=quality-of-service-radio]").change(function () {
+    var onTimeArrivalRating = document.querySelector('input[name="on-time-arrival-radio"]:checked').value;
+    var friendlyRating = document.querySelector('input[name="friendly-radio"]:checked').value;
+    var qualityOfServiceRating = document.querySelector('input[name="quality-of-service-radio"]:checked').value;
+
+    var x = (parseInt(onTimeArrivalRating) + parseInt(friendlyRating) + parseInt(qualityOfServiceRating)) / 3 + "";
+    $("#ratesp-modal-average-ratings").html(parseFloat(x).toFixed(2));
+
+
+    switch (qualityOfServiceRating) {
+        case "1":
+            $("#quality-of-service-star-2").html("☆");
+            $("#quality-of-service-star-3").html("☆");
+            $("#quality-of-service-star-4").html("☆");
+            $("#quality-of-service-star-5").html("☆");
+            break;
+        case "2":
+            $("#quality-of-service-star-2").html("★");
+            $("#quality-of-service-star-3").html("☆");
+            $("#quality-of-service-star-4").html("☆");
+            $("#quality-of-service-star-5").html("☆");
+            break;
+        case "3":
+            $("#quality-of-service-star-2").html("★");
+            $("#quality-of-service-star-3").html("★");
+            $("#quality-of-service-star-4").html("☆");
+            $("#quality-of-service-star-5").html("☆");
+            break;
+        case "4":
+            $("#quality-of-service-star-2").html("★");
+            $("#quality-of-service-star-3").html("★");
+            $("#quality-of-service-star-4").html("★");
+            $("#quality-of-service-star-5").html("☆");
+            break;
+        case "5":
+            $("#quality-of-service-star-2").html("★");
+            $("#quality-of-service-star-3").html("★");
+            $("#quality-of-service-star-4").html("★");
+            $("#quality-of-service-star-5").html("★");
+            break;
+    }
+});
+
+
+
+function rateService(RequestId, serviceProviderId, serviceProviderName) {
+
+
+    $("#rate-sp-service-id").val(RequestId);
+    $("#rate-sp-service-provider-id").val(serviceProviderId);
+    $("#rating-provider-name-modal").html(serviceProviderName);
+    document.getElementById("rate-sp-modal-open-button").click();
+}
+$("#rate-sp-submit-btn").click(function () {
+
+    if (document.getElementById("rate-sp-modal-comments").value.length >= 5) {
+        var serviceId = $("#rate-sp-service-id").val();
+        var serviceProviderId = $("#rate-sp-service-provider-id").val();
+        var comment = $("#rate-sp-modal-comments").val();
+
+        var onTimeArrivalRating = document.querySelector('input[name="on-time-arrival-radio"]:checked').value;
+        var friendlyRating = document.querySelector('input[name="friendly-radio"]:checked').value;
+        var qualityOfServiceRating = document.querySelector('input[name="quality-of-service-radio"]:checked').value;
+
+        var averageRatings = (parseInt(onTimeArrivalRating) + parseInt(friendlyRating) + parseInt(qualityOfServiceRating)) / 3;
+        var model = {
+            ServiceId: serviceId,
+            ServiceProviderId: serviceProviderId,
+            Comments: comment,
+            OnTime: onTimeArrivalRating,
+            Friendly: friendlyRating,
+            QualityOfService: qualityOfServiceRating,
+            Average: averageRatings
+        }
+
+        $.ajax(
+            {
+
+                type: 'POST',
+                url: '/Bookservice/RateService',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: model,
+
+                success:
+                    function (response) {
+                        alert("Your response has been submmited");
+                        getServicehistoryData();
+                    },
+                error:
+                    function (response) {
+                        console.error(response);
+                        alert("error");
+
+                    }
+            });
+
+    }
+    else {
+        checkCommentData();
+        
+        //alert("comment");
+    }
+});
+var comment = document.getElementById("rate-sp-modal-comments");
+function checkCommentData() {
+    var commentValue = comment.value.trim();
+    if (commentValue == "") {
+        setcommentError(comment, "comment must be requird");
+
+
+    } else {
+        setcommentSuccess(comment);
+
+    }
+}
+function setcommentError(u, msg) {
+    var parentBox = u.parentElement;
+    parentBox.className = "pass-error error";
+    var span = parentBox.querySelector("span");
+
+    span.innerText = msg;
+}
+function setcommentSuccess(u) {
+    var parentBox = u.parentElement;
+    parentBox.className = "pass-error success";
+
+}
+
+
+
+
+
+
+
 
 ///////add address(my settting)/////
 $("#add-address-new-address-button").click(function () {
-    
+
     //$("#postalcode").val($("#postal-code").val());
     $("#add-address-new-address-button").addClass("d-none");
     $("#add-adress-box").removeClass("d-none");
@@ -383,7 +737,7 @@ $("#setting-add-address-save-btn").click(function () {
 })
 $("#edit-address-save-btn-modal").click(function () {
     $("#edit-adddress-modal").addClass("d-none");
-    
+
 })
 
 
@@ -414,7 +768,7 @@ function getUserDetails() {
 }
 ///////////save user details/////////////
 $("#my-detail-save-btn").click(function () {
-    
+
     var firstName = $("#my-details-fname").val();
     var lastName = $("#my-details-lname").val();
     var email = $("#my-details-email").val();
@@ -426,25 +780,27 @@ $("#my-detail-save-btn").click(function () {
         Email: email,
         Mobile: mobile
     }
-    
+
     $.ajax(
-            {
-                type: 'POST',
-                url: '/Bookservice/SaveDetails',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: model,
-                success:
-                    function (response) {
-                        checkData();
-                        
-                    },
-                error:
-                    function (response) {
-                        console.error(response);
-                       
-                        checkData();
+        {
+            type: 'POST',
+            url: '/Bookservice/SaveDetails',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: model,
+            success:
+                function (response) {
+                    checkData();
+                    if (firstName != " " && lastName != " " && mobile != " ") {
+                        alert("your details are successfull saved!s")
                     }
-            });
+                },
+            error:
+                function (response) {
+                    console.error(response);
+
+                    checkData();
+                }
+        });
 });
 //save details validation
 var fname = document.getElementById("my-details-fname");
@@ -457,17 +813,17 @@ function checkData() {
 
     if (fnameValue == "") {
         setError(fname, "FirstName are requird");
-       
+
     } else {
         setSuccess(fname);
-        
+
     }
     if (lnameValue == "") {
         setError(lname, "LastName are requird");
 
     } else {
         setSuccess(lname);
-      
+
     }
     if (contactnumberValue == "") {
         setError(contactnumber, "Contactnumber ");
@@ -475,19 +831,19 @@ function checkData() {
     } else {
         setSuccess(contactnumber);
     }
-    
+
 }
 function setError(u, msg) {
     var parentBox = u.parentElement;
     parentBox.className = "col-md-3 error";
     var span = parentBox.querySelector("span");
-    
+
     span.innerText = msg;
 }
 function setSuccess(u) {
-    var parentBox = u.parentElement; 
+    var parentBox = u.parentElement;
     parentBox.className = "col-md-3 success";
-  
+
 }
 
 
@@ -509,7 +865,7 @@ function SetAddressList() {
             url: '/Bookservice/GetUserAddress',
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 
-           // data: { postalCode: document.getElementById("postal-code").value},
+            // data: { postalCode: document.getElementById("postal-code").value},
             success:
                 function (response) {
 
@@ -541,7 +897,7 @@ function SetAddressList() {
 function UserAddAddress() {
     var streetName = $("#streetname").val();
     var houseNumber = $("#housename").val();
-    var postalCode =$("#postalcode").val();
+    var postalCode = $("#postalcode").val();
     var city = $("#city").val();
     var mobile = $("#phonenumber").val();
 
@@ -563,7 +919,7 @@ function UserAddAddress() {
                 function (response) {
 
                     SetAddressList();
-                   
+
                 },
             error:
                 function (response) {
@@ -648,44 +1004,144 @@ document.getElementById("remove-now-btn").addEventListener("click", () => {
         });
 });
 /////////////////change password////////////////
-$("#change-password-save-btn").click(function () {
+getStoredPassword();
+function getStoredPassword() {
 
+    $.ajax(
+        {
+            type: 'POST',
+            url: '/Bookservice/GetStoredPassword',
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: {},
+            success:
+                function (response) {
+
+                    var json = JSON.parse(response);
+                    $("#sp-stored-password").val(json.Password);
+
+
+                },
+            error:
+                function (response) {
+                    console.error(response);
+                    alert("password not found");
+                }
+        });
+}
+
+
+
+$("#change-password-save-btn").click(function () {
+    var storedPass = $("#sp-stored-password").val();
     var oldPass = $("#current-password").val();
     var newPass = $("#password").val();
     var confPass = $("#confirm-password").val();
 
     if (oldPass != "" && newPass != "" && confPass != "") {
-        if (newPass == confPass) {
-            var model = {
-                Password: oldPass,
-                NewPassword: newPass,
-                ConfirmPassword: confPass,
+        if (storedPass == oldPass) {
+            if (newPass == confPass) {
+                var model = {
+                    Password: oldPass,
+                    NewPassword: newPass,
+                    ConfirmPassword: confPass,
+                }
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: '/Bookservice/ChangePassword',
+                        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                        data: model,
+                        success:
+                            function (response) {
+                                checkPasswordData();
+                                if (oldPass != "" && newPass != "" && confPass != "" && storedPass == oldPass && newPass == confPass) {
+                                    alert("your Password has change Successfully");
+                                }
+                            },
+                         error:
+                            function (response) {
+                                checkPasswordData();
+                                console.error(response);
+                                
+                            }
+
+                    });
+
             }
-            $.ajax(
-                {
-                    type: 'POST',
-                    url: '/Bookservice/ChangePassword',
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    data: model,
-                    success:
-                        function (response) {
+            else {
+                checkPasswordData();
 
-                            alert("password updated");
-                        },
-                    error:
-                        function (response) {
-                            console.error(response);
-                            alert("not updated");
-                        }
-                });
-
+            }
         }
         else {
 
-            alert("Both Password are not same");
+            checkPasswordData();
         }
     }
     else {
-        alert("Please fill all field");
+        checkPasswordData();
     }
 });
+//password save validation
+var oldpassword = document.getElementById("current-password");
+var newpassword = document.getElementById("password");
+var confirmpassword = document.getElementById("confirm-password");
+var stordpassword = document.getElementById("sp-stored-password");
+
+function checkPasswordData() {
+    var oldpasswordValue = oldpassword.value.trim();
+    var newpasswordValue = newpassword.value.trim();
+    var confirmpasswordValue = confirmpassword.value.trim();
+    var stordpasswordValue = stordpassword.value.trim();
+
+    if (oldpasswordValue == "") {
+        setpassError(oldpassword, "OldPassword must be requird");
+
+
+    } else {
+        setpassSuccess(oldpassword);
+
+    }
+    if (newpasswordValue == "") {
+        setpassError(newpassword, "NewPassword must be requird");
+
+    } else {
+        setpassSuccess(newpassword);
+
+    }
+    if (confirmpasswordValue == "") {
+        setpassError(confirmpassword, "ConfirmPassword must requird");
+
+    } else {
+        setpassSuccess(confirmpassword);
+
+    }
+    if (newpasswordValue != confirmpasswordValue) {
+        setpassError(confirmpassword, "Password not matched");
+    } else {
+        setpassSuccess(confirmpassword);
+
+    }
+    if (stordpasswordValue != oldpasswordValue) {
+
+        setpassError(oldpassword, "Current Password not matched");
+    } else {
+        setpassSuccess(oldpassword);
+
+    }
+
+
+
+}
+function setpassError(u, msg) {
+    var parentBox = u.parentElement;
+    parentBox.className = "pass-error error";
+    var span = parentBox.querySelector("span");
+
+    span.innerText = msg;
+}
+function setpassSuccess(u) {
+    var parentBox = u.parentElement;
+    parentBox.className = "pass-error success";
+
+}

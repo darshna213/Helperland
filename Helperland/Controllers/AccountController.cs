@@ -8,6 +8,8 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text.Json;
 
+
+
 namespace Helperland.Controllers
 {
     public class AccountController : Controller
@@ -35,6 +37,7 @@ namespace Helperland.Controllers
                 user.ModifiedDate = DateTime.Now;
                 user.IsRegisteredUser = true;
                 user.ModifiedBy = 123;
+                user.Status = 1;
 
                 _helperlandContext.Users.Add(user);
                 _helperlandContext.SaveChanges();
@@ -58,11 +61,12 @@ namespace Helperland.Controllers
 
             if (_helperlandContext.Users.Where(x => x.Email == signup.Email).Count() == 0 && _helperlandContext.Users.Where(x => x.Mobile == signup.Mobile).Count() == 0)
             {
-                //signup.UserTypeId = 2;
+                signup.UserTypeId = 2;
                 signup.CreatedDate = DateTime.Now;
                 signup.ModifiedDate = DateTime.Now;
                 signup.IsRegisteredUser = true;
                 signup.ModifiedBy = 123;
+                signup.Status = 2;
 
                 _helperlandContext.Users.Add(signup);
                 _helperlandContext.SaveChanges();
@@ -83,7 +87,7 @@ namespace Helperland.Controllers
         [HttpPost]
         public IActionResult Login(User user)
         {
-            var U = _helperlandContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+            var U = _helperlandContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password ).FirstOrDefault();
            
 
 
@@ -94,11 +98,23 @@ namespace Helperland.Controllers
                 HttpContext.Session.SetString("CurrentUser", JsonSerializer.Serialize(U));
                 if (U.UserTypeId == 1)
                 {
-                    return RedirectToAction("Service_history", "Bookservice");
+                    if(U.Status==1){
+                        return RedirectToAction("Service_history", "Bookservice");
+                    }
+                    else
+                    {
+                        TempData["ActiveMessage"] = "Your Success Message";
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
                 }
                 if (U.UserTypeId == 2)
                 {
                     return RedirectToAction("Upcoming_service", "Serviceprovider");
+                }
+                if(U.UserTypeId == 3)
+                {
+                    return RedirectToAction("Admin", "Admin");
                 }
             }
             else
@@ -122,15 +138,15 @@ namespace Helperland.Controllers
             if (userrecord != null)
             {
                 User Id = _helperlandContext.Users.FirstOrDefault(x => x.Email == forgotPass.Email);
-                //Id.ForgotPass = "true";
-                //_helperlandContext.Users.Update(Id);
-                //_helperlandContext.SaveChanges();
+                Id.ForgetPass = "true";
+                _helperlandContext.Update(Id);
+                _helperlandContext.SaveChanges();
                 string to = forgotPass.Email;
                 string token = BCrypt.Net.BCrypt.HashPassword(forgotPass.Email);
                 string subject = "Reset password";
                 string body = "<p>Reset your password by click below link " +
-                    "<a href='" + Url.Action("Resetpassword", "Account", new { userid = Id.UserId, token = token }, "http") + "'>Reset Password</a></p>";
-               
+                    "<a href='" + Url.Action("Resetpassword", "Account", new { userid = Id.UserId, token = token }, "https") + "'>Reset Password</a></p>";
+                Console.WriteLine(body);
                 MailMessage msg = new MailMessage();
                 msg.To.Add(to);
                 msg.Subject = subject;
@@ -161,39 +177,43 @@ namespace Helperland.Controllers
         }
 
         [HttpGet]
-        public IActionResult ResetPassword(int userID, string token)
+        public IActionResult Resetpassword(int userid, string token)
         {
-            TempData["id"] = userID;
-            User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userID);
+            TempData["id"] = userid;
+            User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
             bool isValidId = BCrypt.Net.BCrypt.Verify(user.Email, token);
 
-            //if (isValidId && user.ForgotPass == "true")
-            //{
+            if (isValidId /*&& user.ForgetPass == "true"*/)
+            {
 
-            //    return PartialView();
-            //}
-            //else
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
-            return RedirectToAction("Account", "Resetpassword");
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult ResetPassword(ResetPass user)
+        public string Resetpasswod(ResetPass resetPass)
+
         {
-            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == user.UserId);
-            string HashPass = BCrypt.Net.BCrypt.HashPassword(user.NewPassword);
-            u.Password = HashPass;
+            Console.WriteLine("rrrrrrrrrrrrrrrrrr");
+            User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == resetPass.UserId);
+
+            
+            u.Password = BCrypt.Net.BCrypt.HashPassword(resetPass.NewPassword);
+            //u.Password = HashPass;
             u.ModifiedDate = DateTime.Now;
             //u.ForgotPass = "false";
             _helperlandContext.Users.Update(u);
             _helperlandContext.SaveChanges();
 
 
-            return View();
+            return "true";
         }
 
 

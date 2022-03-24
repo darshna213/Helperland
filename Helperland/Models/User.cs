@@ -58,7 +58,8 @@ namespace Helperland.Models
         public int? Status { get; set; }
         public string BankTokenId { get; set; }
         public string TaxNo { get; set; }
-
+        [NotMapped]
+        public string ForgetPass { get; set; }
 
         [NotMapped]
         public string AddressLine1 { get; set; }

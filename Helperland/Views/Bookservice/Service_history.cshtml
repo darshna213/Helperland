@@ -72,7 +72,7 @@
                                 <img src="~/IMAGES/down-arrow-white.png" alt="down-arrow-white">
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
-                                <li class="dropdown-item">Welcome,<br /> <span class="customer-name"><b> @Context.Session.GetString("Name")</b> </span></li>
+                                <li class="dropdown-item">Welcome,<br /> <span class="customer-name"><b> @Context.Session.GetString("Name")&nbsp;!</b> </span></li>
                                 <hr />
                                 <li><a class="dropdown-item" asp-controller="Bookservice" asp-action="Service_history">My Dashboard</a></li>
                                 <li><a class="dropdown-item" id="my-setting-dropdown">My Settings</a></li>
@@ -91,7 +91,7 @@
     <section class="welcome-Gaurang">
         <div class="container">
             <h2 class="text-center">
-                Welcome, <span><b> @Context.Session.GetString("Name") </b></span>
+                Welcome, <span><b> @Context.Session.GetString("Name")&nbsp;! </b></span>
             </h2>
         </div>
     </section>
@@ -543,73 +543,157 @@
                     <div class="modal-content">
 
 
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-header" style="border-bottom:none;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="rate-sp-modal-close-btn">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <div class="modal-body">
                             <div class="row" style="margin-top:-10%">
-                                <div class="col-auto">
-                                    <img src="~/IMAGES/cap.png" alt="cap" class="" />
+                                <div class="col-2">
+                                    <img src="~/IMAGES/cap.png" alt="cap" class="cap-icon-modal" />
                                 </div>
-                                @ViewBag.Name
-                            </div>
-                            <div class="row">
-                                <div class="col-auto provider-name-inrating ml-5">
-                                    @{
-                                        int totalstars = Convert.ToInt32(ViewBag.rating);
-                                        int stars = 5 - totalstars;
-                                        for (int i = 1; i <= totalstars; i++)
-                                        {
-                                            <span class="star">
-                                                <img src="~/IMAGES/star-yellow.png" alt="yellow-star">
-                                            </span>
-                                        }
-                                        for (int j = 1; j <= stars; j++)
-                                        {
-                                            <span class="star">
-                                                <img src="~/IMAGES/star-grey.png" alt="grey-star" />
-                                            </span>
-                                        }
-                                    }
-                                    <span>@ViewBag.rating</span>
-                                </div>
-                            </div>
-                            <h5 class="rate-your-sp">Rate your service provider</h5>
-                            <hr />
-                            <p>
-                                On time arrival
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-grey.png">
-                            </p>
-                            <p>
-                                Friendly
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-grey.png">
-                            </p>
-                            <p>
-                                Quality of service
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-yellow.png">
-                                <img src="~/IMAGES/star-grey.png">
-                            </p>
+                                <div class="col-10">
+                                    <span id="rating-provider-name-modal" class="provider-name">drashti patel</span>
+                                    <span>
+                                        <div class="d-flex" id=" avrage-star">
 
-                            <form method="post">
-                                <div class="form-group ">
-                                    <p style="margin-top:8px;">Feedback on service provider</p>
-                                    <textarea class="modal-textarea"></textarea>
+                                            <span class="text-warning" style="font-size: 30px;">★</span>
+
+                                                <span class="text-warning" style="font-size: 30px;">★</span>
+
+                                                <span class="text-warning" style="font-size: 30px;">★</span>
+
+                                                <span class="text-warning" style="font-size: 30px;">★</span>
+
+                                                <span class="text-warning" style="font-size: 30px;">★</span>
+
+                                            <span class="" style="color:#646464; font-weight:bold;" id="ratesp-modal-average-ratings">1</span>
+                                        </div>
+                                    </span>
                                 </div>
-                                <button class="submit-submit rounded-pill d-flex " type="submit" data-dismiss="modal">
-                                    Submit
-                                </button>
-                            </form>
+
+                            </div>
+                            <hr style="color:#646464;" />
+                            <h5 class="rate-your-sp">Rate your service provider</h5>
+                            <hr style="color:#646464; height:0.5px;" />
+                            <div class="row">
+                                <div class="col-auto">
+                                    <p>On time arriaval</p>
+                                    <p>Friendly</p>
+                                    <p>Quality of service</p>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex">
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating " id="on-time-arrival-star-1">★</span>
+                                                <input type="radio" name="on-time-arrival-radio" class="d-none" id="on-time-arrival-radio-1" value="1">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="on-time-arrival-star-2">☆</span>
+                                                <input type="radio" name="on-time-arrival-radio" class="d-none" id="on-time-arrival-radio-2" value="2">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="on-time-arrival-star-3">☆</span>
+                                                <input type="radio" name="on-time-arrival-radio" class="d-none" id="on-time-arrival-radio-3" value="3">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="on-time-arrival-star-4">☆</span>
+                                                <input type="radio" name="on-time-arrival-radio" class="d-none" id="on-time-arrival-radio-4" value="4">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="on-time-arrival-star-5">☆</span>
+                                                <input type="radio" name="on-time-arrival-radio" class="d-none" id="on-time-arrival-radio-5" value="5">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="friendly-star-1">★</span>
+                                                <input type="radio" name="friendly-radio" class="d-none" id="friendly-radio-1" value="1">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="friendly-star-2">☆</span>
+                                                <input type="radio" name="friendly-radio" class="d-none" id="friendly-radio-2" value="2">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="friendly-star-3">☆</span>
+                                                <input type="radio" name="friendly-radio" class="d-none" id="friendly-radio-3" value="3">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="friendly-star-4">☆</span>
+                                                <input type="radio" name="friendly-radio" class="d-none" id="friendly-radio-4" value="4">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="friendly-star-5">☆</span>
+                                                <input type="radio" name="friendly-radio" class="d-none" id="friendly-radio-5" value="5">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="quality-of-service-star-1">★</span>
+                                                <input type="radio" name="quality-of-service-radio" class="d-none" id="quality-of-service-radio-1" value="1">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="quality-of-service-star-2">☆</span>
+                                                <input type="radio" name="quality-of-service-radio" class="d-none" id="quality-of-service-radio-2" value="2">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="quality-of-service-star-3">☆</span>
+                                                <input type="radio" name="quality-of-service-radio" class="d-none" id="quality-of-service-radio-3" value="3">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="quality-of-service-star-4">☆</span>
+                                                <input type="radio" name="quality-of-service-radio" class="d-none" id="quality-of-service-radio-4" value="4">
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <span class="text-warning rating" id="quality-of-service-star-5">☆</span>
+                                                <input type="radio" name="quality-of-service-radio" class="d-none" id="quality-of-service-radio-5" value="5">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group pass-error">
+                                <p class="rate-your-sp">Feedback on service provider</p>
+                                <textarea class="modal-textarea" id="rate-sp-modal-comments" style="color:#646464;"></textarea>
+                                <span></span>
+                                <input hidden type="number" id="rate-sp-service-id">
+                                <input hidden type="number" id="rate-sp-service-provider-id">
+                            </div>
+                            <button class="submit-submit rounded-pill d-flex " type="submit" data-dismiss="modal" id="rate-sp-submit-btn">
+                                Submit
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -729,11 +813,11 @@
                         <div class="col-md-3">
                             <label>Mobile number</label><br />
                             @*<p class="d-flex tel-box">*@
-                                <span class="mydetail-tel-icon" style="padding-top:8px !important; width: 35px;">
-                                   +49
-                                </span>
-                                <input class="mydetail-tel-form" type="tel" placeholder="Phone number" id="my-details-contact-number" />
-                          
+                            <span class="mydetail-tel-icon" style="padding-top:8px !important; width: 35px;">
+                                +49
+                            </span>
+                            <input class="mydetail-tel-form" type="tel" placeholder="Phone number" id="my-details-contact-number" />
+
                             <span></span>
                         </div>
                         <div class="col-md-3" style="padding-right:10px;">
@@ -934,19 +1018,22 @@
 
                 <div id="change-password" class="tabcontent  d-none">
                     <div class="change-password-content">
-                        <p><b>Old Password</b></p>
-                        <div class=" text-danger mb-3">
-                            <b font-size:14px;">@ViewBag.Message</b>
+                        <input type="hidden" id="sp-stored-password" name="storedpassword" />
+                        <div class="pass-error">
+                            <p><b>Old Password</b></p>
+                            <input type="password" class="form-control" placeholder="Current Passowrd" id="current-password" />
+                            <span></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Current Passowrd" id="current-password" />
-
-                        <p><b>New Password</b></p>
-                        <input type="password" class="form-control" placeholder="Password" id="password" />
-                        <p><b>Confirm Password</b></p>
-                        <div class=" text-danger mb-3">
-                            <b font-size:14px;">@ViewBag.Message</b>
+                        <div class="pass-error">
+                            <p><b>New Password</b></p>
+                            <input type="password" class="form-control" placeholder="Password" id="password" />
+                            <span></span>
                         </div>
-                        <input type="password" class="form-control" placeholder=" Confirm Password" id="confirm-password" />
+                        <div class="pass-error">
+                            <p><b>Confirm Password</b></p>
+                            <input type="password" class="form-control" placeholder=" Confirm Password" id="confirm-password" />
+                            <span></span>
+                        </div>
                         <br />
                         <button type="submit" class="btn change-password-save-btn " id="change-password-save-btn">Save</button>
                     </div>

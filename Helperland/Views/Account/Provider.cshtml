@@ -92,15 +92,15 @@
         <div class="container d-flex align-items-center justify-content-center registerNow">
             <form asp-controller="Account" asp-action="Provider" method="post">
                 <h2 class="text-center">Register Now!</h2>
-                <input class="form-control" id="fname" asp-for="FirstName" placeholder="First Name">
-                <input class="form-control" id="lname" asp-for="LastName" placeholder="Last Name">
-                <input class="form-control" id="Email" asp-for="Email" placeholder="Email Address">
+                <input class="form-control" id="fname" asp-for="FirstName" placeholder="First Name" required>
+                <input class="form-control" id="lname" asp-for="LastName" placeholder="Last Name" required>
+                <input class="form-control" id="Email" asp-for="Email" placeholder="Email Address" required>
                 <div class="input-group mx-0 row">
                     <input type="text" class="form-control input-group-text col-2 px-0" id="countryCode" placeholder="+91">
-                    <input id="phone" class="form-control col-10" asp-for="Mobile" placeholder="Phone Number">
+                    <input id="phone" class="form-control col-10" asp-for="Mobile" placeholder="Phone Number" required>
                 </div>
-                <input class="form-control" type="password" asp-for="Password" name="password" id="password" placeholder="Password">
-                <input class="form-control" type="password" asp-for="Password" name="cpassword" id="cpassword" placeholder="Confirm Password">
+                <input class="form-control" type="password" asp-for="Password" name="password" id="password" placeholder="Password" required>
+                <input class="form-control" type="password" asp-for="Password" name="cpassword" id="cpassword" placeholder="Confirm Password" required>
                 <span id="cpassword-message" asp-validation-for="Password" class="text-danger"></span>
                 <input type="hidden" value="2" asp-for="UserTypeId" class="form-control" />
                 <div class="form-check">
@@ -259,6 +259,21 @@
             }
         });
     </script>
+    @if (TempData["signupmsg"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal({
+                    title: "Account Created!",
+                    text: "on this site Your Account has been successfully created",
+                    icon: "success",
+                    button: "Thank you",
+                });
+            });
+        </script>
+    }
 
     <!-- buttons code end -->
     <!-- javascript code start-->

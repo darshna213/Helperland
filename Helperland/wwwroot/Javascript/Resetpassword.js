@@ -1,35 +1,13 @@
-﻿
-
-document.getElementById("reset-password-btn").addEventListener("click", () => {
-    //var data = {}
-    var userid = $("#resetId").val();
-    var newPass = $("#reset-password").val();
-    var confPass = $("#reset-confirm-password").val();
-    if (newPass == confPass) {
-        var model = {
-            UserId: userid,
-            NewPassword: newPass,
-
-        };
-        alert(userid + newPass);
-        $.ajax(
-            {
-                type: 'POST',
-                url: '/Account/Resetpasswod',
-                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                data: model,
-                success:
-                    function (response) {
-                        alert("reset-success")
-                    },
-                error:
-                    function (response) {
-                        console.error(response);
-                        alert("reset-error");
-                    }
-            });
-    }
-    else {
-        alert("confirm password not matched")
-    }
-});
+﻿  var pwd = document.getElementById("reset-password");
+        var conf = document.getElementById("reset-confirm-password");
+        var submit = document.getElementById("reset-password-btn");
+        var re_pwd_message = document.getElementById("confirm-password-message");
+        conf.addEventListener("change", function () {
+            if (pwd.value != conf.value) {
+                submit.disabled = true;
+                re_pwd_message.textContent = "password does not matched!"
+            }
+            else {
+                submit.disabled = false;
+            }
+        });

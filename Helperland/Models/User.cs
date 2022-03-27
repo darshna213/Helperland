@@ -29,15 +29,15 @@ namespace Helperland.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Password is required")]
-        [DataType(DataType.Password)]
+        //[DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "The password must be atleast 6 characters long")]
         //[StringLength(16, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 8)]
         [RegularExpression(@"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)).+$")]
-        //[DataType(DataType.Password)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
         [StringLength(10, ErrorMessage = "invalid number")]
-        //[RegularExpression(@"^(\d{10})$", ErrorMessage = "invalid number")]
+        [RegularExpression(@"^(\d{10})$", ErrorMessage = "invalid number")]
         public string Mobile { get; set; }
         public int UserTypeId { get; set; }
         public int? Gender { get; set; }
@@ -77,8 +77,6 @@ namespace Helperland.Models
         public virtual ICollection<ServiceRequest> ServiceRequestServiceProviders { get; set; }
         public virtual ICollection<ServiceRequest> ServiceRequestUsers { get; set; }
         public virtual ICollection<UserAddress> UserAddresses { get; set; }
-    
-
 
 
 

@@ -280,12 +280,13 @@ namespace Helperland.Controllers
             return JsonSerializer.Serialize(userdetails);
         }
 
-        public string ActivateDeActivateUser(string Status, string Email)
+        public string ActivateInActivate(string Status, string Email)
         {
             User users = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int userid = users.UserId;
+           
             int StatusID = 0;
-            if (users.Status == 1)
+            if (Status == "1")
             {
                 StatusID = 2;
             }
@@ -310,5 +311,11 @@ namespace Helperland.Controllers
             }
             return "true";
         }
+        public IActionResult adminLogout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home", new { loginModal = "true" });
+        }
+
     }
 }

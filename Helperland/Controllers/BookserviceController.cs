@@ -32,17 +32,32 @@ namespace Helperland.Controllers
         [HttpPost]
         public ActionResult IsValidZipcode(Setupservice setupservice)
         {
-            var zipcodes = _helperlandContext.Users.Where(u => u.ZipCode == setupservice.PostalCode && u.UserTypeId == 2).ToList();
-            if (zipcodes.Count() > 0)
-            {
-                CookieOptions cookie = new CookieOptions();
-                Response.Cookies.Append("zipcode", setupservice.PostalCode, cookie);
-                return Ok(Json("True"));
-            }
-            else
-            {
-                return Ok(Json("false"));
-            }
+           User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+          //  int? Userid = u.UserId;
+         //   if(Userid != null)
+          //  {
+                if (u.UserTypeId == 1)
+                {
+                    var zipcodes = _helperlandContext.Users.Where(u => u.ZipCode == setupservice.PostalCode && u.UserTypeId == 2).ToList();
+                    if (zipcodes.Count() > 0)
+                    {
+                        CookieOptions cookie = new CookieOptions();
+                        Response.Cookies.Append("zipcode", setupservice.PostalCode, cookie);
+                        return Ok(Json("True"));
+                    }
+                    else
+                    {
+                    TempData["provider"] = "Your Success Message";
+                }
+
+                }
+            //}
+            //else
+            //{
+            //    TempData["nologin"] = "Your Success Message";
+            //}
+            return View();
+
         }
 
         [HttpPost]
@@ -166,44 +181,9 @@ namespace Helperland.Controllers
             User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int userid = user.UserId;
             var servicedashboard = (from sr in _helperlandContext.ServiceRequests
-                                  join u in _helperlandContext.Users on sr.UserId equals u.UserId
-                                  join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
-                                  where sr.UserId == userid && sr.Status == 1
-                                  select new
-                                  {
-                                      RequestId = sr.ServiceRequestId,
-                                      ServiceStartDate = sr.ServiceStartDate.ToString("d"),
-                                      ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
-                                      CustomerName = u.FirstName + " " + u.LastName,
-                                      ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
-                                      TotalCost = sr.TotalCost,
-                                      ServiceProviderId = sr.ServiceProviderId,
-                                      SpFirstName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.FirstName).FirstOrDefault(),
-                                      SpLastName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.LastName).FirstOrDefault(),
-
-                                      AverageRatings = _helperlandContext.Ratings.Where(u => u.RatingTo == sr.ServiceProviderId).Select(u => u.Ratings).ToList(),
-
-                                      AddressLine1 = add.AddressLine1,
-                                      AddressLine2 = add.AddressLine2,
-                                      City = add.City,
-                                      PostalCode = add.PostalCode,
-                                      Mobile = add.Mobile,
-
-                                  }).ToList();
-
-            return JsonSerializer.Serialize(servicedashboard);
-
-        }
-
-
-        public string GetServiceHistory(string s)
-        {
-            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
-            int userid = user.UserId;
-            var servicehistory = (from sr in _helperlandContext.ServiceRequests
                                     join u in _helperlandContext.Users on sr.UserId equals u.UserId
                                     join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
-                                    where sr.UserId == userid && sr.Status != 1
+                                    where sr.UserId == userid && sr.Status == 1 || sr.Status == 4
                                     select new
                                     {
                                         RequestId = sr.ServiceRequestId,
@@ -212,7 +192,6 @@ namespace Helperland.Controllers
                                         CustomerName = u.FirstName + " " + u.LastName,
                                         ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
                                         TotalCost = sr.TotalCost,
-                                        Status = sr.Status,
                                         ServiceProviderId = sr.ServiceProviderId,
                                         SpFirstName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.FirstName).FirstOrDefault(),
                                         SpLastName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.LastName).FirstOrDefault(),
@@ -227,6 +206,42 @@ namespace Helperland.Controllers
 
                                     }).ToList();
 
+            return JsonSerializer.Serialize(servicedashboard);
+
+        }
+
+
+        public string GetServiceHistory(string s)
+        {
+            User user = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+            int userid = user.UserId;
+            var servicehistory = (from sr in _helperlandContext.ServiceRequests
+                                  join u in _helperlandContext.Users on sr.UserId equals u.UserId
+                                  join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
+                                  where sr.UserId == userid && sr.Status != 1
+                                  select new
+                                  {
+                                      RequestId = sr.ServiceRequestId,
+                                      ServiceStartDate = sr.ServiceStartDate.ToString("d"),
+                                      ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
+                                      CustomerName = u.FirstName + " " + u.LastName,
+                                      ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
+                                      TotalCost = sr.TotalCost,
+                                      Status = sr.Status,
+                                      ServiceProviderId = sr.ServiceProviderId,
+                                      SpFirstName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.FirstName).FirstOrDefault(),
+                                      SpLastName = _helperlandContext.Users.Where(u => u.UserId == sr.ServiceProviderId).Select(u => u.LastName).FirstOrDefault(),
+
+                                      AverageRatings = _helperlandContext.Ratings.Where(u => u.RatingTo == sr.ServiceProviderId).Select(u => u.Ratings).ToList(),
+
+                                      AddressLine1 = add.AddressLine1,
+                                      AddressLine2 = add.AddressLine2,
+                                      City = add.City,
+                                      PostalCode = add.PostalCode,
+                                      Mobile = add.Mobile,
+
+                                  }).ToList();
+
             return JsonSerializer.Serialize(servicehistory);
 
         }
@@ -237,10 +252,71 @@ namespace Helperland.Controllers
             Console.WriteLine("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? userId = u.UserId;
+            string Name = u.FirstName + " " + u.LastName;
 
             if (userId != null)
             {
                 ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == serviceRequestId);
+                if (request.ServiceProviderId != null)
+                {
+                    var SP = _helperlandContext.Users.Where(u => u.UserId == request.ServiceProviderId).Select(u => new { u.Email, u.FirstName, u.LastName }).FirstOrDefault();
+                    if (SP != null)
+                    {
+                        Mail mail = new Mail();
+                        string Email = SP.Email;
+                        string name = SP.FirstName + " " + SP.LastName;
+                        string Subject = "Service Cancelled";
+                        string Body =
+                        "Hello,\n" +
+                        SP.FirstName + " " + SP.LastName + "\n\n" +
+                        "Changes made by Customer" + "\n" +
+                        Name + " has Cancel service on\n" +
+                        "\n" +
+                        "Service ID: " + serviceRequestId;
+
+                        MailMessage msg = new MailMessage();
+                        msg.To.Add(Email);
+                        msg.Subject = Subject;
+                        msg.Body = Body;
+                        msg.From = new MailAddress("sirijery@gmail.com");
+                        msg.IsBodyHtml = true;
+                        SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                        setup.Port = 587;
+                        setup.UseDefaultCredentials = true;
+                        setup.EnableSsl = true;
+                        setup.Credentials = new System.Net.NetworkCredential("sirijery@gmail.com", "siri@90543");
+                        setup.Send(msg);
+
+                    }
+                }
+                var customer = _helperlandContext.Users.Where(u => u.UserId == request.UserId).Select(u => new { u.Email, u.FirstName, u.LastName }).FirstOrDefault();
+                if (customer != null)
+                {
+                    Mail mail = new Mail();
+                    string Email = customer.Email;
+                    string name = customer.FirstName + " " + customer.LastName;
+                    string Subject = "Service Cancelled";
+                    string Body =
+                    "Hello,\n" +
+                    customer.FirstName + " " + customer.LastName + "\n\n" +
+                    "Changes made by Customer" + "\n" +
+                    Name + " has cancel service on\n" +
+                    "Service ID: " + serviceRequestId;
+
+                    MailMessage msg = new MailMessage();
+                    msg.To.Add(Email);
+                    msg.Subject = Subject;
+                    msg.Body = Body;
+                    msg.From = new MailAddress("sirijery@gmail.com");
+                    msg.IsBodyHtml = true;
+                    SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                    setup.Port = 587;
+                    setup.UseDefaultCredentials = true;
+                    setup.EnableSsl = true;
+                    setup.Credentials = new System.Net.NetworkCredential("sirijery@gmail.com", "siri@90543");
+                    setup.Send(msg);
+                }
+
                 request.Comments = s.Comments;
                 request.Status = 3;
                 _helperlandContext.ServiceRequests.Update(request);
@@ -259,11 +335,72 @@ namespace Helperland.Controllers
             Console.WriteLine("ccccccccccccccccccccccccccccc");
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? Id = u.UserId;
+            string Name = u.FirstName + " " + u.LastName;
+
 
             if (Id != null)
             {
                 ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == serviceRequestId);
+                if (request.ServiceProviderId != null)
+                {
+                    var SP = _helperlandContext.Users.Where(u => u.UserId == request.ServiceProviderId).Select(u => new { u.Email, u.FirstName, u.LastName }).FirstOrDefault();
+                    if (SP != null)
+                    {
+                        Mail mail = new Mail();
+                        string Email = SP.Email;
+                        string name = SP.FirstName + " " + SP.LastName;
+                        string Subject = "Service Rescheduled";
+                        string Body =
+                        "Hello,\n" +
+                        SP.FirstName + " " + SP.LastName + "\n\n" +
+                        "Changes made by Customer" + "\n" +
+                        Name + " has rescheduled service on\n" +
+                        serviceStartDate + " " + startTime + "\n" +
+                        "Service ID: " + serviceRequestId;
 
+                        MailMessage msg = new MailMessage();
+                        msg.To.Add(Email);
+                        msg.Subject = Subject;
+                        msg.Body = Body;
+                        msg.From = new MailAddress("sirijery@gmail.com");
+                        msg.IsBodyHtml = true;
+                        SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                        setup.Port = 587;
+                        setup.UseDefaultCredentials = true;
+                        setup.EnableSsl = true;
+                        setup.Credentials = new System.Net.NetworkCredential("sirijery@gmail.com", "siri@90543");
+                        setup.Send(msg);
+
+                    }
+                }
+                var customer = _helperlandContext.Users.Where(u => u.UserId == request.UserId).Select(u => new { u.Email, u.FirstName, u.LastName }).FirstOrDefault();
+                if (customer != null)
+                {
+                    Mail mail = new Mail();
+                    string Email = customer.Email;
+                    string name = customer.FirstName + " " + customer.LastName;
+                    string Subject = "Service Rescheduled";
+                    string Body =
+                    "Hello,\n" +
+                    customer.FirstName + " " + customer.LastName + "\n\n" +
+                    "Changes made by Customer" + "\n" +
+                    Name + " has rescheduled service on\n" +
+                    serviceStartDate + " " + startTime + "\n" +
+                    "Service ID: " + serviceRequestId;
+
+                    MailMessage msg = new MailMessage();
+                    msg.To.Add(Email);
+                    msg.Subject = Subject;
+                    msg.Body = Body;
+                    msg.From = new MailAddress("sirijery@gmail.com");
+                    msg.IsBodyHtml = true;
+                    SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                    setup.Port = 587;
+                    setup.UseDefaultCredentials = true;
+                    setup.EnableSsl = true;
+                    setup.Credentials = new System.Net.NetworkCredential("sirijery@gmail.com", "siri@90543");
+                    setup.Send(msg);
+                }
                 request.ServiceStartDate = DateTime.Parse(serviceStartDate + " " + startTime);
 
                 _helperlandContext.ServiceRequests.Update(request);
@@ -281,9 +418,9 @@ namespace Helperland.Controllers
             Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaa");
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? Id = u.UserId;
-            if(Id != null)
+            if (Id != null)
             {
-                
+
                 UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == AddressId && x.UserId == u.UserId).FirstOrDefault();
                 userAddress.AddressLine1 = addressLine1;
                 userAddress.AddressLine2 = addressLine2;
@@ -307,7 +444,7 @@ namespace Helperland.Controllers
 
             if (userId != null)
             {
-                UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == addressId && x.UserId==u.UserId).FirstOrDefault();
+                UserAddress userAddress = _helperlandContext.UserAddresses.Where(x => x.AddressId == addressId && x.UserId == u.UserId).FirstOrDefault();
                 userAddress.IsDeleted = true;
                 _helperlandContext.UserAddresses.Update(userAddress);
                 _helperlandContext.SaveChanges();
@@ -316,7 +453,7 @@ namespace Helperland.Controllers
 
             }
             return "false";
-           
+
         }
 
 
@@ -376,7 +513,7 @@ namespace Helperland.Controllers
             if (userid != null)
             {
                 User user = _helperlandContext.Users.FirstOrDefault(x => x.UserId == userid);
-                if(user.Password==changepassword.Password)
+                if (user.Password == changepassword.Password)
                 {
                     user.Password = changepassword.NewPassword;
 
@@ -389,14 +526,14 @@ namespace Helperland.Controllers
                     ViewBag.message = "old password is not matched with current password";
                     return "false";
                 }
-               
+
             }
             else
             {
                 return "false";
-               
+
             }
-           
+
 
         }
         public string SaveDetails(Savedetails savedetails)
@@ -421,7 +558,7 @@ namespace Helperland.Controllers
             else
             {
                 return "false";
-               
+
             }
 
         }
@@ -433,7 +570,7 @@ namespace Helperland.Controllers
             if (userid != null)
             {
                 int n = _helperlandContext.Ratings.Count(u => u.ServiceRequestId == ratespViewModel.ServiceId);
-                if(n==0)
+                if (n == 0)
                 {
                     Rating rating = new Rating();
                     rating.ServiceRequestId = ratespViewModel.ServiceId;
@@ -451,7 +588,7 @@ namespace Helperland.Controllers
                 }
             }
 
-                return "true";
+            return "true";
         }
     }
 

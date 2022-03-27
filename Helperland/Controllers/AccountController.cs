@@ -1,4 +1,5 @@
-﻿using Helperland.Data;
+﻿using BC = BCrypt.Net.BCrypt;
+using Helperland.Data;
 using Helperland.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,7 @@ namespace Helperland.Controllers
 
                 _helperlandContext.Users.Add(user);
                 _helperlandContext.SaveChanges();
+                TempData["signupmsg"] = "Your Success Message";
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -70,6 +72,7 @@ namespace Helperland.Controllers
 
                 _helperlandContext.Users.Add(signup);
                 _helperlandContext.SaveChanges();
+                TempData["signupmsg"] = "Your Success Message";
                 return RedirectToAction("Index", "Home");
             }
             else
@@ -103,6 +106,7 @@ namespace Helperland.Controllers
                     }
                     else
                     {
+                        HttpContext.Session.Clear();
                         TempData["ActiveMessage"] = "Your Success Message";
                         return RedirectToAction("Index", "Home");
                     }
@@ -110,7 +114,18 @@ namespace Helperland.Controllers
                 }
                 if (U.UserTypeId == 2)
                 {
-                    return RedirectToAction("Upcoming_service", "Serviceprovider");
+                    if (U.Status == 1)
+                    {
+                        return RedirectToAction("Upcoming_service", "Serviceprovider");
+                    }
+                    else
+                    {
+                        HttpContext.Session.Clear();
+                        TempData["ActiveMessage"] = "Your Success Message";
+                        return RedirectToAction("Index", "Home");
+                    }
+
+                    
                 }
                 if(U.UserTypeId == 3)
                 {
@@ -187,6 +202,8 @@ namespace Helperland.Controllers
             {
 
                 return View();
+               
+
             }
             else
             {
@@ -198,22 +215,20 @@ namespace Helperland.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public string Resetpasswod(ResetPass resetPass)
+        public IActionResult Resetpassword(ResetPass resetPass)
 
         {
             Console.WriteLine("rrrrrrrrrrrrrrrrrr");
             User u = _helperlandContext.Users.FirstOrDefault(x => x.UserId == resetPass.UserId);
+            string HashPass = (resetPass.NewPassword);
+                u.Password = HashPass;
+                u.ModifiedDate = DateTime.Now;
+                //u.ForgotPass = "false";
+                _helperlandContext.Users.Update(u);
+                _helperlandContext.SaveChanges();
 
-            
-            u.Password = BCrypt.Net.BCrypt.HashPassword(resetPass.NewPassword);
-            //u.Password = HashPass;
-            u.ModifiedDate = DateTime.Now;
-            //u.ForgotPass = "false";
-            _helperlandContext.Users.Update(u);
-            _helperlandContext.SaveChanges();
-
-
-            return "true";
+            TempData["resetMsg"] = "Your Success Message";
+            return RedirectToAction("Index", "Home");
         }
 
 

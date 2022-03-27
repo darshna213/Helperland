@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "AdminUserManagement";
+    Layout = "";
 }
 <style>
 
@@ -172,6 +173,14 @@
         color: #646464;
         background: #ffffff;
     }
+
+    /* copyright*/
+    .footer {
+        font-size: 14px;
+        color: #a2a6a8;
+        margin: 20px;
+        line-height: 0.8;
+    }
 </style>
 
 
@@ -225,8 +234,8 @@
                 <input class="submit-btn button" type="button" value="search" id="admin-management-search-btn" onclick="mysearchFunction()">
                 <input class="reset-btn button" id="reset-btn" type="reset" value="clear">
             </form>
-            <div class="float-right">
-                <a class="export-btn" onclick="ExportToExcel('xlsx')">Export</a>
+            <div class="float-right justify-content-end" style="float:right;">
+                <a class="export-btn" style="color:white;" onclick="ExportToExcel('xlsx')">Export</a>
             </div>
         </div>
         <!--filer code end-->
@@ -299,10 +308,11 @@
         </div>
 
 
+        <!--copyright code start-->
         <div class="footer">
             ©2018 Helperland. All rights reserved.
         </div>
-
+        <!--copyright code end-->
     </div>
 
     <!--rightside content code end-->

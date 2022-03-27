@@ -443,6 +443,12 @@ $("#service-request-update-btn").click(function () {
             data: data,
             success:
                 function (response) {
+                    swal({
+                        title: "Schedule Updated",
+                        text: "Your response has been submmited",
+                        icon: "info",
+                        button: "OK",
+                    });
                     getDashboardData();
                 },
             error:
@@ -469,6 +475,12 @@ document.getElementById("cancel-now-btn").addEventListener("click", () => {
             data: data,
             success:
                 function (response) {
+                    swal({
+                        title: "Service Cancelled",
+                        text: "Your response has been submmited",
+                        icon: "info",
+                        button: "OK",
+                    });
                     getDashboardData();
 
                 },
@@ -669,7 +681,13 @@ $("#rate-sp-submit-btn").click(function () {
 
                 success:
                     function (response) {
-                        alert("Your response has been submmited");
+                        swal({
+                            title: "Good Job!",
+                            text: "Your response has been submmited",
+                            icon: "success",
+                            button: "OK",
+                        });
+                        
                         getServicehistoryData();
                     },
                 error:
@@ -791,7 +809,12 @@ $("#my-detail-save-btn").click(function () {
                 function (response) {
                     checkData();
                     if (firstName != " " && lastName != " " && mobile != " ") {
-                        alert("your details are successfull saved!s")
+                        swal({
+                            title: "Good Job!",
+                            text: "your Details has Saved Successfully",
+                            icon: "success",
+                            button: "OK",
+                        });
                     }
                 },
             error:
@@ -1055,7 +1078,13 @@ $("#change-password-save-btn").click(function () {
                             function (response) {
                                 checkPasswordData();
                                 if (oldPass != "" && newPass != "" && confPass != "" && storedPass == oldPass && newPass == confPass) {
-                                    alert("your Password has change Successfully");
+                                    swal({
+                                        title: "Congrats!",
+                                        text: "your Password has change Successfully",
+                                        icon: "success",
+                                        button: "OK",
+                                    });
+                                   
                                 }
                             },
                          error:

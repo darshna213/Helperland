@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Helperland.Data;
@@ -32,10 +33,9 @@ namespace Helperland.Controllers
             var newservice = (from sr in _helperlandContext.ServiceRequests
                               join u in _helperlandContext.Users on sr.UserId equals u.UserId
                               join add in _helperlandContext.ServiceRequestAddresses on sr.ServiceRequestId equals add.ServiceRequestId
-                              where sr.Status == 1
+                              where sr.Status == 1 
                               select new
                               {
-
                                   RequestId = sr.ServiceRequestId,
                                   ServiceStartDate = sr.ServiceStartDate.ToString("d"),
                                   ServiceStartTime = sr.ServiceStartDate.ToString("HH:mm"),
@@ -43,19 +43,13 @@ namespace Helperland.Controllers
                                   ServiceTotalHour = sr.ServiceHours + sr.ExtraHours,
                                   TotalCost = sr.TotalCost,
                                   SubTotal = sr.SubTotal,
-
                                   AddressLine1 = add.AddressLine1,
                                   AddressLine2 = add.AddressLine2,
                                   City = add.City,
                                   PostalCode = add.PostalCode,
                                   Mobile = add.Mobile,
-
                               }).ToList();
-
             return JsonSerializer.Serialize(newservice);
-
-
-
         }
 
         [HttpPost]
@@ -65,16 +59,17 @@ namespace Helperland.Controllers
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? userId = u.UserId;
 
+
             if (userId != null)
             {
                 ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == servicerequestId);
                 request.Comments = comments;
                 request.Status = 4;
+                request.ServiceProviderId = userId;
+                request.SpacceptedDate = DateTime.Now;
                 _helperlandContext.ServiceRequests.Update(request);
                 _helperlandContext.SaveChanges();
-
                 return "true";
-
             }
             return "false";
         }
@@ -138,10 +133,68 @@ namespace Helperland.Controllers
 
             User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
             int? userId = u.UserId;
+            string Name = u.FirstName + " " + u.LastName;
 
             if (userId != null)
             {
                 ServiceRequest request = _helperlandContext.ServiceRequests.FirstOrDefault(x => x.ServiceRequestId == servicerequestId);
+                if (request.ServiceProviderId != null)
+                {
+                    var SP = _helperlandContext.Users.Where(u => u.UserId == request.ServiceProviderId).Select(u => new { u.Email, u.FirstName, u.LastName }).FirstOrDefault();
+                    if (SP != null)
+                    {
+                        Mail mail = new Mail();
+                        string Email = SP.Email;
+                        string name = SP.FirstName + " " + SP.LastName;
+                        string Subject = "Service Completed";
+                        string Body =
+                        "Hello,\n" +
+                        SP.FirstName + " " + SP.LastName + "\n\n" +
+                        "your service has been completed" + "\n" +
+                        Name + " please check   \n" +
+                        "Service ID: " + servicerequestId;
+
+                        MailMessage msg = new MailMessage();
+                        msg.To.Add(Email);
+                        msg.Subject = Subject;
+                        msg.Body = Body;
+                        msg.From = new MailAddress("sirijery@gmail.com");
+                        msg.IsBodyHtml = true;
+                        SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                        setup.Port = 587;
+                        setup.UseDefaultCredentials = true;
+                        setup.EnableSsl = true;
+                        setup.Credentials = new System.Net.NetworkCredential("sirijery@gmail.com", "siri@90543");
+                        setup.Send(msg);
+
+                    }
+                }
+                var customer = _helperlandContext.Users.Where(u => u.UserId == request.UserId).Select(u => new { u.Email, u.FirstName, u.LastName }).FirstOrDefault();
+                if (customer != null)
+                {
+                    Mail mail = new Mail();
+                    string Email = customer.Email;
+                    string name = customer.FirstName + " " + customer.LastName;
+                    string Subject = "Service Completed";
+                    string Body =
+                    "Hello,\n" +
+                        "your service has been completed" + "\n" +
+                        Name + " please check your  \n" +
+                        "Service ID: " + servicerequestId + " and give rating  \n";
+                    MailMessage msg = new MailMessage();
+                    msg.To.Add(Email);
+                    msg.Subject = Subject;
+                    msg.Body = Body;
+                    msg.From = new MailAddress("sirijery@gmail.com");
+                    msg.IsBodyHtml = true;
+                    SmtpClient setup = new SmtpClient("smtp.gmail.com");
+                    setup.Port = 587;
+                    setup.UseDefaultCredentials = true;
+                    setup.EnableSsl = true;
+                    setup.Credentials = new System.Net.NetworkCredential("sirijery@gmail.com", "siri@90543");
+                    setup.Send(msg);
+                }
+
                 request.Comments = s.Comments;
                 request.Status = 2;
                 _helperlandContext.ServiceRequests.Update(request);
@@ -315,25 +368,25 @@ namespace Helperland.Controllers
             return "true";
         }
 
-        public string AddproviderAddress(User user)
-        {
-            User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
-            int? userid = u.UserId;
-            if (userid != null)
-            {
-                UserAddress serviceadd = new UserAddress();
-                serviceadd.UserId = (int)userid;
-                serviceadd.AddressLine1 = user.AddressLine1;
-                serviceadd.AddressLine2 = user.AddressLine2;
-                serviceadd.City = user.City;
-                serviceadd.Mobile = user.Mobile;
-                serviceadd.PostalCode = user.PostalCode;
-                var serviceaddResult = _helperlandContext.UserAddresses.Add(serviceadd);
-                _helperlandContext.SaveChanges();
-                return "true";
-            }
-            return "false";
-        }
+        //public string AddproviderAddress(User user)
+        //{
+        //    User u = JsonSerializer.Deserialize<User>(HttpContext.Session.GetString("CurrentUser"));
+        //    int? userid = u.UserId;
+        //    if (userid != null)
+        //    {
+        //        UserAddress serviceadd = new UserAddress();
+        //        serviceadd.UserId = (int)userid;
+        //        serviceadd.AddressLine1 = user.AddressLine1;
+        //        serviceadd.AddressLine2 = user.AddressLine2;
+        //        serviceadd.City = user.City;
+        //        serviceadd.Mobile = user.Mobile;
+        //        serviceadd.PostalCode = user.PostalCode;
+        //        var serviceaddResult = _helperlandContext.UserAddresses.Add(serviceadd);
+        //        _helperlandContext.SaveChanges();
+        //        return "true";
+        //    }
+        //    return "false";
+        //}
 
 
 

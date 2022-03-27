@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "Admin";
+    Layout = "";
 
 }
 @using Microsoft.AspNetCore.Http;
@@ -54,10 +55,10 @@
 
                         <a class="nav-item nav-link menu"><b style="color:white;">@Context.Session.GetString("Name")</b></a>
 
-                        <div class="btn-group user_menu">
-                            <button class="btn" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
-                                <img src="~/IMAGES/logout.png" alt="logout">
-                            </button>
+                        <div class="btn-group user_menu" style="background-color:#1fb6ff; border:1px solid #1fb6ff !important;">
+                            <a class="btn" type="button" id="defaultDropdown" asp-controller="Home" asp-action="Index" onclick="LogOut()" style="background-color:#1fb6ff; border:1px solid #1fb6ff !important;" >
+                                <img src="~/IMAGES/logout.png" alt="logout" style="background-color:#1fb6ff;">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -84,7 +85,7 @@
                 <li><a href="#" class="left-contant">Inquiry Management</a></li>
                 <li><a href="#" class="left-contant">Newsletter Management</a></li>
                 <li><a href="#" class="left-contant">Content Management</a></li>
-              
+
             </ul>
         </div>
         <!--leftside content code end-->
@@ -103,6 +104,8 @@
 
     </section>
     <!--middle section code end-->
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="~/Javascript/Admin.js"></script>

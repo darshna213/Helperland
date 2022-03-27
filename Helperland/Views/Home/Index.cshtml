@@ -57,7 +57,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
-                               asp-controller="Bookservice" asp-action="Bookservice">Book a Cleaner</a>
+                             asp-controller="Bookservice" asp-action="Bookservice">Book a Cleaner</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Price">Prices</a>
@@ -102,21 +102,21 @@
         <div id="home_section_text">
             <div class="home_section_text">
                 <div class="lorem">
-                    <p style="margin-bottom: 0px;">Lorem ipsum text</p>
+                    <p style="margin-bottom: 0px;">Great! Book now for Helperland and enjoy the benefits </p>
                 </div>
                 <div class="lorem-small">
                     <span><i class="bi bi-check"></i></span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
-                </div>
-
-                <div class="lorem-small">
-                    <span><i class="bi bi-check"></i></span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    <span>certified & insured helper </span>
                 </div>
 
                 <div class="lorem-small">
                     <span><i class="bi bi-check"></i></span>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
+                    <span>easy booking procedure </span>
+                </div>
+
+                <div class="lorem-small">
+                    <span><i class="bi bi-check"></i></span>
+                    <span>easy booking procedure</span>
                 </div>
             </div>
         </div>
@@ -466,19 +466,31 @@
     @if (TempData["SuccessMessage"] != null)
     {
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                alert("Record not found");
+                swal({
+                    title: "Login Failed",
+                    text: "Your Username and/or password do not match.",
+                    icon: "error",
+                    button: "Retry",
+                });
             });
         </script>
     }
-    
+
     @if (TempData["ActiveMessage"] != null)
     {
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                alert("User are Inactive");
+                swal({
+                    title: "Login Failed",
+                    text: "User are Inactive",
+                    icon: "error",
+                    button: "Retry",
+                });
             });
         </script>
     }
@@ -529,9 +541,16 @@
     @if (TempData["SuccessMsg"] != null)
     {
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function () {
-                alert("mail has sent successfully!");
+                swal({
+                    title: "Good job!",
+                    text: "mail has sent successfully!",
+                    icon: "success",
+                    button: "Ok",
+                });
+
             });
         </script>
     }
@@ -621,8 +640,37 @@
         }
     </script>
 
-
-
+    @if (TempData["resetMsg"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal({
+                    title: "Password Changed!",
+                    text: "Your Password has been changed successfully",
+                    icon: "success",
+                    button: "Back to Our Website",
+                });
+            });
+        </script>
+    }
+    @if (TempData["signupmsg"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal({
+                    title: "Account Created!",
+                    text: "on this site Your Account has been successfully created",
+                    icon: "success",
+                    button: "Thank you",
+                });
+            });
+        </script>
+    }
+  
 
 
     <!-- Optional JavaScript; choose one of the two! -->

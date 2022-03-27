@@ -395,7 +395,13 @@ $("#new-service-request-accept-modal-btn").click(function () {
             data: data,
             success:
                 function (response) {
-                    alert("Your service request is successfully accepted !");
+                    swal({
+                        title: "Good Job",
+                        text: "Service request has successfully accepted",
+                        icon: "info",
+                        button: "OK",
+                    });
+                   
                     getnewServiceRequest();
 
                 },
@@ -420,7 +426,12 @@ document.getElementById("accept-now-btn").addEventListener("click", () => {
             data: data,
             success:
                 function (response) {
-                    alert("Your service request is successfully accepted !");
+                    swal({
+                        title: "Good Job",
+                        text: "Service request has successfully accepted",
+                        icon: "info",
+                        button: "OK",
+                    });
                     getnewServiceRequest();
 
                 },
@@ -457,7 +468,12 @@ $("#service-detail-modal-cancel-btn").click(function () {
             data: data,
             success:
                 function (response) {
-                    alert("Your service request is successfully Cancelled !");
+                    swal({
+                        title: "Are you Sure?",
+                        text: "Cancel Service Request.",
+                        icon: "info",
+                        button: "Cancel it",
+                    });
                     getupcomingServiceRequest();
 
                 },
@@ -481,7 +497,12 @@ document.getElementById("cancel-modal-btn").addEventListener("click", () => {
             data: data,
             success:
                 function (response) {
-                    alert("Your service request is successfully Cancelled !");
+                    swal({
+                        title: "Are you Sure?",
+                        text: "Cancel Service Request.",
+                        icon: "info",
+                        button: "Cancel it",
+                    });
                     getupcomingServiceRequest();
 
                 },
@@ -513,7 +534,12 @@ $("#service-detail-modal-complete-btn").click(function () {
             data: data,
             success:
                 function (response) {
-                    alert("Your service request is successfully Completed !");
+                    swal({
+                        title: "Congrats!",
+                        text: "Service request has successfully Completed",
+                        icon: "success",
+                        button: "OK",
+                    });
                     getupcomingServiceRequest();
 
                 },
@@ -537,7 +563,12 @@ document.getElementById("complete-modal-btn").addEventListener("click", () => {
             data: data,
             success:
                 function (response) {
-                    alert("Your service request is successfully Completed !");
+                    swal({
+                        title: "Congrats!",
+                        text: "Service request has successfully Completed",
+                        icon: "success",
+                        button: "OK",
+                    });
                     getupcomingServiceRequest();
 
                 },
@@ -643,21 +674,6 @@ function getHistoryFromTable(thisTd) {
     document.getElementById("service-history-row-detail-modal-open-button").click();
 
 }
-
-
-
-
-
-
-
-//service & schedule (calendar)
-//const calendar = document.querySelector("#app-calendar");
-
-//for (let day = 1; day <= 31; day++) {
-//    console.log(day)
-
-//calendar.insertAdjacentHTML("beforeend", '<div class= "day" > ${ day } </div > ');
-//}
 
 /////////my rating///////////
 getmyRatings();
@@ -804,7 +820,12 @@ function blockcustomer(serviceID) {
             data: model,
             success:
                 function (response) {
-                    alert("blocked");
+                    swal({
+                        title: "Are you Sure?",
+                        text: "Block Customer.",
+                        icon: "info",
+                        button: "Block",
+                    });
                     getblockCustomer();
                 },
             error:
@@ -829,7 +850,12 @@ function unblockcustomer(serviceID) {
             data: model,
             success:
                 function (response) {
-                    alert("UNblocked");
+                    swal({
+                        title: "Thank You",
+                        text: " you can again work with this Customer.",
+                        icon: "success",
+                        button: "Unblock",
+                    });
                     getblockCustomer();
                 },
             error:
@@ -948,7 +974,7 @@ $("#sp-my-detail-save-btn").click(function () {
 
                     checkData();
                     if (streetname != "" && housenumber != " " && city != " " && firstName != " " && lastName != " " && mobile != " ") {
-                        alert("your detais are successfully saved");
+                        swal("Good job!", "your detais are successfully saved!", "success");
                     }
 
                 },
@@ -1033,42 +1059,42 @@ function setSuccess(u) {
 
 
 ///////////////provider add address(my-setting)/////////////
-function AddproviderAddress() {
+//function AddproviderAddress() {
 
-    var streetName = $("#sp-my-address-street-name").val();
-    var houseNumber = $("#sp-my-address-house-number").val();
-    var postalCode = $("#sp-my-address-postal-code").val();
-    var city = $("#sp-my-address-city").val();
-
-
-    var model = {
-        AddressLine1: streetName,
-        AddressLine2: houseNumber,
-        PostalCode: postalCode,
-        City: city
-    };
+//    var streetName = $("#sp-my-address-street-name").val();
+//    var houseNumber = $("#sp-my-address-house-number").val();
+//    var postalCode = $("#sp-my-address-postal-code").val();
+//    var city = $("#sp-my-address-city").val();
 
 
-    $.ajax(
-        {
-            type: 'POST',
-            url: '/Serviceprovider/AddproviderAddress',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: model,
-            success:
-                function (response) {
+//    var model = {
+//        AddressLine1: streetName,
+//        AddressLine2: houseNumber,
+//        PostalCode: postalCode,
+//        City: city
+//    };
 
-                    checkData();
-                    getUserDetails();
-                },
-            error:
-                function (response) {
-                    console.error(response);
-                    checkData();
-                    //alert("addresss are not added");
-                }
-        });
-}
+
+//    $.ajax(
+//        {
+//            type: 'POST',
+//            url: '/Serviceprovider/AddproviderAddress',
+//            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+//            data: model,
+//            success:
+//                function (response) {
+
+//                    checkData();
+//                    getUserDetails();
+//                },
+//            error:
+//                function (response) {
+//                    console.error(response);
+//                    checkData();
+//                    //alert("addresss are not added");
+//                }
+//        });
+//}
 
 
 /////////////////change password(my-setting)////////////////
@@ -1127,7 +1153,7 @@ $("#sp-change-password-save-btn").click(function () {
                                 
                                 checkPasswordData();
                                 if (oldPass != "" && newPass != "" && confPass != "" && storedPass == oldPass && newPass == confPass) {
-                                    alert("yuor Password has change Successfully");
+                                    swal("Good job!", "Your Password has change Successfully!", "success");
                                 }
                               
                             },

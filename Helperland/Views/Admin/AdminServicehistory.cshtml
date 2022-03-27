@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "AdminServicehistory";
+    Layout = "";
 }
 <!--admin-service-history code start-->
 <div class="" id="admin-service-history">
@@ -46,12 +47,12 @@
                 <input type="text" id="myInput" class="d-none" />
                 <div class="input-group me-2">
                     <span class="input-group-text" id="basic-addon1" style="background-color: #fff; border-right: none;"> <img src="~/IMAGES/calendar-blue.png" alt="calander"> </span>
-                    <input type="date" class="form-control" id="from-date" style="border-left: none;" placeholder="From Date" aria-label="date" aria-describedby="basic-addon1" >
+                    <input type="date" class="form-control" id="from-date" style="border-left: none;" placeholder="From Date" aria-label="date" aria-describedby="basic-addon1">
 
                 </div>
                 <div class="input-group me-2">
                     <span class="input-group-text" id="basic-addon1" style="background-color: #fff; border-right: none;"> <img src="~/IMAGES/calendar-blue.png" alt="calander"> </span>
-                    <input type="date" class="form-control" id="to-date" style="border-left: transparent;" placeholder="To Date" aria-label="date" aria-describedby="basic-addon1" >
+                    <input type="date" class="form-control" id="to-date" style="border-left: transparent;" placeholder="To Date" aria-label="date" aria-describedby="basic-addon1">
 
                 </div>
                 <input class="submit-btn button" type="button" value="search" onclick="myFunction()">
@@ -162,8 +163,13 @@
                 </div>
             </div>
             <!--paging code end-->
-        </div>
 
+        </div>
+        <!--copyright code start-->
+        <div class="footer">
+            ©2018 Helperland. All rights reserved.
+        </div>
+        <!--copyright code end-->
     </div>
 </div>
 <!--admin-service-history code end-->
@@ -174,7 +180,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title " id="exampleModal2Label" style=" font-weight: bold; color: #646464;">Edit Service Request</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="update-modal-close-btn">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -184,14 +190,15 @@
                         <div class="add-address-box" id="add-adress-box-modal">
 
                             <div class="address-taker-box d-flex" style="width:100%;">
-                                <div style="width:45%;">
+                                <div style="width:45%;" class="form-validation">
                                     <label for="date">
                                         <b>Date</b>
                                     </label>
                                     <br>
-                                    <input type="date" name="date" id="edit-date-modal" />
+                                    <input type="date" name="date" id="edit-date-modal" required/>
+                                    <span></span>
                                 </div>
-                                <div style="width:45%;">
+                                <div style="width:45%;" class="form-validation">
                                     <label for="time">
                                         <b>Time</b>
                                     </label>
@@ -202,6 +209,7 @@
                                         <option value="6:00">6:00</option>
                                         <option value="8:00">8:00</option>
                                     </select>
+                                    <span></span>
                                     <input hidden type="number" id="editId" name="editID" />
                                 </div>
                             </div>
@@ -209,37 +217,40 @@
                                 <p><b>Service Address</b></p>
                             </div>
                             <div class="address-taker-box d-flex" style="width:100%;">
-                                <div style="width:45%;">
+                                <div style="width:45%;" class="form-validation">
                                     <label for="streetname">
                                         Street name
                                     </label>
                                     <br>
-                                    <input type="text" name="streetname" placeholder="Street name" id="edit-streetname-modal" />
+                                    <input type="text" name="streetname" placeholder="Street name" id="edit-streetname-modal" required/>
+                                    <span></span>
                                 </div>
-                                <div style="width:45%;">
+                                <div style="width:45%;" class="form-validation">
                                     <label for="housename">
                                         House number
                                     </label>
                                     <br>
 
-                                    <input type="text" name="housename" placeholder="House number" id="edit-housename-modal" />
+                                    <input type="text" name="housename" placeholder="House number" id="edit-housename-modal" required/>
+                                    <span></span>
                                 </div>
                             </div>
                             <div class="address-taker-box d-flex" style="width:100%;">
-                                <div style="width:45%;">
+                                <div style="width:45%;" class="form-validation">
                                     <label for="postalcode">
                                         Postal code
                                     </label>
                                     <br>
-                                    <input type="text" name="postalcode" placeholder="Postal code" id="edit-postalcode-modal" />
+                                    <input type="text" name="postalcode" placeholder="Postal code" id="edit-postalcode-modal" required/>
 
                                 </div>
-                                <div style="width:45%;">
+                                <div style="width:45%;" class="form-validation">
                                     <label for="city">
                                         City
                                     </label>
                                     <br>
-                                    <input type="text" name="city" placeholder="City" id="edit-city-modal" />
+                                    <input type="text" name="city" placeholder="City" id="edit-city-modal" required/>
+                                    <span></span>
                                 </div>
                             </div>
                             <div style="color: #646464; margin-left: 20px; padding-left: 10px;">
@@ -258,7 +269,6 @@
                                         House number
                                     </label>
                                     <br>
-
                                     <input type="text" name="housename" placeholder="House number" id="invoice-edit-housename-modal" />
                                 </div>
                             </div>
@@ -279,9 +289,10 @@
                                     <input type="text" name="city" placeholder="City" id="invoice-edit-city-modal" />
                                 </div>
                             </div>
-                            <div class="address-taker-box " style="width:100%;">
+                            <div class="address-taker-box form-validation" style="width:100%;">
                                 <label class="accept-heading"><b>Why do you want to reschedule service request?</b></label>
-                                <textarea class="modal-textarea" id="reschedule-modal-textarea" style="color: #646464; width: 90%; border: 1px solid #c8c8c8; border-radius: 5px;" placeholder="Why do you want to reschedule service request?"></textarea>
+                                <textarea class="modal-textarea" id="reschedule-modal-textarea" style="color: #646464; width: 90%; border: 1px solid #c8c8c8; border-radius: 5px;" placeholder="Why do you want to reschedule service request?" required></textarea>
+                                <span></span>
                             </div>
                             <div class="address-taker-box " style="width:100%;">
                                 <label class="accept-heading"><b>Call Center EMP Notes</b></label>
@@ -289,7 +300,7 @@
                             </div>
                         </div>
                     </div>
-                    <button class="update-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="update-now-btn" type="button" data-dismiss="modal">
+                    <button class="update-now rounded-pill m-auto d-flex align-items-center justify-content-center" id="update-now-btn" type="button" data-target="#accept-modal">
                         Update
                     </button>
                 </form>

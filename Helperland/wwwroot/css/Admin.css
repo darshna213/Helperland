@@ -547,6 +547,7 @@ input.submit-btn {
     background: #1d7a8c;
     padding-top: 10px;
     padding-bottom: 10px;
+}
     /* copyright*/
     .footer {
     font-size: 14px;
@@ -960,4 +961,61 @@ input.submit-btn {
     color: #a2a6a8;
     margin: 20px;
     line-height: 0.8;
+}
+
+
+
+
+
+/*form validation(Update)*/
+.error {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+    .error span {
+        color: #f00 !important;
+    }
+
+    .error input {
+        border-color: #f00 !important;
+        border-width: 2px !important;
+    }
+
+
+.form-validation .error input {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+.form-validation .success input {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+
+.form-validation span {
+    display: block;
+}
+
+.form-validation .error span {
+    color: #f00 !important;
+    display: block !important;
+}
+
+.success span {
+    color: white !important;
+}
+
+.success {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
+}
+.form-validation .error select {
+    border-color: #f00 !important;
+    border-width: 2px !important;
+}
+
+.form-validation .success select {
+    border-color: #0b0 !important;
+    border-width: 2px !important;
 }

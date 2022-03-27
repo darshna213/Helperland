@@ -585,32 +585,18 @@ footer {
 
 
 /*schedule & service (calender)*/
-:root {
-    --light-gray: #DADCE0;
-    --light-blue: #189CE2;
-}
-
-#app-calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(5,1fr);
+.calender-next-prev-link {
+    border: 1px solid #aaaaaa;
+    padding: 8px;
     color:#646464;
-    /*background-color: green;*/
-/*    height: 100%;
-*/}
-
-.name {
-    padding-bottom: 5px;
 }
-
-.selected {
-    background-color: lightblue;
-    color: white;
-    
+.service-schedule-head {
+    border: 1px solid #aaaaaa;
+    background-color: #dcdcdc;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color:#646464;
 }
-
-
-
 
 
 

@@ -4,7 +4,6 @@
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*/
 
-
 function tab1() {
     $("#admin-service-history").removeClass("d-none");
     $("#admin-user-management").addClass("d-none");
@@ -50,7 +49,6 @@ function getServicehistoryDetails() {
                     var row = table.insertRow();
 
                     var cell1 = row.insertCell(0);
-
                     var cell2 = row.insertCell(1);
                     var cell3 = row.insertCell(2);
                     var cell4 = row.insertCell(3);
@@ -213,34 +211,133 @@ $("#update-now-btn").click(function () {
     var city = $("#edit-city-modal").val();
     var postalCode = $("#edit-postalcode-modal").val();
     var reason = $("#reschedule-modal-textarea").val();
-    var model = {
-        ServiceId: parseInt(serviceId),
-        NewServiceDate: date,
-        NewServicetime: time,
-        AddressLine1: addressLine1,
-        AddressLine2: addressLine2,
-        City: city,
-        PostalCode: postalCode,
-        Reason: reason
-    };
-    $.ajax(
-        {
-            type: 'POST',
-            url: '/Admin/UpdateServiceRequest',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: model,
-            success:
-                function (response) {
+    if (date != " " && time != " " && addressLine1 != " " && addressLine2 != " " && city != " " && postalCode != " " && reason != " ") {
+        var model = {
+            ServiceId: parseInt(serviceId),
+            NewServiceDate: date,
+            NewServicetime: time,
+            AddressLine1: addressLine1,
+            AddressLine2: addressLine2,
+            City: city,
+            PostalCode: postalCode,
+            Reason: reason
+        };
+        $.ajax(
+            {
+                type: 'POST',
+                url: '/Admin/UpdateServiceRequest',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: model,
+                success:
+                    function (response) {
+                        checkData();
 
-                    alert("service has been updated");
-                },
-            error:
-                function (response) {
-                    
-                    alert("wrong-wrong");
-                }
-        });
+                        if (date != " " && time != " " && addressLine1 != " " && addressLine2 != " " && city != " " && postalCode != " " && reason != " ") {
+
+                            document.getElementById("update-modal-close-btn").click();
+                            alert("service has been updated");
+                        }
+
+                        else {
+                            checkData();
+                        }
+
+                    },
+                error:
+                    function (response) {
+
+                        checkData();
+                    }
+            });
+    }
+    else {
+        checkData();
+    }
 });
+//////update form validation/////////
+var fdate = document.getElementById("edit-date-modal");
+var ftime = document.getElementById("edit-time-modal");
+var streetname = document.getElementById("edit-streetname-modal");
+var housename = document.getElementById("edit-housename-modal");
+var cityname = document.getElementById("edit-city-modal");
+var fpostalcode = document.getElementById("edit-postalcode-modal");
+var textarea = document.getElementById("reschedule-modal-textarea");
+
+function checkData() {
+    var fdateValue = fdate.value.trim();
+    var ftimeValue = ftime.value.trim();
+    var streetnameValue = streetname.value.trim();
+    var housenameValue = housename.value.trim();
+    var citynameValue = cityname.value.trim();
+    var fpostalcodeValue = fpostalcode.value.trim();
+    var textareaValue = textarea.value.trim();
+    if (fdateValue == "") {
+        setError(fdate, "Date are requird");
+
+    } else {
+        setSuccess(fdate);
+
+    }
+    if (ftimeValue == "") {
+        setError(ftime, "time are requird");
+
+    } else {
+        setSuccess(ftime);
+
+    }
+    if (streetnameValue == "") {
+        setError(streetname, "streetname must be requird ");
+
+    } else {
+        setSuccess(streetname);
+    }
+    if (housenameValue == "") {
+        setError(housename, "housename must be requird ");
+
+    } else {
+        setSuccess(housename);
+    }
+    if (citynameValue == "") {
+        setError(cityname, "cityname must be requird ");
+
+    } else {
+        setSuccess(cityname);
+    }
+    if (fpostalcodeValue == "") {
+        setError(fpostalcode, "postalcode must be requird ");
+
+    } else {
+        setSuccess(fpostalcode);
+    }
+    if (textareaValue == "") {
+        setError(textarea, "Reason must be requird ");
+
+    } else {
+        setSuccess(textarea);
+    }
+
+}
+
+function setError(u, msg) {
+    var parentBox = u.parentElement;
+    console.log(parentBox);
+    parentBox.className = "form-validation error";
+    var span = parentBox.querySelector("span");
+    span.innerText = msg;
+}
+function setSuccess(u) {
+    var parentBox = u.parentElement;
+    parentBox.className = "form-validation success";
+
+}
+
+
+
+
+
+
+
+
 /////////Cancel/////////
 function cancelservice(serviceID) {
     document.getElementById("cancelId").value = serviceID;
@@ -438,16 +535,16 @@ function activeinactive(UserId, Status, Email) {
     document.getElementById("activeId").value = UserId;
     document.getElementById("status").value = Status;
     document.getElementById("emailId").value = Email;
-    
+
     document.getElementById("active-modal-open-button").click();
-
-
 }
-$('#active-inactive-btn').click(function() {
+
+
+$('#active-inactive-btn').click(function () {
     var serviceId = $("#activeId").val();
     var status = $("#status").val();
     var email = $("#emailId").val();
-    
+
     var model = {
         ServiceId: parseInt(serviceId),
         Status: status,
@@ -456,15 +553,15 @@ $('#active-inactive-btn').click(function() {
     $.ajax(
         {
             type: 'POST',
-            url: '/Admin/ActivateDeActivateUser',
+            url: '/Admin/ActivateInActivate',
             contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
             data: model,
             success:
                 function (response) {
 
-                    alert("Changes Saved!");
+                    activealert();
                     getUserManagementDetails();
-                    
+
                 },
             error:
                 function (response) {
@@ -473,6 +570,27 @@ $('#active-inactive-btn').click(function() {
                 }
         });
 });
+
+function activealert() {
+    swal({
+        title: "Good job!",
+        text: "Changes Successfully Saved",
+        icon: "success",
+        button: "Ok",
+    });
+  
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 

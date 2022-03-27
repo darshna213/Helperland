@@ -9,6 +9,8 @@ using Helperland.Models;
 using Helperland.Data;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
 namespace Helperland.Controllers
 {
@@ -33,6 +35,7 @@ namespace Helperland.Controllers
             return View();
         }
 
+       
 
         public IActionResult Faq()
         {
@@ -65,6 +68,7 @@ namespace Helperland.Controllers
             }
 
             contactU.CreatedOn = DateTime.Now;
+            contactU.CreatedBy = 1;
             _helperlandContext.ContactUs.Add(contactU);
             _helperlandContext.SaveChanges();
             return RedirectToAction("Index");

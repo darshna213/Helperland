@@ -52,7 +52,7 @@
                         <button class="nvbarbtn">Login</button>
                         <a asp-controller="Account" asp-action="provider" id="nvbarbtn" class="nvbarbtn">Become a Helper </a>
 
-                       
+
                     </div>
                 </div>
             </div>
@@ -310,6 +310,39 @@
             <!--rightside code end-->
         </div>
     </section>
+    @if (TempData["provider"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal({
+                    title: "Oops!",
+                    text: "You can't Book Service",
+                    icon: "error",
+                    button: "Ok",
+
+                });
+            });
+        </script>
+    }
+
+    @if (TempData["nologin"] != null)
+    {
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                swal({
+                    title: "You are not Login!",
+                    text: "Please Login this website, Otherwise You can't Book a Service.",
+                    icon: "error",
+                    button: "Login",
+
+                });
+            });
+        </script>
+    }
     <!--middle code end-->
     <!-- javascript code start-->
     <script src="~/Javascript/Bookservice.js"></script>

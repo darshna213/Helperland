@@ -4,6 +4,7 @@
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>*/
 
+
 function tab1() {
     $("#admin-service-history").removeClass("d-none");
     $("#admin-user-management").addClass("d-none");
@@ -43,6 +44,7 @@ function getServicehistoryDetails() {
             function (response) {
                 var json = JSON.parse(response);
                 var table = document.getElementById("data-table");
+              
                 $("#data-table td").remove();
 
                 for (var i = 0; i < json.length; i++) {
@@ -433,8 +435,18 @@ function SelectedTextValue(ele) {
         document.getElementById("myInput").value = "";
     }
 }
+//$(document).ready(function () {
+//    $('#data-table').DataTable();
+//});
 
-
+//$("#service-history-filter-search-btn").click(function (e) {
+//    e.preventDefault();
+//    table = $('#data-table').DataTable();
+//    table.column(0).search([
+//        $("#serviceID").val(),
+//    ]);
+//table.draw();
+//});
 
 //excel sheet (User management) download
 function ExportToExcel(type, fn, dl) {

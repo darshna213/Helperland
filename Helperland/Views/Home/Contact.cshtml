@@ -49,13 +49,13 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                     <div class="navbar-nav text-light">
-                        <a asp-action="Book_service" class="nav-item nav-link menu menu1">Book Now</a>
+                        <a asp-controller="Bookservice" asp-action="Bookservice" class="nav-item nav-link menu menu1">Book Now</a>
                         <a asp-action="Price" class="nav-item nav-link menu">Prices & Services</a>
-                        <a href="#" class="nav-item nav-link menu">Warranty</a>
+                        <a asp-controller="Home" asp-action="Warranty" class="nav-item nav-link menu">Warranty</a>
                         <a href="#" class="nav-item nav-link menu">Blog</a>
                         <a asp-action="Contact" class="nav-item nav-link menu">Contact</a>
                         <button class="nvbarbtn">Login</button>
-                        <a asp-action="provider" id="nvbarbtn" class="nvbarbtn">Become a Helper </a>
+                        <a asp-controller="Account" asp-action="Provider" id="nvbarbtn" class="nvbarbtn">Become a Helper </a>
 
                         @*<button class="nvbarbtn">Become a Helper</button>*@
                     </div>

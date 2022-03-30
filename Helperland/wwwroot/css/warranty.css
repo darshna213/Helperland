@@ -1,0 +1,336 @@
+﻿* {
+    font-family: 'roboto' sans-serif;
+}
+
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/*navbar*/
+
+nav {
+    background-color: #525252;
+}
+
+.navbar-fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    opacity: 0.8;
+}
+
+#navbarCollapse {
+    justify-content: right;
+}
+
+.navbar-brand img {
+    width: 73px;
+    height: 54px;
+}
+
+.menu1 {
+    background-color: #29626D;
+    border: 1px solid white;
+    border-radius: 25px;
+}
+
+
+.nvbarbtn {
+    border-radius: 25px;
+    border: 1px solid white;
+    color: white;
+    /*    padding: 5px 20px;*/
+    margin: 0px 5px;
+    text-decoration: none;
+    background-color: #29626D;
+    font-size: 16px;
+    padding: 9px 22px 12px 22px;
+}
+
+    .nvbarbtn:hover {
+        color: white;
+        background-color: #29626D;
+        border: 1px solid white;
+        text-decoration: none;
+    }
+
+
+.menu {
+    text-decoration: none;
+    color: white;
+    font-size: 17px;
+    padding: 10px 15px !important;
+    margin: 0px 10px;
+}
+
+
+#navbarCollapse button {
+    font-size: 16px;
+    padding: 9px 22px 12px 22px;
+    background-color: #29626D;
+}
+
+.menu:hover {
+    border-radius: 25px;
+    border: 1px solid white;
+    color: white;
+    background-color: #29626D;
+}
+
+.ddmenu {
+    color: white;
+    margin-right: 15px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.bg {
+    width: 100%;
+  /*  height: 100vh;*/
+}
+
+
+/* middle section*/
+.about h1 {
+    font-size: 36px;
+    color: #4f4f4f;
+    font-weight: bold;
+}
+
+.about-heading2 {
+    margin-top: 30px;
+}
+
+.h-hr {
+    width: 62px;
+}
+
+.star {
+    position: relative;
+}
+
+    .star:before {
+        content: '';
+        width: 62px;
+        height: 1px;
+        background: #212529;
+        position: absolute;
+        left: 44.4%;
+        top: 47%;
+    }
+
+    .star:after {
+        content: '';
+        width: 62px;
+        height: 1px;
+        background: #212529;
+        position: absolute;
+        left: 51.5%;
+        top: 47%;
+    }
+
+.about-detail {
+    margin-top: 38px;
+}
+
+.about-text {
+    font-size: 16px;
+    color: #646464;
+}
+
+
+/*button*/
+.customer {
+    margin-top: 9px;
+}
+
+#foma-container {
+    background: #525252;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    position: relative;
+    margin: auto auto;
+}
+
+#foma-5 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#row3 {
+    margin: 0 !important;
+}
+
+@media (max-width:576px) {
+
+    .newletter-input {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+#customer .btn {
+    font-size: 14px;
+    font-weight: 400;
+    background: #ff7b6d;
+    border-radius: 20px;
+    height: 40px;
+    width: 88px;
+    color: white;
+    margin-left: -2px;
+}
+
+#customer .form-control {
+    border: 1px solid #565656;
+    border-radius: 20px;
+    background: transparent;
+    width: 223px;
+    height: 40px;
+    color: #565656;
+    font-size: 14px;
+    font-weight: 400;
+    margin-right: -2px;
+}
+
+.button-title {
+    font-size: 18px;
+    color: #353548;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.email-submit {
+    margin-bottom: 53px;
+}
+
+/* add address  */
+
+.add-address-box {
+    border: solid 1px #e1e1e1;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background: #F3F3F3;
+    padding-bottom: 10px;
+}
+
+    .add-address-box label {
+        margin-bottom: 0px;
+    }
+
+.address-taker-box {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 20px;
+    flex-wrap: wrap;
+    color: #646464;
+}
+
+#tel2 {
+    width: 300px;
+}
+
+
+.address-taker-box input {
+    /*    width: 300px;*/
+    width: 97%;
+    height: 46px;
+    border: solid 1px #C8C8C8;
+    color: #646464;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    .address-taker-box input[type="tel"] {
+        border: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 259px;
+    }
+
+.tel-icon {
+    padding: 5px;
+    border-right: 1px solid #C8C8C8;
+    padding-top: 11px;
+}
+
+.tel-box {
+    display: flex;
+    border: solid 1px #C8C8C8;
+    border-radius: 5px;
+}
+
+.save-btn {
+    height: 42px;
+    background: #1D7A8C;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+}
+
+.clear-btn {
+    height: 42px;
+    background: white;
+    border: solid 1px #C8C8C8;
+    color: #646464;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+
+
+
+/*footer*/
+footer {
+    background-color: #111111;
+    width: 100%;
+    color: white;
+    height: 195px;
+}
+
+    footer .container a {
+        text-decoration: none;
+        color: #F1F1F1;
+        font-size: 14px;
+    }
+
+.fmenu {
+    padding-top: 20px;
+    max-width: 1350px;
+}
+
+.fimg1 {
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.fimg2 {
+    width: 20px;
+    height: 20px;
+}
+
+.right {
+    color: #737381;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+@media screen and (max-width:330px) {
+    .submit {
+        margin-top: 20px;
+    }
+}

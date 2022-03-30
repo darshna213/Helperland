@@ -77,7 +77,15 @@ namespace Helperland.Controllers
         {
             return View();
         }
+        public IActionResult Insurrance()
+        {
+            return View();
+        }
         public IActionResult Provider()
+        {
+            return View();
+        }
+        public IActionResult Warranty()
         {
             return View();
         }

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+@using Microsoft.AspNetCore.Http;
 
 <!doctype html>
 <html lang="en">
@@ -57,7 +57,7 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
                         <li class="nav-item">
                             <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
-                             asp-controller="Bookservice" asp-action="Bookservice">Book a Cleaner</a>
+                               asp-controller="Bookservice" asp-action="Bookservice">Book a Cleaner</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-action="Price">Prices</a>
@@ -82,18 +82,32 @@
                             <a class="nav-link btn btn-primary text-white" style="padding-left: 15px;padding-right: 15px;"
                                asp-controller="Account" asp-action="Provider">Become a Helper</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
+                        @*<li class="nav-item dropdown">
+                                <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <img src="~/IMAGES/ic-flag.png" alt="Flag">
+                                    <i class="bi bi-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">USA</a></li>
+                                    <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">CANADA</a></li>
+                                    <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">INDIA</a></li>
+                                </ul>
+                            </li>*@
+                        <li class="btn-group nav-item dropdown">
+                            <button class="btn" type="button" id="navbarDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="true">
                                 <img src="~/IMAGES/ic-flag.png" alt="Flag">
                                 <i class="bi bi-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt=""> USA</a></li>
-                                <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">CANADA</a></li>
-                                <li><a class="dropdown-item" asp-action="Index"><img src="~/IMAGES/ic-flag.png" alt="">INDIA</a></li>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="defaultDropdown">
+                                <li class="dropdown-item">Welcome,<br /> <span class="customer-name"><b>@Context.Session.GetString("Name")</b></span></li>
+                                <hr />
+                                <li><a class="dropdown-item" asp-controller="Account" asp-action="Signup"><img src="~/IMAGES/ic-flag.png" alt="">My Dashboard</a></li>
+                                <li><a class="dropdown-item" onclick="mysetting()"><img src="~/IMAGES/ic-flag.png" alt="">My Settings</a></li>
+                                <li><a class="dropdown-item" href="#"><img src="~/IMAGES/ic-flag.png" alt="">Logout</a></li>
                             </ul>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -102,21 +116,21 @@
         <div id="home_section_text">
             <div class="home_section_text">
                 <div class="lorem">
-                    <p style="margin-bottom: 0px;">Great! Book now for Helperland and enjoy the benefits </p>
+                    <p style="margin-bottom: 0px;">Lorem ipsum text </p>
                 </div>
                 <div class="lorem-small">
                     <span><i class="bi bi-check"></i></span>
-                    <span>certified & insured helper </span>
-                </div>
-
-                <div class="lorem-small">
-                    <span><i class="bi bi-check"></i></span>
-                    <span>easy booking procedure </span>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing </span>
                 </div>
 
                 <div class="lorem-small">
                     <span><i class="bi bi-check"></i></span>
-                    <span>easy booking procedure</span>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing </span>
+                </div>
+
+                <div class="lorem-small">
+                    <span><i class="bi bi-check"></i></span>
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing</span>
                 </div>
             </div>
         </div>
@@ -234,7 +248,7 @@
         <img id="blog-right" src="~/IMAGES/blog-right-bg.png" alt="" srcset="">
 
         <div class="row sub-row1 justify-content-center">
-            <div class="col-md-6 order-2 order-md-1">
+            <div class="col-md-6 order-2 order-md-1" style=" padding-left: 94px;">
                 <p id="our-blog-section-title" class="pt-4">
                     Lorem ipsum dolor sit amet,<br> consectetur
                 </p>
@@ -670,7 +684,7 @@
             });
         </script>
     }
-  
+
 
 
     <!-- Optional JavaScript; choose one of the two! -->
